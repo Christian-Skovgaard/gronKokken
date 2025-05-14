@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "505646079861",
+    "project_id": "gronkokken-2b860",
+    "storage_bucket": "gronkokken-2b860.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505646079861:android:46b347ae01dfd7780a3d3c",
+        "android_client_info": {
+          "package_name": "com.example.gronkokken"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "${System.env.googleKey}"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
