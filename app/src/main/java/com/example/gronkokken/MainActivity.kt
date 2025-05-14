@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
             GronKokkenTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        name = "me",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
