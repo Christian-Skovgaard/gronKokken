@@ -34,6 +34,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+fun stuff () {
+    val hello = "yes"
+}
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
