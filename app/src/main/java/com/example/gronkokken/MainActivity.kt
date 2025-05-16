@@ -28,11 +28,15 @@ class MainActivity : ComponentActivity() {
                         name = "me",
                         modifier = Modifier.padding(innerPadding)
                     )
+                    val map:Map<String,String> = mapOf("name" to "Obiwan Kenobi")
+                    Log.d("LookMom", map["name"].toString())
                 }
             }
         }
     }
 }
+
+
 
 
 @Composable

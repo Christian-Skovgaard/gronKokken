@@ -1,30 +1,20 @@
 package com.example.gronkokken.dataclasses
 
-class Recipe (  //Christian
-    //Sidden jeg har haft problemer med at gemme komplekse datastrukture i firebase før har
-    // jeg den her gang valgt at gemme al data i simple datatyper og så konvertere dem her i classen.
-    // Ulempen ved det er at man ikke kan bruge en ren data class, sidden der er kalkulationer i den, men
-    // det ville der være alligevel sidden vi skal finde avgRating.
-
+data class Recipe (  //Christian
     val name:String,
     val flavorText:String,
-    ingredientsRaw:String,
+    private val ingredientsRaw:List<Map<String,String>>,    //vi gemmer i map da jeg før har haft mange problemer med at gemme custom types i firestore, og når classen ikke er mere kompiceret er det her nemmest
     val instructions:String,
-    ratingsRaw:String,
+    private val ratings:List<Int>,
     val weekNr:Int,
     val peopleAmount:Int
     //form for billedliste
 ) {
-    val ingredients:List<String> = ingredientsRaw
-        .replace("[","")
-        .replace("]","")
-        .split(",")
-
-    val ratings:List<Int> = ratingsRaw
-        .replace("[","")
-        .replace("]","")
-        .split(",")
-        .map {char -> char.toInt()}
-
     val avgRating = ratings.average()
+
+    val ingredients:List<RecipeIngredient> = ingredientsRaw.map { ingredient -> RecipeIngredient(
+        name = ingredient["name"].toString(),   //vi kunne gøre den nullable for at slippe for Type-convertion, men så skulle vi deale med det senere når det skulle displayes
+        amount = ingredient["amount"].toString().toInt(),
+        amountUnit = ingredient["amountUnit"].toString()
+    ) }
 }

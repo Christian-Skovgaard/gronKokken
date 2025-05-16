@@ -1,13 +1,7 @@
 package com.example.gronkokken.dataclasses
 
-data class RecipeIngredient (   //Christian
+data class RecipeIngredient(
     val name:String,
-    val amount:Double,
-    val amountUnit:String,
-    //evt valgfri reference til ingredient screen, som virker som link
-) {
-    override fun toString(): String {
-        return "name='$name',amount=$amount,amountUnit='$amountUnit'"
-    }
-
-}
+    val amount: Int,
+    val amountUnit:String
+)
