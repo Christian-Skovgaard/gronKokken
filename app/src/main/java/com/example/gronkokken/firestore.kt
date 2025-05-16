@@ -7,6 +7,8 @@ import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 
 class Firestore {
+
+    //connection detaljer kan findes i app/google-services.json
     private val db = Firebase.firestore
 
     //get all recipes
