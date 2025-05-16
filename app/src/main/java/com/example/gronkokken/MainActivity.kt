@@ -23,12 +23,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             GronKokkenTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "me",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                RegisterPage()
             }
         }
     }
@@ -46,7 +41,5 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    GronKokkenTheme {
-        Greeting("Android")
-    }
+
 }
