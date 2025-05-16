@@ -129,7 +129,6 @@ fun RegisterPage(onClick: () -> Unit) {
                 text = "Skole",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.padding(top = 10.dp)
             )
             RegisterTextField()
             Text(
@@ -159,7 +158,7 @@ fun RegisterPage(onClick: () -> Unit) {
                 )
                 ) {
                 Text(
-                    text = "yo",
+                    text = "Opret",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold,
                     )
