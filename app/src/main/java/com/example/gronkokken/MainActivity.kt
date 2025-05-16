@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.gronkokken.recipeListScreen.RecipeListScreen
 import com.example.gronkokken.ui.theme.GronKokkenTheme
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -26,16 +27,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             GronKokkenTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "all",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                RecipeListScreen()
             }
         }
     }
 }
+
+
 
 
 @Composable

@@ -1,5 +1,5 @@
 package com.example.gronkokken
-
+//filnavnet er med småt, men lad være med at fikse!!!, det dræber github.
 import android.util.Log
 import com.example.gronkokken.dataclasses.Recipe
 import com.google.firebase.Firebase
