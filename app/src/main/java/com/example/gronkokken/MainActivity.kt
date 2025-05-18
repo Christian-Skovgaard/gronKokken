@@ -20,14 +20,10 @@ import kotlinx.coroutines.tasks.await
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             GronKokkenTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "me",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    FrontPageScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -45,8 +41,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun Preview() {
     GronKokkenTheme {
-        Greeting("Android")
+        FrontPageScreen()
     }
 }
