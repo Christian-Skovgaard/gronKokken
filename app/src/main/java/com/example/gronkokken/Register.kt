@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -49,6 +50,7 @@ import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
@@ -101,21 +103,21 @@ fun RegisterPage(onClick: () -> Unit) {
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold
             )
-            RegisterTextField("yooooOOOO o o oO O O O")
+            RegisterTextField()
             Text(
                 text = "Password",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(top = 10.dp)
             )
-            RegisterTextField("")
+            RegisterTextField()
             Text(
                 text = "Bekræft password",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(top = 10.dp)
             )
-            RegisterTextField("")
+            RegisterTextField()
 
         }
 
@@ -132,14 +134,14 @@ fun RegisterPage(onClick: () -> Unit) {
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
             )
-            RegisterTextField("")
+            RegisterTextField()
             Text(
                 text = "Klassenavn",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(top = 10.dp)
             )
-            RegisterTextField("4.a , 6.x....")
+            RegisterTextField()
         }
         Column(
             modifier = Modifier
@@ -213,9 +215,9 @@ fun OutlinedText(
 }
 
 @Composable
-fun RegisterTextField(placeholderText: String) {
+fun RegisterTextField() {
 
-    var text by remember { mutableStateOf(placeholderText) }
+    var text by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
@@ -232,25 +234,16 @@ fun RegisterTextField(placeholderText: String) {
             }
     ) {
 
-        TextField(
+        BasicTextField(
             value = text,
             onValueChange = {text = it},
-            textStyle = TextStyle.Default.copy(fontSize = 32.sp),
+            textStyle = TextStyle.Default.copy(fontSize = 16.sp),
+            singleLine = true,
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = Color(0xFFFFFFFF), shape = RoundedCornerShape(15.dp))
                 .height(37.dp)
-
-            ,
-            colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = Color.Transparent,
-                focusedContainerColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent,
-                disabledContainerColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent,
-                )
-
+                .padding(vertical = 6.dp, horizontal = 16.dp)
         )
     }
 
