@@ -5,6 +5,7 @@ import com.example.gronkokken.dataclasses.Recipe
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
+import kotlinx.coroutines.tasks.await
 
 class Firestore {
 
@@ -12,7 +13,7 @@ class Firestore {
     private val db = Firebase.firestore
 
     //get all recipes
-    suspend fun getAllRecipes ():List<Recipe> {  //Christian
+    suspend fun old ():List<Recipe> {  //Christian
         val collection = db.collection("recipes")
 
         val returnList:MutableList<Recipe> = mutableListOf()
@@ -31,5 +32,17 @@ class Firestore {
 
         return returnList.toList()  //den returnere en tom liste, også hvis noget går galt, det tror jeg er fedest.
         //Hvis vi har tid kan vi få appen til at skrive en fejlbesked i ui hvis den giver null fx.
+    }
+
+    suspend fun getAllRecipes ():List<Recipe> { //Christian
+        val collection = db.collection("recipes")
+
+        val returnList:MutableList<Recipe> = mutableListOf()
+
+        collection.get().await().forEach {
+            returnList.add(it.toObject())
+        }
+
+        return returnList.toList()
     }
 }

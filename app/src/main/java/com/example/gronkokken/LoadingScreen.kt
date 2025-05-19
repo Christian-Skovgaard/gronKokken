@@ -1,4 +1,4 @@
-package com.example.gronkokken.recipeListScreen
+package com.example.gronkokken
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

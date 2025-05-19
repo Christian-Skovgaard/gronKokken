@@ -20,6 +20,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import java.time.LocalDate
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,12 @@ class MainActivity : ComponentActivity() {
 }
 
 
-
+fun testTime () {
+    var date = LocalDate.now()
+    Log.d("lookmom",date.toString())
+    date = LocalDate.parse("2025-05-25")
+    Log.d("lookmom",date.toString())
+}
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
