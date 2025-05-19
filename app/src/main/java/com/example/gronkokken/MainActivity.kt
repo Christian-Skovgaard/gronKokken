@@ -28,19 +28,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             GronKokkenTheme {
-                RecipeListScreen()
+                GreetingPreview()
             }
         }
     }
 }
 
 
-fun testTime () {
-    var date = LocalDate.now()
-    Log.d("lookmom",date.toString())
-    date = LocalDate.parse("2025-05-25")
-    Log.d("lookmom",date.toString())
-}
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
