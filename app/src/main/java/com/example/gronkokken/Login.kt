@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -36,6 +37,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -201,25 +203,16 @@ fun RegisterTextField() {
             }
     ) {
 
-        TextField(
+        BasicTextField(
             value = text,
             onValueChange = {text = it},
+            textStyle = TextStyle.Default.copy(fontSize = 16.sp),
+            singleLine = true,
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = Color(0xFFFFFFFF), shape = RoundedCornerShape(15.dp))
                 .height(37.dp)
-
-            ,
-            colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = Color.Transparent,
-                focusedContainerColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent,
-                disabledContainerColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent,
-
-                )
-
+                .padding(vertical = 6.dp, horizontal = 16.dp)
         )
     }
 
