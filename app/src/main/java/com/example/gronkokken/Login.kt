@@ -4,10 +4,8 @@ package com.example.gronkokken
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -18,11 +16,9 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -33,25 +29,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.DrawScope
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.gronkokken.ui.theme.GronKokkenTheme
 
 class Register : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,7 +63,7 @@ fun RegisterPage(onClick: () -> Unit) {
             painter = painterResource(R.drawable.baseline_arrow_back_ios_24),
             contentDescription = "back arrow"
         )
-
+        Spacer(modifier = Modifier.height(80.dp))
         Column(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -81,17 +71,17 @@ fun RegisterPage(onClick: () -> Unit) {
         ) {
             Spacer(modifier = Modifier.height(60.dp))
             OutlinedText(
-                text = "OPRET",
+                text = "LOGIN",
                 fontSize = 64.sp,
                 outlineColor = Color.Black,
                 textColor = Color(0xFF4B7A2B)
             )
         }
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(70.dp))
         Column(modifier = Modifier
             .fillMaxWidth()
-            .height(243.dp)
-            .background(Color(0xFFFFBA27), shape = RoundedCornerShape(15.dp))
+            .height(220.dp)
+            .background(Color(0xFF69BFFF), shape = RoundedCornerShape(15.dp))
             .padding(20.dp),
         ) {
             Text(
@@ -104,41 +94,21 @@ fun RegisterPage(onClick: () -> Unit) {
                 text = "Password",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.padding(top = 10.dp)
+                modifier = Modifier.padding(top = 25.dp)
             )
             RegisterTextField()
             Text(
-                text = "Bekræft password",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.padding(top = 10.dp)
+                text = "Glemt password?",
+                fontSize = 14.sp,
+                textDecoration = TextDecoration.Underline,
+                modifier = Modifier.padding(top = 6.dp)
             )
-            RegisterTextField()
 
         }
 
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(14.dp))
 
-        Column(modifier = Modifier
-            .fillMaxWidth()
-            .height(243.dp)
-            .background(Color(0xFFFFBA27), shape = RoundedCornerShape(15.dp))
-            .padding(20.dp),
-        ) {
-            Text(
-                text = "Skole",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.SemiBold,
-            )
-            RegisterTextField()
-            Text(
-                text = "Klassenavn",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.padding(top = 10.dp)
-            )
-            RegisterTextField()
-        }
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -149,16 +119,17 @@ fun RegisterPage(onClick: () -> Unit) {
                 onClick = {onClick()},
                 modifier = Modifier
                     .offset(0.dp, 35.dp)
-                    .width(166.dp),
+                    .width(166.dp)
+                    .height(48.dp),
                 border = BorderStroke(2.dp, Color(0xFF121212)),
                 shape = RoundedCornerShape(15.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFFFBA27),
+                    containerColor = Color(0xFF69BFFF),
                     contentColor = Color(0xff121212)
                 )
                 ) {
                 Text(
-                    text = "Opret",
+                    text = "Login",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold,
                     )
