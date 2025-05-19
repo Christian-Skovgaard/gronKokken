@@ -186,7 +186,7 @@ fun OutlinedText(
 @Composable
 fun RegisterTextField() {
 
-    var text by remember { mutableStateOf("yo") }
+    var text by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
