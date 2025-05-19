@@ -108,10 +108,10 @@ fun RecipeDisplayBox (weekDisplay:String,titleDisplay:String,flavorTextDisplay:S
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
-            .fillMaxWidth(0.8f)
+            .fillMaxWidth(0.9f)
             .aspectRatio(3f)
             .clip(RoundedCornerShape(8.dp))
-            .background(Color.Red)
+            .background(Color(0xFFA0ED6E))
             .padding(10.dp),
 
     ) {
