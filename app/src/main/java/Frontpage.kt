@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -116,33 +117,43 @@ fun FrontPageScreen(modifier: Modifier = Modifier) {
             onClick = { Log.d("BTN", "Klimaplan klik") },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4B84AD)),
             modifier = Modifier.fillMaxWidth()
-                .height(80.dp),        ) {
-            Text(text = "🍽 $clima", color = Color.Black)
-        }
+                .height(80.dp),)
+        {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    painter = painterResource(id = R.drawable.corn), // ← dit ikon her
+                    contentDescription = "Billede ikon",
+                    modifier = Modifier
+                        .size(24.dp)
+                        .padding(end = 8.dp)
+                )
+
+                Text(text = " $clima", color = Color.Black)
+            }}
         Spacer(modifier = Modifier.width(16.dp))
-        // Billeder og Overview i række
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
-            modifier = Modifier.fillMaxWidth()
+        // Billeder
+
+        Button(
+            onClick = { Log.d("BTN", "Billeder klik") },
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF8380)),
+            modifier = Modifier
+                .weight(1f)
+                .height(80.dp),
         ) {
-            Button(
-                onClick = { Log.d("BTN", "Billeder klik") },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF8380)),
-                modifier = Modifier.weight(1f)
-                    .height(80.dp),            ) {
-                Text(text = "🖼 $pics", color = Color.Black)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    painter = painterResource(id = R.drawable.chefs), // ← dit ikon her
+                    contentDescription = "Billede ikon",
+                    modifier = Modifier
+                        .size(24.dp)
+                        .padding(end = 8.dp)
+                )
+                Text(text = " $pics", color = Color.Black)
             }
-
-            Button(
-                onClick = { Log.d("BTN", "Overview klik") },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFF048)),
-                modifier = Modifier.weight(1f)
-                    .height(80.dp)           ) {
- Text(text = "📋 $overview", color = Color.Black)
-
         }
+
     }
-    }}}
+    }}
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
