@@ -11,6 +11,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -44,6 +45,7 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -99,21 +101,21 @@ fun RegisterPage(onClick: () -> Unit) {
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold
             )
-            RegisterTextField()
+            RegisterTextField("yooooOOOO o o oO O O O")
             Text(
                 text = "Password",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(top = 10.dp)
             )
-            RegisterTextField()
+            RegisterTextField("")
             Text(
                 text = "Bekræft password",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(top = 10.dp)
             )
-            RegisterTextField()
+            RegisterTextField("")
 
         }
 
@@ -130,14 +132,14 @@ fun RegisterPage(onClick: () -> Unit) {
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
             )
-            RegisterTextField()
+            RegisterTextField("")
             Text(
                 text = "Klassenavn",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(top = 10.dp)
             )
-            RegisterTextField()
+            RegisterTextField("4.a , 6.x....")
         }
         Column(
             modifier = Modifier
@@ -211,9 +213,9 @@ fun OutlinedText(
 }
 
 @Composable
-fun RegisterTextField() {
+fun RegisterTextField(placeholderText: String) {
 
-    var text by remember { mutableStateOf("yo") }
+    var text by remember { mutableStateOf(placeholderText) }
 
     Box(
         modifier = Modifier
@@ -233,6 +235,7 @@ fun RegisterTextField() {
         TextField(
             value = text,
             onValueChange = {text = it},
+            textStyle = TextStyle.Default.copy(fontSize = 32.sp),
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = Color(0xFFFFFFFF), shape = RoundedCornerShape(15.dp))
@@ -246,7 +249,6 @@ fun RegisterTextField() {
                 focusedIndicatorColor = Color.Transparent,
                 disabledContainerColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent,
-
                 )
 
         )
