@@ -63,4 +63,6 @@ dependencies {
     implementation(libs.firebase.analytics)    //vi bruger ikke analytics til noget
     //viewmodel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    //navigation
+    implementation(libs.androidx.navigation.compose)
 }
