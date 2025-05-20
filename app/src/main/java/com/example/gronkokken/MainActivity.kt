@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.gronkokken.ui.theme.FrontPageTeacherScreen
 import com.example.gronkokken.ui.theme.GronKokkenTheme
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -22,14 +23,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            GronKokkenTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "me",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            FrontPageTeacherScreen(
+
+            )
         }
     }
 }
@@ -37,16 +33,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     GronKokkenTheme {
-        Greeting("Android")
+        FrontPageTeacherScreen()
     }
 }
