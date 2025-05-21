@@ -1,4 +1,4 @@
-package com.example.gronkokken.ui
+package com.example.gronkokken.Register
 
 
 import android.os.Bundle
@@ -52,6 +52,8 @@ class Register : ComponentActivity() {
     }
 }
 
+
+//Lukas
 @Composable
 fun RegisterPage(onClick: () -> Unit) {
     Column(
@@ -59,6 +61,7 @@ fun RegisterPage(onClick: () -> Unit) {
             .fillMaxSize()
             .padding(20.dp),
         ) {
+        //back arrow
         Icon(
             painter = painterResource(R.drawable.baseline_arrow_back_ios_24),
             contentDescription = "back arrow"
@@ -69,6 +72,7 @@ fun RegisterPage(onClick: () -> Unit) {
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            //outlined text at the top
             Spacer(modifier = Modifier.height(60.dp))
             OutlinedText(
                 text = "OPRET",
@@ -78,6 +82,8 @@ fun RegisterPage(onClick: () -> Unit) {
             )
         }
         Spacer(modifier = Modifier.height(30.dp))
+
+        //column with mail and password
         Column(modifier = Modifier
             .fillMaxWidth()
             .height(243.dp)
@@ -109,6 +115,7 @@ fun RegisterPage(onClick: () -> Unit) {
 
         Spacer(modifier = Modifier.height(30.dp))
 
+        //column with school name and class name
         Column(modifier = Modifier
             .fillMaxWidth()
             .height(243.dp)
@@ -135,6 +142,7 @@ fun RegisterPage(onClick: () -> Unit) {
             ,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            //Register button
             Button(
                 onClick = {onClick()},
                 modifier = Modifier
