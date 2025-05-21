@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,14 +36,25 @@ fun Landingpage() {
             .padding(25.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(100.dp))
+        Spacer(modifier = Modifier.height(150.dp))
         Image(
             painter = painterResource(R.drawable.landingpagelogo),
             contentDescription = "",
             modifier = Modifier
-                .width(200.dp)
-                .height(100.dp)
+                .fillMaxWidth()
+                .height(200.dp)
         )
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 4.dp)
+        ) {
+            Text(
+                text = "Klassekode",
+                fontSize = 20.sp
+            )
+        }
 
         var text by remember { mutableStateOf("") }
 
@@ -56,6 +69,7 @@ fun Landingpage() {
                 .height(66.dp)
                 .padding(vertical = 6.dp, horizontal = 16.dp)
         )
+
 
 
     }
