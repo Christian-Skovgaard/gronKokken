@@ -1,4 +1,4 @@
-package com.example.gronkokken
+package com.example.gronkokken.login
 
 
 import android.os.Bundle
@@ -21,8 +21,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -44,6 +42,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.gronkokken.R
 
 class Register : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +53,7 @@ class Register : ComponentActivity() {
     }
 }
 
+//Lukas
 @Composable
 fun RegisterPage(onClick: () -> Unit) {
     Column(
@@ -61,6 +61,7 @@ fun RegisterPage(onClick: () -> Unit) {
             .fillMaxSize()
             .padding(20.dp),
         ) {
+        //back arrow
         Icon(
             painter = painterResource(R.drawable.baseline_arrow_back_ios_24),
             contentDescription = "back arrow"
@@ -71,6 +72,7 @@ fun RegisterPage(onClick: () -> Unit) {
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            //Login text
             Spacer(modifier = Modifier.height(60.dp))
             OutlinedText(
                 text = "LOGIN",
@@ -80,6 +82,8 @@ fun RegisterPage(onClick: () -> Unit) {
             )
         }
         Spacer(modifier = Modifier.height(70.dp))
+
+        //blå box til mail og password
         Column(modifier = Modifier
             .fillMaxWidth()
             .height(220.dp)
@@ -117,6 +121,7 @@ fun RegisterPage(onClick: () -> Unit) {
             ,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            //login knap
             Button(
                 onClick = {onClick()},
                 modifier = Modifier
@@ -143,81 +148,6 @@ fun RegisterPage(onClick: () -> Unit) {
 
 }
 
-@Composable
-fun OutlinedText(
-    text: String,
-    fontSize: TextUnit = 40.sp,
-    outlineColor: Color = Color.Black,
-    textColor: Color = Color.White,
-    strokeWidth: Float = 5f,
-    fontWeight: FontWeight = FontWeight.Bold
-) {
-    Box {
-        // Tegn omridset ved at tegne teksten flere gange med forskydning
-        val offsets = listOf(
-            Offset(-strokeWidth, -strokeWidth),
-            Offset( strokeWidth, -strokeWidth),
-            Offset(-strokeWidth,  strokeWidth),
-            Offset( strokeWidth,  strokeWidth)
-        )
-        for (offset in offsets) {
-            Text(
-                text = text,
-                fontSize = fontSize,
-                color = outlineColor,
-                fontWeight = fontWeight,
-                modifier = Modifier.graphicsLayer {
-                    translationX = offset.x
-                    translationY = offset.y
-                }
-            )
-        }
-
-        // Tegn den faktiske tekst øverst
-        Text(
-            text = text,
-            fontSize = fontSize,
-            color = textColor,
-            fontWeight = fontWeight,
-        )
-    }
-}
-
-@Composable
-fun RegisterTextField() {
-
-    var text by remember { mutableStateOf("") }
-
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .drawBehind {
-                val shadowColor = Color(0xFF121212).copy(alpha = 0.2f)
-                val shadowHeight = 20.dp.toPx()
-                drawRoundRect(
-                    color = shadowColor,
-                    topLeft = Offset(0f,  60f),
-                    size = Size(size.width, shadowHeight),
-                    cornerRadius = CornerRadius(25.dp.toPx(), 25.dp.toPx())
-                )
-            }
-    ) {
-
-        BasicTextField(
-            value = text,
-            onValueChange = {text = it},
-            textStyle = TextStyle.Default.copy(fontSize = 16.sp),
-            singleLine = true,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(color = Color(0xFFFFFFFF), shape = RoundedCornerShape(15.dp))
-                .height(37.dp)
-                .padding(vertical = 6.dp, horizontal = 16.dp)
-        )
-    }
-
-
-}
 
 @Preview(showBackground = true)
 @Composable
