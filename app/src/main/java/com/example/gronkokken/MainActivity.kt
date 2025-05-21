@@ -1,5 +1,6 @@
 package com.example.gronkokken
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -34,7 +35,7 @@ class MainActivity : ComponentActivity() {
             val userViewModel: UserViewModel = viewModel()
             val navController = rememberNavController()
             Navigation(navController)
-
+            test (this)
             GronKokkenTheme {
 
             }
@@ -42,6 +43,36 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+//riding to internal storage testing
+fun test (context: Context) {
+
+    val fileName = "test.txt"
+    val content = "hello there"
+
+    fun write (context: Context, fileName:String, content:String) {
+        context.openFileOutput(fileName,Context.MODE_PRIVATE).use{
+            it.write(content.toByteArray())
+        }
+    }
+
+    fun read (context: Context, fileName:String) {
+        val output = context.openFileInput(fileName).bufferedReader().useLines { lines ->
+            lines.joinToString("\n")
+        }
+        Log.d("lookmom",output.toString())
+    }
+
+    write(
+        context = context,
+        fileName = fileName,
+        content = content
+    )
+
+    read(
+        context = context,
+        fileName = fileName
+    )
+}
 
 
 @Composable

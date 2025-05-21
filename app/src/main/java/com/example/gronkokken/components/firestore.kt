@@ -12,37 +12,43 @@ class Firestore {
     //connection detaljer kan findes i app/google-services.json
     private val db = Firebase.firestore
 
-    //get all recipes
-    suspend fun old ():List<Recipe> {  //Christian
-        val collection = db.collection("recipes")
-
-        val returnList:MutableList<Recipe> = mutableListOf()
-
-        collection.get().addOnSuccessListener { recipeList ->
-            if (!recipeList.isEmpty) {
-                recipeList.forEach{ recipe ->
-                    val recipeObj = recipe.toObject<Recipe>()
-                    returnList.add(recipeObj)
-                }
-            }
-            else {Log.d("DB-call","recipe list is empty")}
-        }.addOnFailureListener{
-            Log.d("DB-call","lol, did not work")
-        }
-
-        return returnList.toList()  //den returnere en tom liste, også hvis noget går galt, det tror jeg er fedest.
-        //Hvis vi har tid kan vi få appen til at skrive en fejlbesked i ui hvis den giver null fx.
-    }
-
     suspend fun getAllRecipes ():List<Recipe> { //Christian
         val collection = db.collection("recipes")
 
         val returnList:MutableList<Recipe> = mutableListOf()
 
         collection.get().await().forEach {
-            returnList.add(it.toObject())
+            val recipe: Recipe = it.toObject()
+            recipe.id = it.id
+            returnList.add(recipe)
         }
 
         return returnList.toList()
+    }
+
+    suspend fun getRecipeByName (name:String): Recipe { //Christian
+        val collection = db.collection("recipes")
+
+        var recipe: Recipe = Recipe()
+
+        collection.whereEqualTo("name",name).get().await().forEach {    //der kan være problemer hvis der kommer mere end 1 resultat, men det burde der ikke:D
+            recipe = it.toObject<Recipe>()
+            recipe.id = it.id
+        }
+
+        return recipe
+    }
+
+    suspend fun getRecipeById (id:String): Recipe { //Christian
+        val document = db.collection("recipes").document(id)
+
+        var recipe: Recipe = Recipe()
+
+        val item = document.get().await()
+
+        recipe = item.toObject<Recipe>()!!  //vi er sikre på at der ikke er null, sidden alle id som bruge i appen er taget fra databasen
+        recipe.id = item.id
+
+        return recipe
     }
 }

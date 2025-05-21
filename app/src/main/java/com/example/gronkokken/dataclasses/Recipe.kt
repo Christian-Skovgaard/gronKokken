@@ -4,9 +4,10 @@ import java.time.LocalDate
 
 data class Recipe (  //Christian
     //constructoren skal have defaults eller være nullable, ellers kan firestore ikke bruge den.
+    var id:String = "", //er var fordi den bliver opdateret efter objektet er lavet sidden det er metadata og ikke body
     val name:String = "",
     val flavorText:String = "",
-    val ingredientsRaw:List<Map<String,String>> = listOf(mapOf("" to "")),    //vi gemmer i map da jeg før har haft mange problemer med at gemme custom types i firestore, og når classen ikke er mere kompiceret er det her nemmest
+    val ingredientsRaw:List<Map<String,String>> = listOf(),    //vi gemmer i map da jeg før har haft mange problemer med at gemme custom types i firestore, og når classen ikke er mere kompiceret er det her nemmest
     val instructions:String = "",
     val ratings:List<Int> = listOf(),
     val endDateRaw:String = "2025-05-28",
@@ -21,11 +22,10 @@ data class Recipe (  //Christian
     //Den her string bruges til at vise ugen til brugeren.
     var weekDatesString = "${startDate.dayOfMonth}/${startDate.month} - ${endDate.dayOfMonth}/${endDate.month}"
 
-/*
+
     val ingredients:List<RecipeIngredient> = ingredientsRaw.map { ingredient -> RecipeIngredient(
         name = ingredient["name"].toString(),   //vi kunne gøre dem nullable for at slippe for Type-convertion, men så skulle vi deale med det senere når det skulle displayes
-        amount = ingredient["amount"].toString().toInt(),
+        amount = ingredient["amount"].toString().toIntOrNull(), //sidden null ikke kan laves toInt(), bruges toIntOrNull()
         amountUnit = ingredient["amountUnit"].toString()
     ) }
- */
 }
