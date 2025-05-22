@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.gronkokken.components.Navigation
 import com.example.gronkokken.components.UserViewModel
 import com.example.gronkokken.recipeListScreen.RecipeListScreen
+import com.example.gronkokken.ui.theme.ClimaPlanScreen
 import com.example.gronkokken.ui.theme.GronKokkenTheme
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -31,17 +32,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val userViewModel: UserViewModel = viewModel()
-            val navController = rememberNavController()
-            Navigation(navController)
-
-            GronKokkenTheme {
-
-            }
+            ClimaPlanScreen(
+                modifier = TODO()
+            )
         }
     }
 }
-
 
 
 @Composable
