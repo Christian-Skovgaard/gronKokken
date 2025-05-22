@@ -11,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.gronkokken.repository.UserViewModel
+import com.example.gronkokken.ui.pages.landingpage.Landingpage
 import com.example.gronkokken.ui.theme.GronKokkenTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,11 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val userViewModel: UserViewModel = viewModel()
             val navController = rememberNavController()
-            Navigation(navController)
-
-            GronKokkenTheme {
-
-            }
+            Navigation(navController, userViewModel)
         }
     }
 }

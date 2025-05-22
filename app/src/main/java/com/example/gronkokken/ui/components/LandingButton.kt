@@ -16,9 +16,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun LandingButton(text: String, width: Int, height: Int, buttonColor: Long, fontSize: Int) {
+fun LandingButton(text: String, width: Int, height: Int, buttonColor: Long, fontSize: Int, buttonOnClick: () -> Unit) {
     Button(
-        onClick = {},
+        onClick = {buttonOnClick()},
         modifier = Modifier
             .offset(0.dp, 35.dp)
             .width(width.dp)

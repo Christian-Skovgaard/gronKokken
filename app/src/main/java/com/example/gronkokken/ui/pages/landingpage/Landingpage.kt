@@ -1,5 +1,6 @@
 package com.example.gronkokken.ui.pages.landingpage
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -24,10 +25,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gronkokken.R
+import com.example.gronkokken.repository.UserViewModel
 import com.example.gronkokken.ui.components.LandingButton
+import kotlin.math.log
 
 @Composable
-fun Landingpage() {
+fun Landingpage(userViewModel: UserViewModel) {
+
+    val user = userViewModel
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -69,22 +75,22 @@ fun Landingpage() {
                 .padding(vertical = 6.dp, horizontal = 16.dp)
         )
 
-        LandingButton("Færdig", 166, 48, 0xFF121212, 25)
+        LandingButton("Færdig", 166, 48, 0xFF121212, 25, {
+            user.role = UserViewModel.Role.Student
+        })
 
         Spacer(modifier = Modifier.height(80.dp))
 
-        LandingButton("Lærer", 134, 40, 0xFF9A9A9A, 20)
+        LandingButton("Lærer", 134, 40, 0xFF9A9A9A, 20, {
+            user.role = UserViewModel.Role.Student
+        })
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        LandingButton("Gæst?", 134, 40, 0xFF9A9A9A, 20)
+        LandingButton("Gæst?", 134, 40, 0xFF9A9A9A, 20, {
+            user.role = UserViewModel.Role.Guest
+        })
 
 
     }
-}
-
-@Preview
-@Composable
-fun LandingpagePreview() {
-    Landingpage()
 }
