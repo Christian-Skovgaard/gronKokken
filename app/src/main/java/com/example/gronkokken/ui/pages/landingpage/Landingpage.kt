@@ -30,7 +30,12 @@ import com.example.gronkokken.ui.components.LandingButton
 import kotlin.math.log
 
 @Composable
-fun Landingpage(userViewModel: UserViewModel, studentButtonClick: () -> Unit) {
+fun Landingpage(
+        userViewModel: UserViewModel,
+        studentButtonClick: () -> Unit,
+        teacherButtonClick: () -> Unit,
+        guestButtonClick: () -> Unit
+) {
 
     val user = userViewModel
 
@@ -66,7 +71,7 @@ fun Landingpage(userViewModel: UserViewModel, studentButtonClick: () -> Unit) {
         BasicTextField(
             value = text,
             onValueChange = {text = it},
-            textStyle = TextStyle.Default.copy(fontSize = 16.sp),
+            textStyle = TextStyle.Default.copy(fontSize = 30.sp),
             singleLine = true,
             modifier = Modifier
                 .fillMaxWidth()
@@ -75,19 +80,36 @@ fun Landingpage(userViewModel: UserViewModel, studentButtonClick: () -> Unit) {
                 .padding(vertical = 6.dp, horizontal = 16.dp)
         )
 
-        LandingButton("Færdig", 166, 48, 0xFF121212, 25, { studentButtonClick() })
+        LandingButton(
+            "Færdig",
+            166,
+            48,
+            0xFF121212,
+            25,
+            { studentButtonClick() }
+        )
 
         Spacer(modifier = Modifier.height(80.dp))
 
-        LandingButton("Lærer", 134, 40, 0xFF9A9A9A, 20, {
-            user.role = UserViewModel.Role.Student
-        })
+        LandingButton(
+            "Lærer",
+            134,
+            40,
+            0xFF9A9A9A,
+            20,
+            {teacherButtonClick()}
+        )
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        LandingButton("Gæst?", 134, 40, 0xFF9A9A9A, 20, {
-            user.role = UserViewModel.Role.Guest
-        })
+        LandingButton(
+            "Gæst?",
+            134,
+            40,
+            0xFF9A9A9A,
+            20,
+            {guestButtonClick()}
+        )
 
 
     }

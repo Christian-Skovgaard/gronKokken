@@ -19,7 +19,15 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
             Landingpage(userViewModel,
                 studentButtonClick = {
                     navHostController.navigate("frontpage")
-            })
+            },
+                teacherButtonClick = {
+                    navHostController.navigate("")
+                },
+                guestButtonClick = {
+                    navHostController.navigate("frontpage")
+                }
+
+            )
         }
         composable("frontpage") {
             FrontPageTest(userViewModel)

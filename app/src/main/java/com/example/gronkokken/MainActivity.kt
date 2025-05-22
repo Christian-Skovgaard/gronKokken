@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val userViewModel: UserViewModel = viewModel()
             val navController = rememberNavController()
-
+            Navigation(navHostController = navController, userViewModel)
 
 
         }

@@ -10,7 +10,6 @@ import com.example.gronkokken.repository.UserViewModel
 @Composable
 fun FrontPageTest (userViewModel: UserViewModel) {
     val role = userViewModel.role // fx: "lærer" eller "elev"
-    Text("hey")
 
     val isTeacher = false
 
