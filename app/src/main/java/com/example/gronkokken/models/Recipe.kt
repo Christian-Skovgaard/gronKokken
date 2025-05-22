@@ -1,4 +1,4 @@
-package com.example.gronkokken.dataclasses
+package com.example.gronkokken.models
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
@@ -9,7 +9,7 @@ data class Recipe (  //Christian
     var id:String = "", //er var fordi den bliver opdateret efter objektet er lavet sidden det er metadata og ikke body
     val name:String = "",
     val flavorText:String = "",
-    val ingredientsRaw:List<Map<String,String>> = listOf(),    //vi gemmer i map da jeg før har haft mange problemer med at gemme custom types i firestore, og når classen ikke er mere kompiceret er det her nemmest
+    val ingredientsRaw:List<Map<String,String>> = listOf(mapOf("" to "")),    //vi gemmer i map da jeg før har haft mange problemer med at gemme custom types i firestore, og når classen ikke er mere kompiceret er det her nemmest
     val instructions:String = "",
     val ratings:List<Int> = listOf(),
     val endDateRaw:String = "2025-05-28",
@@ -47,6 +47,10 @@ data class Recipe (  //Christian
                 )
             )
         }
-        Log.d("lookmom",ingredients.toString() + "list log")
+        //Log.d("lookmom",ingredients.toString() + "list log")
+    }
+
+    override fun toString(): String {
+        return "Recipe(name='$name, ingredientsRaw=$ingredientsRaw, ingredients=$ingredients, ratings=$ratings')"
     }
 }

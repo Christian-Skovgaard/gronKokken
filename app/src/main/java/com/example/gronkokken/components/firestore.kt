@@ -1,7 +1,7 @@
 package com.example.gronkokken.components
 //filnavnet er med småt, men lad være med at fikse!!!, det dræber github.
 import android.util.Log
-import com.example.gronkokken.dataclasses.Recipe
+import com.example.gronkokken.models.Recipe
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
@@ -49,6 +49,8 @@ class Firestore {
         recipe = item.toObject<Recipe>()!!  //vi er sikre på at der ikke er null, sidden alle id som bruge i appen er taget fra databasen
         recipe.id = item.id
 
+        Log.d("lookmom",item.data.toString())
+        Log.d("lookmom",recipe.toString())
         return recipe
     }
 }

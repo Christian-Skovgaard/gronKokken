@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+import com.example.gronkokken.components.InternalStorage
 import com.example.gronkokken.components.Navigation
 import com.example.gronkokken.components.UserViewModel
 import com.example.gronkokken.recipeListScreen.RecipeListScreen
@@ -32,9 +33,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            //val userViewModel: UserViewModel = viewModel()
+            val userViewModel: UserViewModel = viewModel()
             val navController = rememberNavController()
-            //test (this)
+
+            test (this)
 
             GronKokkenTheme {
                 Navigation(navController)
@@ -45,33 +47,10 @@ class MainActivity : ComponentActivity() {
 
 //riding to internal storage testing
 fun test (context: Context) {
+    val internalStorage = InternalStorage(context)
 
-    val fileName = "test.txt"
-    val content = "hello there"
-
-    fun write (context: Context, fileName:String, content:String) {
-        context.openFileOutput(fileName,Context.MODE_PRIVATE).use{
-            it.write(content.toByteArray())
-        }
-    }
-
-    fun read (context: Context, fileName:String) {
-        val output = context.openFileInput(fileName).bufferedReader().useLines { lines ->
-            lines.joinToString("\n")
-        }
-        Log.d("lookmom",output.toString())
-    }
-
-    write(
-        context = context,
-        fileName = fileName,
-        content = content
-    )
-
-    read(
-        context = context,
-        fileName = fileName
-    )
+    val map = internalStorage.getRecipeRatingMap()
+    Log.d("lookhere",map.toString())
 }
 
 

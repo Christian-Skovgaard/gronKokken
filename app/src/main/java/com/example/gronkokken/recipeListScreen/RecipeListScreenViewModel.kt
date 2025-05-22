@@ -7,7 +7,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gronkokken.components.Firestore
-import com.example.gronkokken.dataclasses.Recipe
+import com.example.gronkokken.models.Recipe
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
@@ -56,5 +56,9 @@ class RecipeListScreenViewModel:ViewModel() {   //Christian
         showingCurrentRecipes.value = false
         rightTextButtonUnderline = TextDecoration.Underline
         leftTextButtonUnderline = TextDecoration.None
+    }
+
+    fun recipeNavigationById (recipeId:String) {
+
     }
 }
