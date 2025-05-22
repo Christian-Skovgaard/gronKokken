@@ -64,7 +64,7 @@ fun FrontPageScreen(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.spacedBy(30.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
+            Spacer(modifier = Modifier.width(20.dp))
             Button(
                 onClick = { Log.d("BTN", "Ugens opskrift klik") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF69BFFF)),
