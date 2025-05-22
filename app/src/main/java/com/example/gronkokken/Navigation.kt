@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.example.gronkokken.repository.UserViewModel
 import com.example.gronkokken.ui.pages.landingpage.Landingpage
 import com.example.gronkokken.ui.pages.recipeListScreen.RecipeListScreen
+import com.example.gronkokken.ui.pages.Frontpage.FrontPageTest
 
 @Composable
 fun Navigation (navHostController: NavHostController, userViewModel: UserViewModel) {
@@ -15,7 +16,13 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
         //    RecipeListScreen()
         //}
         composable("landingpage") {
-            Landingpage(userViewModel)
+            Landingpage(userViewModel,
+                studentButtonClick = {
+                    navHostController.navigate("frontpage")
+            })
+        }
+        composable("frontpage") {
+            FrontPageTest(userViewModel)
         }
     }
 }

@@ -30,7 +30,7 @@ import com.example.gronkokken.ui.components.LandingButton
 import kotlin.math.log
 
 @Composable
-fun Landingpage(userViewModel: UserViewModel) {
+fun Landingpage(userViewModel: UserViewModel, studentButtonClick: () -> Unit) {
 
     val user = userViewModel
 
@@ -75,9 +75,7 @@ fun Landingpage(userViewModel: UserViewModel) {
                 .padding(vertical = 6.dp, horizontal = 16.dp)
         )
 
-        LandingButton("Færdig", 166, 48, 0xFF121212, 25, {
-            user.role = UserViewModel.Role.Student
-        })
+        LandingButton("Færdig", 166, 48, 0xFF121212, 25, { studentButtonClick() })
 
         Spacer(modifier = Modifier.height(80.dp))
 

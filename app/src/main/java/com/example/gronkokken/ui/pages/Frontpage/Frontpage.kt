@@ -1,9 +1,6 @@
-package com.example.gronkokken
+package com.example.gronkokken.com.example.gronkokken.ui.pages.Frontpage
 
-import android.os.Bundle
 import android.util.Log
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -21,20 +18,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.gronkokken.R
 import com.example.gronkokken.ui.theme.GronKokkenTheme
-
-class FrontPage : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            GronKokkenTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    FrontPageScreen(modifier = Modifier.padding(innerPadding))
-                }
-            }
-        }
-    }
-}
 
 @Composable
 fun FrontPageScreen(modifier: Modifier = Modifier) {
@@ -216,7 +201,7 @@ fun FrontPageScreen(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun FrontPagePreview() {
     GronKokkenTheme {
         FrontPageScreen()
     }
