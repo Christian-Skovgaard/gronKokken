@@ -1,4 +1,4 @@
-package com.example.gronkokken.components
+package com.example.gronkokken.repository
 
 import androidx.lifecycle.ViewModel
 

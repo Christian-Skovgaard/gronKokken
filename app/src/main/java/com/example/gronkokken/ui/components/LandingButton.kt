@@ -1,4 +1,4 @@
-package com.example.gronkokken.landingpage
+package com.example.gronkokken.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.height

@@ -1,12 +1,10 @@
-package com.example.gronkokken.components
+package com.example.gronkokken
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.gronkokken.recipeListScreen.RecipeListScreen
+import com.example.gronkokken.ui.pages.recipeListScreen.RecipeListScreen
 
 @Composable
 fun Navigation (navHostController: NavHostController) {

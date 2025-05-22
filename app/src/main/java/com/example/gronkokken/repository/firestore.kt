@@ -1,4 +1,4 @@
-package com.example.gronkokken.components
+package com.example.gronkokken.repository
 //filnavnet er med småt, men lad være med at fikse!!!, det dræber github.
 import android.util.Log
 import com.example.gronkokken.dataclasses.Recipe
