@@ -29,14 +29,12 @@ import java.time.LocalDate
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             val userViewModel: UserViewModel = viewModel()
             val navController = rememberNavController()
             Navigation(navController)
 
             GronKokkenTheme {
-
             }
         }
     }
@@ -54,8 +52,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun Preview() {
     GronKokkenTheme {
-        Greeting("Android")
+        FrontPageScreen()
     }
 }
