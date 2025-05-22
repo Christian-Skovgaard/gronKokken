@@ -12,23 +12,34 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.rememberNavController
+import com.example.gronkokken.components.Navigation
+import com.example.gronkokken.components.UserViewModel
+import com.example.gronkokken.recipeListScreen.RecipeListScreen
 import com.example.gronkokken.ui.theme.GronKokkenTheme
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import java.time.LocalDate
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val userViewModel: UserViewModel = viewModel()
+            val navController = rememberNavController()
+            Navigation(navController)
+
             GronKokkenTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    FrontPageScreen(modifier = Modifier.padding(innerPadding))
-                }
             }
         }
     }
 }
+
 
 
 @Composable
