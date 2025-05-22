@@ -1,4 +1,4 @@
-package com.example.gronkokken.Register
+package com.example.gronkokken.ui.pages.Register
 
 
 import android.os.Bundle
@@ -42,6 +42,8 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gronkokken.R
+import com.example.gronkokken.ui.components.OutlinedText
+import com.example.gronkokken.ui.components.RegisterTextField
 
 class Register : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -168,81 +170,6 @@ fun RegisterPage(onClick: () -> Unit) {
 
 }
 
-@Composable
-fun OutlinedText(
-    text: String,
-    fontSize: TextUnit = 40.sp,
-    outlineColor: Color = Color.Black,
-    textColor: Color = Color.White,
-    strokeWidth: Float = 5f,
-    fontWeight: FontWeight = FontWeight.Bold
-) {
-    Box {
-        // Tegn omridset ved at tegne teksten flere gange med forskydning
-        val offsets = listOf(
-            Offset(-strokeWidth, -strokeWidth),
-            Offset( strokeWidth, -strokeWidth),
-            Offset(-strokeWidth,  strokeWidth),
-            Offset( strokeWidth,  strokeWidth)
-        )
-        for (offset in offsets) {
-            Text(
-                text = text,
-                fontSize = fontSize,
-                color = outlineColor,
-                fontWeight = fontWeight,
-                modifier = Modifier.graphicsLayer {
-                    translationX = offset.x
-                    translationY = offset.y
-                }
-            )
-        }
-
-        // Tegn den faktiske tekst øverst
-        Text(
-            text = text,
-            fontSize = fontSize,
-            color = textColor,
-            fontWeight = fontWeight,
-        )
-    }
-}
-
-@Composable
-fun RegisterTextField() {
-
-    var text by remember { mutableStateOf("") }
-
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .drawBehind {
-                val shadowColor = Color(0xFF121212).copy(alpha = 0.2f)
-                val shadowHeight = 20.dp.toPx()
-                drawRoundRect(
-                    color = shadowColor,
-                    topLeft = Offset(0f,  60f),
-                    size = Size(size.width, shadowHeight),
-                    cornerRadius = CornerRadius(25.dp.toPx(), 25.dp.toPx())
-                )
-            }
-    ) {
-
-        BasicTextField(
-            value = text,
-            onValueChange = {text = it},
-            textStyle = TextStyle.Default.copy(fontSize = 16.sp),
-            singleLine = true,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(color = Color(0xFFFFFFFF), shape = RoundedCornerShape(15.dp))
-                .height(37.dp)
-                .padding(vertical = 6.dp, horizontal = 16.dp)
-        )
-    }
-
-
-}
 
 @Preview(showBackground = true)
 @Composable

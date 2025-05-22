@@ -14,9 +14,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.gronkokken.repository.UserViewModel
 
 @Composable
-fun LandingButton(text: String, width: Int, height: Int, buttonColor: Long, fontSize: Int, buttonOnClick: () -> Unit) {
+fun LandingButton(
+    text: String,
+    width: Int,
+    height: Int,
+    buttonColor: Long,
+    fontSize: Int,
+    role: UserViewModel.Role,
+    buttonOnClick: () -> Unit
+) {
     Button(
         onClick = {buttonOnClick()},
         modifier = Modifier

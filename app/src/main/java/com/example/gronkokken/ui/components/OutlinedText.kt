@@ -1,4 +1,4 @@
-package com.example.gronkokken.login
+package com.example.gronkokken.ui.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Text

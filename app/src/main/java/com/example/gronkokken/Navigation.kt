@@ -8,6 +8,9 @@ import com.example.gronkokken.repository.UserViewModel
 import com.example.gronkokken.ui.pages.landingpage.Landingpage
 import com.example.gronkokken.ui.pages.recipeListScreen.RecipeListScreen
 import com.example.gronkokken.ui.pages.Frontpage.FrontPageTest
+import com.example.gronkokken.ui.pages.Register.RegisterPage
+import com.example.gronkokken.ui.pages.landingpage.LandingpageTeacher
+import com.example.gronkokken.ui.pages.login.LoginPage
 
 @Composable
 fun Navigation (navHostController: NavHostController, userViewModel: UserViewModel) {
@@ -21,7 +24,7 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
                     navHostController.navigate("frontpage")
             },
                 teacherButtonClick = {
-                    navHostController.navigate("")
+                    navHostController.navigate("landingpage-teacher")
                 },
                 guestButtonClick = {
                     navHostController.navigate("frontpage")
@@ -29,8 +32,29 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
 
             )
         }
+        composable("landingpage-teacher") {
+            LandingpageTeacher(
+                userViewModel,
+                loginButtonClick = {
+                    navHostController.navigate("loginpage")
+                },
+                registerButtonClick = {
+                    navHostController.navigate("registerpage")
+                }
+            )
+        }
         composable("frontpage") {
             FrontPageTest(userViewModel)
+        }
+        composable("loginpage") {
+            LoginPage{
+                navHostController.navigate("frontpage")
+            }
+        }
+        composable("registerpage") {
+            RegisterPage {
+                navHostController.navigate("loginpage")
+            }
         }
     }
 }

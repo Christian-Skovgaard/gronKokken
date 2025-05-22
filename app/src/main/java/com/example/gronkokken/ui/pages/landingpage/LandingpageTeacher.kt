@@ -1,6 +1,5 @@
 package com.example.gronkokken.ui.pages.landingpage
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -21,20 +20,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gronkokken.R
 import com.example.gronkokken.repository.UserViewModel
 import com.example.gronkokken.ui.components.LandingButton
-import kotlin.math.log
 
 @Composable
-fun Landingpage(
-        userViewModel: UserViewModel,
-        studentButtonClick: () -> Unit,
-        teacherButtonClick: () -> Unit,
-        guestButtonClick: () -> Unit
+fun LandingpageTeacher(
+    userViewModel: UserViewModel,
+    loginButtonClick: () -> Unit,
+    registerButtonClick: () -> Unit
 ) {
 
     Column(
@@ -53,70 +49,25 @@ fun Landingpage(
                 .height(200.dp)
         )
 
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 4.dp)
-        ) {
-            Text(
-                text = "Klassekode",
-                fontSize = 20.sp
-            )
-        }
-
-        var text by remember { mutableStateOf("") }
-
-        BasicTextField(
-            value = text,
-            onValueChange = {text = it},
-            textStyle = TextStyle.Default.copy(fontSize = 30.sp),
-            singleLine = true,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(color = Color(0xFFFFFFFF))
-                .height(66.dp)
-                .padding(vertical = 6.dp, horizontal = 16.dp)
-        )
-
         LandingButton(
-            "Færdig",
+            "Login",
             166,
             48,
             0xFF121212,
             25,
-            role = UserViewModel.Role.Student
-        ) {
-            userViewModel.setRole(UserViewModel.Role.Student)
-            studentButtonClick()
-        }
-
-        Spacer(modifier = Modifier.height(80.dp))
-
-        LandingButton(
-            "Lærer",
-            134,
-            40,
-            0xFF9A9A9A,
-            20,
             role = UserViewModel.Role.Teacher
-        ) {
-            userViewModel.setRole(UserViewModel.Role.Teacher)
-            teacherButtonClick()
-        }
+        ) { loginButtonClick() }
 
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(50.dp))
 
         LandingButton(
-            "Gæst?",
-            134,
-            40,
-            0xFF9A9A9A,
-            20,
-            role = UserViewModel.Role.Guest
-        ) {
-            userViewModel.setRole(UserViewModel.Role.Guest)
-            guestButtonClick()
-        }
+            "Opret",
+            166,
+            48,
+            0xFF121212,
+            25,
+            role = UserViewModel.Role.Teacher
+        ) { registerButtonClick() }
 
 
     }
