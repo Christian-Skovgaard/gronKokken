@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -49,7 +50,7 @@ class Register : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
             setContent {
-                RegisterPage(onClick = {})
+                RegisterPage(onClick = {}, onBackArrowClick = {})
             }
     }
 }
@@ -57,16 +58,18 @@ class Register : ComponentActivity() {
 
 //Lukas
 @Composable
-fun RegisterPage(onClick: () -> Unit) {
+fun RegisterPage(onClick: () -> Unit, onBackArrowClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(20.dp),
         ) {
-        //back arrow
+        //backarrow that removes the current screen from the stack
         Icon(
             painter = painterResource(R.drawable.baseline_arrow_back_ios_24),
-            contentDescription = "back arrow"
+            contentDescription = "back arrow",
+            modifier = Modifier
+                .clickable { onBackArrowClick() }
         )
 
         Column(
@@ -174,6 +177,6 @@ fun RegisterPage(onClick: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun RegisterPreview() {
-    RegisterPage(onClick = {})
+    RegisterPage(onClick = {}, onBackArrowClick = {})
 }
 

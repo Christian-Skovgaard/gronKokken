@@ -3,6 +3,7 @@ package com.example.gronkokken.ui.pages.login
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,16 +33,18 @@ import com.example.gronkokken.ui.components.RegisterTextField
 
 //Lukas
 @Composable
-fun LoginPage(onClick: () -> Unit) {
+fun LoginPage(onButtonClick: () -> Unit, onBackArrowClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(20.dp),
         ) {
-        //back arrow
+        //backarrow that removes the current screen from the stack
         Icon(
             painter = painterResource(R.drawable.baseline_arrow_back_ios_24),
-            contentDescription = "back arrow"
+            contentDescription = "back arrow",
+            modifier = Modifier
+                .clickable { onBackArrowClick() }
         )
         Spacer(modifier = Modifier.height(80.dp))
         Column(
@@ -60,7 +63,7 @@ fun LoginPage(onClick: () -> Unit) {
         }
         Spacer(modifier = Modifier.height(70.dp))
 
-        //blå box til mail og password
+        //blue column for mail and password
         Column(modifier = Modifier
             .fillMaxWidth()
             .height(220.dp)
@@ -98,9 +101,9 @@ fun LoginPage(onClick: () -> Unit) {
             ,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            //login knap
+            //login button
             Button(
-                onClick = {onClick()},
+                onClick = {onButtonClick()},
                 modifier = Modifier
                     .offset(0.dp, 35.dp)
                     .width(166.dp)
@@ -129,6 +132,6 @@ fun LoginPage(onClick: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun RegisterPreview() {
-    LoginPage(onClick = {})
+    LoginPage(onButtonClick = {}, onBackArrowClick = {})
 }
 

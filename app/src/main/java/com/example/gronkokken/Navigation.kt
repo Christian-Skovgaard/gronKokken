@@ -40,6 +40,9 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
                 },
                 registerButtonClick = {
                     navHostController.navigate("registerpage")
+                },
+                onBackArrowClick = {
+                    navHostController.popBackStack()
                 }
             )
         }
@@ -47,14 +50,24 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
             FrontPageTest(userViewModel)
         }
         composable("loginpage") {
-            LoginPage{
+            LoginPage(
+                onButtonClick = {
                 navHostController.navigate("frontpage")
-            }
+            },
+                onBackArrowClick = {
+                    navHostController.popBackStack()
+                }
+            )
         }
         composable("registerpage") {
-            RegisterPage {
-                navHostController.navigate("loginpage")
-            }
+            RegisterPage(
+                onClick = {
+                    navHostController.navigate("frontpage")
+                },
+                onBackArrowClick = {
+                    navHostController.popBackStack()
+                }
+            )
         }
     }
 }

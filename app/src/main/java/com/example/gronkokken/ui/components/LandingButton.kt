@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gronkokken.repository.UserViewModel
 
+//Lukas
+//button with parameters to customize it.
 @Composable
 fun LandingButton(
     text: String,
@@ -23,7 +25,6 @@ fun LandingButton(
     height: Int,
     buttonColor: Long,
     fontSize: Int,
-    role: UserViewModel.Role,
     buttonOnClick: () -> Unit
 ) {
     Button(

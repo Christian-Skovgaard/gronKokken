@@ -29,6 +29,7 @@ import com.example.gronkokken.repository.UserViewModel
 import com.example.gronkokken.ui.components.LandingButton
 import kotlin.math.log
 
+//Lukas
 @Composable
 fun Landingpage(
         userViewModel: UserViewModel,
@@ -45,6 +46,7 @@ fun Landingpage(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.height(150.dp))
+        //logo
         Image(
             painter = painterResource(R.drawable.landingpagelogo),
             contentDescription = "",
@@ -64,6 +66,7 @@ fun Landingpage(
             )
         }
 
+        //inputfield for classcode
         var text by remember { mutableStateOf("") }
 
         BasicTextField(
@@ -78,13 +81,13 @@ fun Landingpage(
                 .padding(vertical = 6.dp, horizontal = 16.dp)
         )
 
+        //studentbutton that takes you directly to the frontpage and gives you the student role
         LandingButton(
             "Færdig",
             166,
             48,
             0xFF121212,
-            25,
-            role = UserViewModel.Role.Student
+            25
         ) {
             userViewModel.setRole(UserViewModel.Role.Student)
             studentButtonClick()
@@ -92,13 +95,14 @@ fun Landingpage(
 
         Spacer(modifier = Modifier.height(80.dp))
 
+        //teacherbutton that takes you to the second landingpage where you can login og register
+        //and it gives you a teacher role so you can have an overview on the frontpage
         LandingButton(
             "Lærer",
             134,
             40,
             0xFF9A9A9A,
-            20,
-            role = UserViewModel.Role.Teacher
+            20
         ) {
             userViewModel.setRole(UserViewModel.Role.Teacher)
             teacherButtonClick()
@@ -106,13 +110,13 @@ fun Landingpage(
 
         Spacer(modifier = Modifier.height(30.dp))
 
+        //guest button for people who arent students or teachers, that can roam freely in the app
         LandingButton(
             "Gæst?",
             134,
             40,
             0xFF9A9A9A,
-            20,
-            role = UserViewModel.Role.Guest
+            20
         ) {
             userViewModel.setRole(UserViewModel.Role.Guest)
             guestButtonClick()
