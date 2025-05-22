@@ -1,5 +1,7 @@
 package com.example.gronkokken.dataclasses
 
+import android.util.Log
+import androidx.compose.runtime.mutableStateOf
 import java.time.LocalDate
 
 data class Recipe (  //Christian
@@ -23,9 +25,28 @@ data class Recipe (  //Christian
     var weekDatesString = "${startDate.dayOfMonth}/${startDate.month} - ${endDate.dayOfMonth}/${endDate.month}"
 
 
-    val ingredients:List<RecipeIngredient> = ingredientsRaw.map { ingredient -> RecipeIngredient(
+    var ingredients: MutableList<RecipeIngredient> = mutableListOf()
+
+        /*
+        ingredientsRaw.map { ingredient -> RecipeIngredient(
         name = ingredient["name"].toString(),   //vi kunne gøre dem nullable for at slippe for Type-convertion, men så skulle vi deale med det senere når det skulle displayes
         amount = ingredient["amount"].toString().toIntOrNull(), //sidden null ikke kan laves toInt(), bruges toIntOrNull()
         amountUnit = ingredient["amountUnit"].toString()
     ) }
+         */
+
+    init {
+        Log.d("lookmom",ingredientsRaw.size.toString() + "first log")
+        ingredientsRaw.forEach { ingredient ->
+            Log.d("lookmom",ingredient.toString())
+            ingredients.add(
+                RecipeIngredient(
+                    name = ingredient["name"].toString(),   //vi kunne gøre dem nullable for at slippe for Type-convertion, men så skulle vi deale med det senere når det skulle displayes
+                    amount = mutableStateOf(ingredient["amount"].toString().toIntOrNull()), //sidden null ikke kan laves toInt(), bruges toIntOrNull()
+                    amountUnit = ingredient["amountUnit"].toString()
+                )
+            )
+        }
+        Log.d("lookmom",ingredients.toString() + "list log")
+    }
 }

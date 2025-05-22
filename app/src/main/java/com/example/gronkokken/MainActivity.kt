@@ -32,12 +32,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val userViewModel: UserViewModel = viewModel()
+            //val userViewModel: UserViewModel = viewModel()
             val navController = rememberNavController()
-            Navigation(navController)
-            test (this)
-            GronKokkenTheme {
+            //test (this)
 
+            GronKokkenTheme {
+                Navigation(navController)
             }
         }
     }

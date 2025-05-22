@@ -12,7 +12,7 @@ import com.example.gronkokken.recipeListScreen.RecipeListScreen
 
 @Composable
 fun Navigation (navHostController: NavHostController) {
-    NavHost(navHostController,startDestination = "recipe") {
+    NavHost(navHostController,startDestination = "recipeListScreen") {
         composable("recipeListScreen") {
             RecipeListScreen()
         }

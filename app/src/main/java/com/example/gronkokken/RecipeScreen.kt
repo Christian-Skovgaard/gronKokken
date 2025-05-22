@@ -31,7 +31,7 @@ import kotlin.math.max
 fun RecipeScreen () {
     val viewModel:RecipeScreenViewModel = viewModel();
     if (viewModel.loading.value) {LoadingScreen()}
-    else if (!viewModel.loading.value) {
+    else {
         RecipeViewScreen(
             mainTitleText = viewModel.recipe.name,
             ingredientList = viewModel.recipe.ingredients,
@@ -123,7 +123,7 @@ fun RecipeIngredientsList (
 
                     ) {
                         Text(
-                            text = ingredientList[i].amount.toString(),  //vi bruger toSting() fordi den er nullable
+                            text = ingredientList[i].amount.value.toString(),  //vi bruger toSting() fordi den er nullable
                             modifier = Modifier
                                 .fillMaxWidth(0.4f)
                                 .padding(horizontal = 2.dp),

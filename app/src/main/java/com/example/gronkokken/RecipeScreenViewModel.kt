@@ -17,9 +17,7 @@ class RecipeScreenViewModel: ViewModel() {  //Christian
 
     var recipe:Recipe = Recipe()
 
-
-
-    //ingredientList
+    //ingredientCheckbox
     val ingredientCheckboxState: MutableList<MutableState<Boolean>> = mutableStateListOf()
     fun onIngredientCheckboxClick (i:Int) {
         ingredientCheckboxState[i].value = !ingredientCheckboxState[i].value
@@ -37,11 +35,9 @@ class RecipeScreenViewModel: ViewModel() {  //Christian
     init {
         viewModelScope.launch {
             recipe = fireStore.getRecipeById("uPbmL6EDiFxSStamPL2l")
-            Log.d("lookmom",recipe.ingredientsRaw.size.toString())
             for(i in 1..recipe.ingredients.size) {
                 ingredientCheckboxState.add(mutableStateOf(false))
             }
-            Log.d("lookmom",recipe.ingredients.size.toString())
             loading.value = false
         }
 
