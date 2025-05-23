@@ -56,8 +56,4 @@ class RecipeListScreenViewModel:ViewModel() {   //Christian
         rightTextButtonUnderline = TextDecoration.Underline
         leftTextButtonUnderline = TextDecoration.None
     }
-
-    fun recipeNavigationById (recipeId:String) {
-
-    }
 }

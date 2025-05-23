@@ -42,8 +42,7 @@ class RecipeScreenViewModel(savedStateHandle: SavedStateHandle): ViewModel() {  
         Log.d("lookmom","started recipeScreen")
         viewModelScope.launch {
             recipe = fireStore.getRecipeById(recipeID)
-            recipe.toString()
-            for(i in 1..recipe.ingredients.size) {
+            recipe.ingredients.forEach {
                 ingredientCheckboxState.add(mutableStateOf(false))
             }
             loading.value = false
