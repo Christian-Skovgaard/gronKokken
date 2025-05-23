@@ -53,12 +53,6 @@ class FrontPage : ComponentActivity() {
 
 @Composable
 fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
-    val week by remember {mutableStateOf("UGENS OPSKRIFT")}
-    val season by remember {mutableStateOf("RÅVARER I SÆSON")}
-    val recipes by remember { mutableStateOf("OPSKRIFTER")}
-    val  clima by remember { mutableStateOf("VORES KLIMAPLAN")}
-    val pics by remember { mutableStateOf("BILLEDER")}
-    val overview by remember { mutableStateOf("OVERVIEW")}
     val robotoBold = FontFamily(Font(R.font.roboto))
 //logo
     Column{
@@ -103,7 +97,7 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
 
                     // Tekst i midten
                     Text(
-                        text = week,
+                        text = "UGENS OPSKRIFT",
                         color = Color.Black,
                         fontFamily = robotoBold,
                         fontSize = 25.sp
@@ -133,7 +127,7 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
 
                     // Teksten centreres
                     Text(
-                        text = season,
+                        text = "RÅVARER I SÆSON",
                         fontSize = 25.sp,
                         fontFamily = robotoBold,
                         color = Color.Black
@@ -163,7 +157,7 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
 
                     // Teksten centreres
                     Text(
-                        text = recipes,
+                        text = "OPSKRIFTER",
                         fontSize = 25.sp,
                         fontFamily = robotoBold,
                         color = Color.Black
@@ -193,7 +187,7 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
 
                     // Teksten centreres
                     Text(
-                        text = clima,
+                        text = "VORES KLIMAPLAN",
                         fontSize = 25.sp,
                         fontFamily = robotoBold,
                         color = Color.Black
@@ -227,7 +221,7 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
 
                         // Teksten centreres
                         Text(
-                            text = pics,
+                            text = "BILLEDER",
                             fontSize = 19.sp,
                             fontFamily = robotoBold,
                             color = Color.Black,
@@ -255,7 +249,7 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
 
                         // Teksten centreres
                         Text(
-                            text = overview,
+                            text = "OVERVIEW",
                             fontSize = 19.sp,
                             fontFamily = robotoBold,
                             color = Color.Black,
