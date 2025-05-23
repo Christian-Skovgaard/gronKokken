@@ -17,7 +17,7 @@ import com.example.gronkokken.ui.pages.login.LoginPage
 
 @Composable
 fun Navigation (navHostController: NavHostController, userViewModel: UserViewModel) {
-    NavHost(navHostController,startDestination = "recipeListScreen") {
+    NavHost(navHostController,startDestination = "landingpage") {
         fun recipeNavigateById (recipeId:String):Unit { //Christian
             navHostController.navigate("recipe/$recipeId")
         }
