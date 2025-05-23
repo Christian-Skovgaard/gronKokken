@@ -9,7 +9,7 @@ data class Recipe (  //Christian
     var id:String = "", //er var fordi den bliver opdateret efter objektet er lavet sidden det er metadata og ikke body
     val name:String = "",
     val flavorText:String = "",
-    val ingredientsRaw:List<Map<String,String>> = listOf(),    //vi gemmer i map da jeg før har haft mange problemer med at gemme custom types i firestore, og når classen ikke er mere kompiceret er det her nemmest
+    val ingredientsRaw:List<Map<String,String>> = listOf(), //Vi gemmer i Map fordi jeg har haft mange problemer med at gemme i custom classes i firestore.
     val instructions:String = "",
     val ratings:List<Int> = listOf(),
     val endDateRaw:String = "2025-05-28",
@@ -36,6 +36,32 @@ data class Recipe (  //Christian
          */
 
     init {
+
+        /*
+        Log.d("lookmom",ingredientsRaw.toString())
+        ingredientsRaw.forEach {
+            val ingredientString = it.toString().replace("{","").replace("}","")
+            val ingredientStringList: List<String>? = ingredientString.split(", ")
+            val ingredientMap = mutableMapOf<String,String>()
+            ingredientStringList?.forEach {
+                val (key, value) = it.split("=")
+                //det er en destructuring declaration, som gør to ting:
+                // først laver it.splt en liste med 2 items
+                // val i () laver to variable, eller flere som hver for et item fra listen
+                // på den måde har vi nu to variable ud fra de to variable på listen.
+                ingredientMap[key] = value
+            }
+            val ingredient = RecipeIngredient(
+                name = ingredientMap["name"],
+                amount = mutableStateOf(ingredientMap["amount"]?.toInt()),
+                amountUnit = ingredientMap["amountUnit"]
+            )
+            ingredients.add(ingredient)
+        }
+         */
+
+
+        /*
         Log.d("lookmom","ingredient raw size on construction = " + ingredientsRaw.size.toString())
         ingredientsRaw.forEach { ingredient ->
             Log.d("lookmom",ingredient.toString())
@@ -48,6 +74,20 @@ data class Recipe (  //Christian
             )
         }
         //Log.d("lookmom",ingredients.toString() + "list log")
+         */
+    }
+
+    fun updateIngredients () {
+        ingredientsRaw.forEach { ingredient ->
+            Log.d("lookmom",ingredient.toString())
+            ingredients.add(
+                RecipeIngredient(
+                    name = ingredient["name"].toString(),   //vi kunne gøre dem nullable for at slippe for Type-convertion, men så skulle vi deale med det senere når det skulle displayes
+                    amount = mutableStateOf(ingredient["amount"].toString().toIntOrNull()), //sidden null ikke kan laves toInt(), bruges toIntOrNull()
+                    amountUnit = ingredient["amountUnit"].toString()
+                )
+            )
+        }
     }
 
     override fun toString(): String {

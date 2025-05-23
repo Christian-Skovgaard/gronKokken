@@ -1,5 +1,6 @@
 package com.example.gronkokken
 
+import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -38,6 +39,7 @@ class RecipeScreenViewModel(savedStateHandle: SavedStateHandle): ViewModel() {  
     }
 
     init {
+        Log.d("lookmom","started recipeScreen")
         viewModelScope.launch {
             recipe = fireStore.getRecipeById(recipeID)
             recipe.toString()
@@ -45,6 +47,7 @@ class RecipeScreenViewModel(savedStateHandle: SavedStateHandle): ViewModel() {  
                 ingredientCheckboxState.add(mutableStateOf(false))
             }
             loading.value = false
+            Log.d("lookmom","ended fetch")
         }
 
     }

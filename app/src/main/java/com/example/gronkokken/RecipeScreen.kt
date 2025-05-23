@@ -113,7 +113,6 @@ fun RecipeIngredientsList (
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(0.dp)
-                    .border(1.dp, Color.Red)
                 ) {
                 Row {
                     Row (
