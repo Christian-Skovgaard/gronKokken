@@ -1,0 +1,35 @@
+Index: app/src/main/java/com/example/gronkokken/Landingpage.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/gronkokken/Landingpage.kt b/app/src/main/java/com/example/gronkokken/landingpage/Landingpage.kt
+rename from app/src/main/java/com/example/gronkokken/Landingpage.kt
+rename to app/src/main/java/com/example/gronkokken/landingpage/Landingpage.kt
+--- a/app/src/main/java/com/example/gronkokken/Landingpage.kt	(revision 5071bb032dc3d1e6ee177b4d29edd9cbfccae388)
++++ b/app/src/main/java/com/example/gronkokken/landingpage/Landingpage.kt	(date 1747848967799)
+@@ -1,6 +1,5 @@
+-package com.example.gronkokken
++package com.example.gronkokken.landingpage
+ 
+-import android.util.EventLogTags.Description
+ import androidx.compose.foundation.Image
+ import androidx.compose.foundation.background
+ import androidx.compose.foundation.layout.Column
+@@ -8,15 +7,14 @@
+ import androidx.compose.foundation.layout.fillMaxSize
+ import androidx.compose.foundation.layout.height
+ import androidx.compose.foundation.layout.size
+-import androidx.compose.material3.TextField
+ import androidx.compose.runtime.Composable
+ import androidx.compose.ui.Alignment
+ import androidx.compose.ui.Modifier
+ import androidx.compose.ui.graphics.Color
+ import androidx.compose.ui.res.painterResource
+-import androidx.compose.ui.res.stringResource
+ import androidx.compose.ui.tooling.preview.Preview
+ import androidx.compose.ui.unit.dp
++import com.example.gronkokken.R
+ 
+ @Composable
+ fun Landingpage() {

@@ -21,6 +21,9 @@ import com.example.gronkokken.components.InternalStorage
 import com.example.gronkokken.components.Navigation
 import com.example.gronkokken.components.UserViewModel
 import com.example.gronkokken.recipeListScreen.RecipeListScreen
+import com.example.gronkokken.com.example.gronkokken.ui.pages.Frontpage.FrontPageScreen
+import com.example.gronkokken.com.example.gronkokken.ui.pages.Frontpage.FrontPageTeacherScreen
+import com.example.gronkokken.repository.UserViewModel
 import com.example.gronkokken.ui.theme.GronKokkenTheme
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -35,8 +38,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val userViewModel: UserViewModel = viewModel()
             val navController = rememberNavController()
-
-            //test (this)
+            Navigation(navHostController = navController, userViewModel)
 
             GronKokkenTheme {
                 Navigation(navController)
@@ -45,13 +47,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-//riding to internal storage testing
-fun test (context: Context) {
-    val internalStorage = InternalStorage()
-
-    val map = internalStorage.getRecipeRatingMap()
-    Log.d("lookhere",map.toString())
-}
 
 
 @Composable
