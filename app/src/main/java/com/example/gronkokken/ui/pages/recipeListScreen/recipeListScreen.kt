@@ -1,4 +1,4 @@
-package com.example.gronkokken.ui.pages.recipeListScreen
+package com.example.gronkokken.recipeListScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,14 +24,14 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.gronkokken.models.Recipe
 import com.example.gronkokken.ui.pages.loadingscreen.LoadingScreen
-import com.example.gronkokken.dataclasses.Recipe
 
 @Composable
-fun RecipeListScreen () {   //Christian
-    val viewModel: RecipeListScreenViewModel = viewModel()
+fun RecipeListScreen (recipeDisplayOnClick: (String) -> Unit) {   //Christian
+    val viewModel:RecipeListScreenViewModel = viewModel()
     if (viewModel.loading.value) {
-        LoadingScreen ()
+        LoadingScreen()
     }
     //man ville også have kunnet lavet listen mutablestate, men det virkede federe at flippe en boolian end at skulle erstatte hele listen.
     else if (viewModel.showingCurrentRecipes.value) {
@@ -40,7 +40,8 @@ fun RecipeListScreen () {   //Christian
             rightButtonOnClick = viewModel::rightTextButtonOnClick,
             leftButtonOnClick = viewModel::leftTextButtonOnClick,
             leftButtonUnderline = viewModel.leftTextButtonUnderline,
-            rightButtonUnderline = viewModel.rightTextButtonUnderline
+            rightButtonUnderline = viewModel.rightTextButtonUnderline,
+            displayBoxOnClick = recipeDisplayOnClick
         )
     }
     else if (!viewModel.showingCurrentRecipes.value) {
@@ -49,7 +50,8 @@ fun RecipeListScreen () {   //Christian
             rightButtonOnClick = viewModel::rightTextButtonOnClick,
             leftButtonOnClick = viewModel::leftTextButtonOnClick,
             leftButtonUnderline = viewModel.leftTextButtonUnderline,
-            rightButtonUnderline = viewModel.rightTextButtonUnderline
+            rightButtonUnderline = viewModel.rightTextButtonUnderline,
+            displayBoxOnClick = recipeDisplayOnClick
         )
     }
 }
@@ -57,8 +59,14 @@ fun RecipeListScreen () {   //Christian
 
 
 @Composable
-fun RecipeDisplayList (displayList:List<Recipe>,leftButtonOnClick:()->Unit,rightButtonOnClick:()->Unit,leftButtonUnderline:TextDecoration,rightButtonUnderline:TextDecoration) {
-    Column (){
+fun RecipeDisplayList (
+    displayList:List<Recipe>,
+    leftButtonOnClick:()->Unit,
+    rightButtonOnClick:()->Unit,
+    leftButtonUnderline:TextDecoration,
+    rightButtonUnderline:TextDecoration,
+    displayBoxOnClick:(String)->Unit) {
+    Column {
         Row (
             modifier = Modifier
                 .fillMaxWidth(),
@@ -72,12 +80,17 @@ fun RecipeDisplayList (displayList:List<Recipe>,leftButtonOnClick:()->Unit,right
 
         ) {
             items(displayList.size) {
-                displayList.forEach{
+                displayList.forEach{ recipe ->
                     Box (
                         modifier = Modifier.fillMaxWidth(),
                         contentAlignment = Alignment.Center
                     ) {
-                        RecipeDisplayBox(it.weekDatesString, it.name, it.flavorText)
+                        RecipeDisplayBox(
+                            recipe.weekDatesString,
+                            recipe.name,
+                            recipe.flavorText,
+                            {displayBoxOnClick(recipe.id)}  //den er proppet i lamda fordi den skal sendes videre som ny funktion, som bare er den gamle funktion med argument og ikke køres her.
+                        )
                     }
                 }
             }
@@ -103,7 +116,7 @@ fun RecipeDisplayTextButton (text:String, onClick:()->Unit, underline:TextDecora
 }
 
 @Composable
-fun RecipeDisplayBox (weekDisplay:String,titleDisplay:String,flavorTextDisplay:String) {
+fun RecipeDisplayBox (weekDisplay:String,titleDisplay:String,flavorTextDisplay:String,displayBoxOnClick:()->Unit) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -111,7 +124,8 @@ fun RecipeDisplayBox (weekDisplay:String,titleDisplay:String,flavorTextDisplay:S
             .aspectRatio(3f)
             .clip(RoundedCornerShape(8.dp))
             .background(Color(0xFFA0ED6E))
-            .padding(10.dp),
+            .padding(10.dp)
+            .clickable {displayBoxOnClick()},
 
     ) {
         Row() {

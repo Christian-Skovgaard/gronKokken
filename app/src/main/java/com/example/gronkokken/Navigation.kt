@@ -1,9 +1,13 @@
 package com.example.gronkokken
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import com.example.gronkokken.recipeListScreen.RecipeListScreen
 import com.example.gronkokken.repository.UserViewModel
 import com.example.gronkokken.ui.pages.landingpage.Landingpage
 import com.example.gronkokken.ui.pages.frontpage.FrontPageTest
@@ -13,10 +17,19 @@ import com.example.gronkokken.ui.pages.login.LoginPage
 
 @Composable
 fun Navigation (navHostController: NavHostController, userViewModel: UserViewModel) {
-    NavHost(navHostController,startDestination = "landingpage") {
-        //composable("recipeListScreen") {
-        //    RecipeListScreen()
-        //}
+    NavHost(navHostController,startDestination = "recipeListScreen") {
+        fun recipeNavigateById (recipeId:String):Unit { //Christian
+            navHostController.navigate("recipe/$recipeId")
+        }
+        composable("recipeListScreen") {
+            RecipeListScreen(::recipeNavigateById)
+        }
+        composable( //Christian
+            route = "recipe/{recipeId}",
+            arguments = listOf(navArgument(name = "recipeId") { type = NavType.StringType })
+        ) {
+            RecipeScreen()
+        }
         composable("landingpage") {
             Landingpage(userViewModel,
                 studentButtonClick = {

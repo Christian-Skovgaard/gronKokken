@@ -1,4 +1,4 @@
-package com.example.gronkokken.ui.pages.recipeListScreen
+package com.example.gronkokken.recipeListScreen
 
 import android.util.Log
 import androidx.compose.runtime.MutableState
@@ -6,8 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.gronkokken.models.Recipe
 import com.example.gronkokken.repository.Firestore
-import com.example.gronkokken.dataclasses.Recipe
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
@@ -40,7 +40,6 @@ class RecipeListScreenViewModel:ViewModel() {   //Christian
             }
 
             loading.value = false
-            Log.d("lookmom",loading.toString())
         }
     }
 
