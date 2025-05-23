@@ -7,6 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gronkokken.components.Firestore
+import com.example.gronkokken.components.InternalStorage
 import com.example.gronkokken.models.Recipe
 import kotlinx.coroutines.launch
 
@@ -18,6 +19,8 @@ class RecipeScreenViewModel(savedStateHandle: SavedStateHandle): ViewModel() {  
     var loading: MutableState<Boolean> = mutableStateOf(true)  //default skal være true
 
     var recipe:Recipe = Recipe()
+
+    //val internalStorage = InternalStorage()
 
     //ingredientCheckbox
     val ingredientCheckboxState: MutableList<MutableState<Boolean>> = mutableStateListOf()

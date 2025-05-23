@@ -3,7 +3,7 @@ package com.example.gronkokken.components
 import android.content.Context
 import android.util.Log
 
-class InternalStorage (context: Context) {  //Christian
+class InternalStorage () {  //Christian
     //Context skal sendes fra MainActivity
     //på telefon kan filerne findes under /data/data/com.example.gronkokken/files/
 

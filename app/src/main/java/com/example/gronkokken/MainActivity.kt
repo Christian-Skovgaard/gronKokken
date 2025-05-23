@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
             val userViewModel: UserViewModel = viewModel()
             val navController = rememberNavController()
 
-            test (this)
+            //test (this)
 
             GronKokkenTheme {
                 Navigation(navController)
@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
 
 //riding to internal storage testing
 fun test (context: Context) {
-    val internalStorage = InternalStorage(context)
+    val internalStorage = InternalStorage()
 
     val map = internalStorage.getRecipeRatingMap()
     Log.d("lookhere",map.toString())

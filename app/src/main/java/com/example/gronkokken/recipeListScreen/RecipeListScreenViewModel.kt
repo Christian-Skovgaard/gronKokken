@@ -40,7 +40,6 @@ class RecipeListScreenViewModel:ViewModel() {   //Christian
             }
 
             loading.value = false
-            Log.d("lookmom",loading.toString())
         }
     }
 

@@ -21,6 +21,10 @@ class Firestore {
             val recipe: Recipe = it.toObject()
             recipe.id = it.id
             returnList.add(recipe)
+
+            //testing calls
+            Log.d("lookmom", it.data["ingredientsRaw"].toString())
+            var map: Map<String,String> = mapOf()
         }
 
         return returnList.toList()
@@ -49,8 +53,8 @@ class Firestore {
         recipe = item.toObject<Recipe>()!!  //vi er sikre på at der ikke er null, sidden alle id som bruge i appen er taget fra databasen
         recipe.id = item.id
 
-        Log.d("lookmom",item.data.toString())
-        Log.d("lookmom",recipe.toString())
+        //Log.d("lookmom",item.data.toString())
+        //Log.d("lookmom",recipe.toString())
         return recipe
     }
 }
