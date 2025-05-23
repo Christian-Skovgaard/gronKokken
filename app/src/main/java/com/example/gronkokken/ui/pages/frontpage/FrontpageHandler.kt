@@ -1,9 +1,7 @@
-package com.example.gronkokken.ui.pages.Frontpage
+package com.example.gronkokken.ui.pages.frontpage
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.gronkokken.com.example.gronkokken.ui.pages.Frontpage.FrontPageScreen
 import com.example.gronkokken.com.example.gronkokken.ui.pages.Frontpage.FrontPageTeacherScreen
 import com.example.gronkokken.repository.UserViewModel
