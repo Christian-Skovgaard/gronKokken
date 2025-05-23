@@ -7,9 +7,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gronkokken.components.Firestore
 import com.example.gronkokken.components.InternalStorage
 import com.example.gronkokken.models.Recipe
+import com.example.gronkokken.repository.Firestore
 import kotlinx.coroutines.launch
 
 class RecipeScreenViewModel(savedStateHandle: SavedStateHandle): ViewModel() {  //Christian

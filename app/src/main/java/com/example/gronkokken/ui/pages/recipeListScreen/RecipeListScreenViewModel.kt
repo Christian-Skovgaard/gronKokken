@@ -6,8 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gronkokken.components.Firestore
 import com.example.gronkokken.models.Recipe
+import com.example.gronkokken.repository.Firestore
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 

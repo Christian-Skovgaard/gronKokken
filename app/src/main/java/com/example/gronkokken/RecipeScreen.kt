@@ -24,13 +24,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.gronkokken.models.RecipeIngredient
+import com.example.gronkokken.ui.pages.loadingscreen.LoadingScreen
 import kotlin.math.max
 
 @Composable
 fun RecipeScreen () {
     val viewModel:RecipeScreenViewModel = viewModel();
     if (viewModel.loading.value) {LoadingScreen()}
-    else {
+    else if (!viewModel.loading.value){
         RecipeViewScreen(
             mainTitleText = viewModel.recipe.name,
             ingredientList = viewModel.recipe.ingredients,

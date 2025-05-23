@@ -24,14 +24,14 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.gronkokken.LoadingScreen
 import com.example.gronkokken.models.Recipe
+import com.example.gronkokken.ui.pages.loadingscreen.LoadingScreen
 
 @Composable
 fun RecipeListScreen (recipeDisplayOnClick: (String) -> Unit) {   //Christian
     val viewModel:RecipeListScreenViewModel = viewModel()
     if (viewModel.loading.value) {
-        LoadingScreen ()
+        LoadingScreen()
     }
     //man ville også have kunnet lavet listen mutablestate, men det virkede federe at flippe en boolian end at skulle erstatte hele listen.
     else if (viewModel.showingCurrentRecipes.value) {

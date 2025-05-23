@@ -18,8 +18,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.gronkokken.components.InternalStorage
-import com.example.gronkokken.components.Navigation
-import com.example.gronkokken.components.UserViewModel
 import com.example.gronkokken.recipeListScreen.RecipeListScreen
 import com.example.gronkokken.com.example.gronkokken.ui.pages.Frontpage.FrontPageScreen
 import com.example.gronkokken.com.example.gronkokken.ui.pages.Frontpage.FrontPageTeacherScreen
@@ -41,7 +39,10 @@ class MainActivity : ComponentActivity() {
             Navigation(navHostController = navController, userViewModel)
 
             GronKokkenTheme {
-                Navigation(navController)
+                Navigation(
+                    navHostController = navController,
+                    userViewModel = userViewModel
+                )
             }
         }
     }
