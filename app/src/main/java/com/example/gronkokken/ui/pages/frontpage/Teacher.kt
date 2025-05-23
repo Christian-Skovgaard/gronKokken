@@ -221,18 +221,17 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
                             painter = painterResource(id = R.drawable.pics),
                             contentDescription = "Billeder ikon",
                             modifier = Modifier
-                                .size(40.dp)
+                                .size(38.dp)
                                 .align(Alignment.CenterStart) // venstrestillet
-                                .padding(start = 4.dp)
                         )
 
                         // Teksten centreres
                         Text(
                             text = pics,
-                            fontSize = 20.sp,
+                            fontSize = 19.sp,
                             fontFamily = robotoBold,
                             color = Color.Black,
-                            modifier = Modifier.align(Alignment.CenterEnd).padding(end = 4.dp)
+                            modifier = Modifier.align(Alignment.CenterEnd)
                         )
                     }
                 }
@@ -243,26 +242,24 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier.weight(1f)
                         .height(80.dp)           ) {
                     Box(
-                        modifier = Modifier.fillMaxWidth(),
-                        contentAlignment = Alignment.Center
+                        modifier = Modifier.fillMaxWidth()
                     ) {
                         // Billedet placeres helt til venstre
                         Image(
                             painter = painterResource(id = R.drawable.statistics),
                             contentDescription = "Billeder ikon",
                             modifier = Modifier
-                                .size(40.dp)
+                                .size(38.dp)
                                 .align(Alignment.CenterStart)
-                                .padding(start = 4.dp)
                         )
 
                         // Teksten centreres
                         Text(
                             text = overview,
-                            fontSize = 20.sp,
+                            fontSize = 19.sp,
                             fontFamily = robotoBold,
                             color = Color.Black,
-                            modifier = Modifier.align(Alignment.CenterEnd).padding(end = 2.dp)
+                            modifier = Modifier.align(Alignment.CenterEnd)
                         )
                     }
 
