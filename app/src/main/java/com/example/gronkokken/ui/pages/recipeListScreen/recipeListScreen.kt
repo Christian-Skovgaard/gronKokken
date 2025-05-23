@@ -1,4 +1,4 @@
-package com.example.gronkokken.recipeListScreen
+package com.example.gronkokken.ui.pages.recipeListScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -25,12 +24,12 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.gronkokken.LoadingScreen
+import com.example.gronkokken.ui.pages.loadingscreen.LoadingScreen
 import com.example.gronkokken.dataclasses.Recipe
 
 @Composable
 fun RecipeListScreen () {   //Christian
-    val viewModel:RecipeListScreenViewModel = viewModel()
+    val viewModel: RecipeListScreenViewModel = viewModel()
     if (viewModel.loading.value) {
         LoadingScreen ()
     }

@@ -1,4 +1,4 @@
-package com.example.gronkokken
+package com.example.gronkokken.ui.pages.loadingscreen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
