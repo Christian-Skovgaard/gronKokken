@@ -2,9 +2,11 @@ package com.example.gronkokken.repository
 //filnavnet er med småt, men lad være med at fikse!!!, det dræber github.
 import android.util.Log
 import com.example.gronkokken.models.Recipe
+import com.example.gronkokken.models.SeasonalIngredient
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
+import com.google.firebase.firestore.toObjects
 import kotlinx.coroutines.tasks.await
 
 class Firestore {
@@ -27,6 +29,21 @@ class Firestore {
         }
 
         return returnList.toList()
+    }
+    //Lukas
+    suspend fun getSeasonalIngredients ():List<SeasonalIngredient> {
+        val collection = db.collection("ingredients")
+
+        val returnList:MutableList<SeasonalIngredient> = mutableListOf()
+
+        collection.get().await().forEach {
+            val seasonalIngredient: SeasonalIngredient = it.toObject()
+            seasonalIngredient.id = it.id
+            returnList.add(seasonalIngredient)
+        }
+
+        return returnList.toList()
+
     }
 
     suspend fun getRecipeByName (name:String): Recipe { //Christian

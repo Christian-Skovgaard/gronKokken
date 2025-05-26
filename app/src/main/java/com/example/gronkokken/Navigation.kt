@@ -14,10 +14,11 @@ import com.example.gronkokken.ui.pages.Register.RegisterPage
 import com.example.gronkokken.ui.pages.landingpage.LandingpageTeacher
 import com.example.gronkokken.ui.pages.login.LoginPage
 import com.example.gronkokken.ui.pages.recipescreen.RecipeScreen
+import com.example.gronkokken.ui.pages.seasonalIngredientsScreen.SeasonalIngredientsScreen
 
 @Composable
 fun Navigation (navHostController: NavHostController, userViewModel: UserViewModel) {
-    NavHost(navHostController,startDestination = "landingpage") {
+    NavHost(navHostController,startDestination = "seasonal-ingredients") {
         fun recipeNavigateById (recipeId:String):Unit { //Christian
             navHostController.navigate("recipe/$recipeId")
         }
@@ -80,6 +81,9 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
                     navHostController.popBackStack()
                 }
             )
+        }
+        composable("seasonal-ingredients") {
+            SeasonalIngredientsScreen()
         }
     }
 }
