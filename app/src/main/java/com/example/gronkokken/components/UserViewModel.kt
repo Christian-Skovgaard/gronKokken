@@ -1,6 +1,7 @@
 package com.example.gronkokken.components
 
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class UserViewModel: ViewModel() {
 
@@ -15,5 +16,8 @@ class UserViewModel: ViewModel() {
     enum class Role {
         Undefined, Student, Teacher, Guest
     }
+
+    val userId: String?
+        get() = FirebaseAuth.getInstance().currentUser?.uid
 }
 

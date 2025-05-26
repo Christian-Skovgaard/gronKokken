@@ -1,8 +1,14 @@
 package com.example.gronkokken.components
 //filnavnet er med småt, men lad være med at fikse!!!, det dræber github.
 import android.util.Log
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import com.example.gronkokken.dataclasses.Recipe
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.tasks.await
@@ -45,4 +51,43 @@ class Firestore {
 
         return returnList.toList()
     }
+    suspend fun hentLaunchedEffectData(userId: String): Pair<String, String> { //Sahra
+        return try {
+            val doc = FirebaseFirestore.getInstance()
+                .collection("klimaplan")
+                .document(userId)
+                .get()
+                .await()
+            if (doc.exists()) {
+                val startpunkt = doc.getString("startpunkt") ?: ""
+                val slutpunkt = doc.getString("slutpunkt") ?: ""
+                Pair(startpunkt, slutpunkt)
+            } else {
+                Pair("", "")
+            }
+        } catch (e: Exception) {
+            Log.e("Firestore", "Fejl ved hentning", e)
+            Pair("", "")
+        }
+
+    }
+
+    fun gemKlimaplanData(userId: String, startpunkt: String, slutpunkt: String) {
+        val db = FirebaseFirestore.getInstance()
+        val data = hashMapOf(
+            "startpunkt" to startpunkt,
+            "slutpunkt" to slutpunkt
+        )
+
+        db.collection("klimaplan")
+            .document(userId)
+            .set(data)
+            .addOnSuccessListener {
+                Log.d("Firestore", "Data gemt for $userId")
+            }
+            .addOnFailureListener { e ->
+                Log.w("Firestore", "Fejl ved gemning", e)
+            }
+    }
+
 }
