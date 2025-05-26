@@ -157,7 +157,7 @@ fun ClimaPlanScreen(userViewModel: UserViewModel = viewModel()) {
                 color = Color(0xFF4CAF50)
             )
             Text(
-                text = "Find ud af, hvad dit startpunkt er , og tag testen igen sidst på skoleåret – og se, om du er blevet mere klimavenlig.",
+                text = "Find ud af, hvad dit startpunkt er , og tag testen igen sidst på skoleåret og se, om du er blevet mere klimavenlig.",
                 fontSize = 16.sp
             )
 
