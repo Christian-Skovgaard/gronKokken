@@ -35,8 +35,11 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import com.example.gronkokken.ui.pages.frontpage.FrontPageViewModel
 import com.example.gronkokken.ui.theme.GronKokkenTheme
-
+/*  hvorfor er den her her??
 class FrontPage : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,11 +52,14 @@ class FrontPage : ComponentActivity() {
         }
     }
 }
-
+ */
 
 @Composable
-fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
+fun FrontPageTeacherScreen(navHostController: NavHostController) {
     val robotoBold = FontFamily(Font(R.font.roboto))
+
+    val viewModel: FrontPageViewModel = viewModel()
+
 //logo
     Column{
         Image(
@@ -66,18 +72,16 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
         )
 
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .padding(16.dp)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
-
             Spacer(modifier = Modifier.width(16.dp))
             // Ugens Opskrift
             Button(
-                onClick = { Log.d("BTN", "Ugens opskrift klik") },
+                onClick = { navHostController.navigate("recipe/${viewModel.currentRecipeId}") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF69BFFF)),
                 modifier = Modifier.fillMaxWidth()
                     .height(80.dp),        ) {
@@ -259,11 +263,7 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
 
                 }
             }
-        }}}
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FrontPageTeacherScreen(
-
-    )
+        }
+    }
 }
+

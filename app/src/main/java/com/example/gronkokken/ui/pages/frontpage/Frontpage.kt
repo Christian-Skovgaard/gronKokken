@@ -18,18 +18,24 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.gronkokken.R
+import com.example.gronkokken.ui.pages.frontpage.FrontPageViewModel
 import com.example.gronkokken.ui.theme.GronKokkenTheme
 
 @Composable
-fun FrontPageScreen(modifier: Modifier = Modifier) {
+fun FrontPageScreen(navHostController: NavHostController) { //sahra
+
+    val viewModel: FrontPageViewModel = viewModel()
+
     val week by remember { mutableStateOf("UGENS OPSKRIFT") }
     val season by remember { mutableStateOf("RÅVARER I SÆSON") }
     val recipes by remember { mutableStateOf("OPSKRIFTER") }
     val clima by remember { mutableStateOf("VORES KLIMAPLAN") }
     val pics by remember { mutableStateOf("BILLEDER") }
     val robotoBold = FontFamily(Font(R.font.roboto))
-
 
     Column {
         Image(
@@ -43,7 +49,7 @@ fun FrontPageScreen(modifier: Modifier = Modifier) {
         )
 
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .padding(16.dp)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(30.dp),
@@ -51,9 +57,11 @@ fun FrontPageScreen(modifier: Modifier = Modifier) {
         ) {
             Spacer(modifier = Modifier.width(20.dp))
             Button(
-                onClick = { Log.d("BTN", "Ugens opskrift klik") },
+                onClick = { navHostController.navigate("recipe/${viewModel.currentRecipeId}") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF69BFFF)),
-                modifier = Modifier.fillMaxWidth().height(80.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
             ) {
                 Box(
                     modifier = Modifier.fillMaxWidth(),
@@ -80,9 +88,11 @@ fun FrontPageScreen(modifier: Modifier = Modifier) {
             }
 
             Button(
-                onClick = { Log.d("BTN", "Råvarer i sæson klik") },
+                onClick = TODO(),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFBA27)),
-                modifier = Modifier.fillMaxWidth().height(80.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
             ) {
                 Box(
                     modifier = Modifier.fillMaxWidth(),
@@ -109,9 +119,11 @@ fun FrontPageScreen(modifier: Modifier = Modifier) {
             }
 
             Button(
-                onClick = { Log.d("BTN", "Opskrifter klik") },
+                onClick = { navHostController.navigate("recipeListScreen") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFCEBAFF)),
-                modifier = Modifier.fillMaxWidth().height(80.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
             ) {
                 Box(
                     modifier = Modifier.fillMaxWidth(),
@@ -139,9 +151,11 @@ fun FrontPageScreen(modifier: Modifier = Modifier) {
 
 
             Button(
-                onClick = { Log.d("BTN", "Klimaplan klik") },
+                onClick = {TODO()},
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4B84AD)),
-                modifier = Modifier.fillMaxWidth().height(80.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
             ) {
                 Box(
                     modifier = Modifier.fillMaxWidth(),
@@ -170,7 +184,9 @@ fun FrontPageScreen(modifier: Modifier = Modifier) {
             Button(
                 onClick = { Log.d("BTN", "Billeder klik") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF8380)),
-                modifier = Modifier.fillMaxWidth().height(80.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
             ) {
                 Box(
                     modifier = Modifier.fillMaxWidth(),
@@ -196,13 +212,5 @@ fun FrontPageScreen(modifier: Modifier = Modifier) {
                 }
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun FrontPagePreview() {
-    GronKokkenTheme {
-        FrontPageScreen()
     }
 }

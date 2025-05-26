@@ -59,7 +59,10 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
             )
         }
         composable("frontpage") {
-            FrontPageTest(userViewModel)
+            FrontPageTest(
+                userViewModel,
+                navHostController = navHostController
+            )
         }
         composable("loginpage") {
             LoginPage(
