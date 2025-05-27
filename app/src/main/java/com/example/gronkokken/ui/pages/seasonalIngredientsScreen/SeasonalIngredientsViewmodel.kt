@@ -7,6 +7,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.toLowerCase
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.gronkokken.repository.Firestore
@@ -15,6 +17,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.Month
+import java.util.Locale
 
 //Lukas
 
@@ -52,6 +55,14 @@ class SeasonalIngredientsViewmodel(): ViewModel() {
             in 9..11 -> "Efterår"
             else -> "Vinter"
         }
+    }
+
+    fun getCurrentMonth(): String {
+        val currentMonth = LocalDate.now().monthValue
+
+        val currentMonthName = Month.entries[currentMonth - 1]
+
+        return currentMonthName.toString().lowercase().replaceFirstChar { it.uppercase() }
     }
 
 
