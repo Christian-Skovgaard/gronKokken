@@ -30,21 +30,6 @@ class Firestore {
 
         return returnList.toList()
     }
-    //Lukas
-    suspend fun getSeasonalIngredients ():List<SeasonalIngredient> {
-        val collection = db.collection("ingredients")
-
-        val returnList:MutableList<SeasonalIngredient> = mutableListOf()
-
-        collection.get().await().forEach {
-            val seasonalIngredient: SeasonalIngredient = it.toObject()
-            seasonalIngredient.id = it.id
-            returnList.add(seasonalIngredient)
-        }
-
-        return returnList.toList()
-
-    }
 
     suspend fun getRecipeByName (name:String): Recipe { //Christian
         val collection = db.collection("recipes")
@@ -73,5 +58,21 @@ class Firestore {
         Log.d("lookmom","item from database = " + item.data.toString())
         Log.d("lookmom","item returned from function" + recipe.ingredientsRaw.toString())
         return recipe
+    }
+
+    //Lukas
+    suspend fun getSeasonalIngredients ():List<SeasonalIngredient> {
+        val collection = db.collection("ingredients")
+
+        val returnList:MutableList<SeasonalIngredient> = mutableListOf()
+
+        collection.get().await().forEach {
+            val seasonalIngredient: SeasonalIngredient = it.toObject()
+            seasonalIngredient.id = it.id
+            returnList.add(seasonalIngredient)
+        }
+
+        return returnList
+
     }
 }

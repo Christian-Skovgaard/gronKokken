@@ -1,7 +1,9 @@
 package com.example.gronkokken.ui.pages.seasonalIngredientsScreen
 
 import android.util.Log
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -11,24 +13,46 @@ import com.example.gronkokken.repository.Firestore
 import com.example.gronkokken.models.SeasonalIngredient
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.Month
 
 //Lukas
 
 class SeasonalIngredientsViewmodel(): ViewModel() {
 
-    val fireStore = Firestore()
+    private val fireStore = Firestore()
 
-    var seasonalIngredient: SeasonalIngredient = SeasonalIngredient()
+    var loading: MutableState<Boolean> = mutableStateOf(true)
 
     private val _ingredientsList = mutableStateOf<List<SeasonalIngredient>>(emptyList())
     val ingredientsList: State<List<SeasonalIngredient>> = _ingredientsList
+
+    private val _inSeasonList = mutableStateOf<List<SeasonalIngredient>>(emptyList())
+    val inSeasonList: State<List<SeasonalIngredient>> = _inSeasonList
 
     init {
         viewModelScope.launch {
             val importList = fireStore.getSeasonalIngredients()
             _ingredientsList.value = importList
-            Log.d("suppe", "Fetched: $importList")
+
+            val currentMonth  = LocalDate.now().monthValue
+            _inSeasonList.value = importList.filter { it.isInSeason(currentMonth) }
+
+            loading.value = false
+
         }
     }
+
+    fun getCurrentSeason(): String {
+        val currentMonth = LocalDate.now().monthValue
+
+        return when (currentMonth) {
+            in 3..5 -> "Forår"
+            in 6..8 -> "Sommer"
+            in 9..11 -> "Efterår"
+            else -> "Vinter"
+        }
+    }
+
 
 }

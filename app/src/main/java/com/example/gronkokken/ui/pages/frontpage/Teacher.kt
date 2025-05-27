@@ -1,4 +1,4 @@
-package com.example.gronkokken.com.example.gronkokken.ui.pages.Frontpage
+package com.example.gronkokken.ui.pages.frontpage
 
 import com.example.gronkokken.R
 import android.os.Bundle

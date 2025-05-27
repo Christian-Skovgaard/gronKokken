@@ -8,11 +8,20 @@ data class SeasonalIngredient(
     val description: String = ""
 ) {
 
+    fun isInSeason(currentMonth: Int): Boolean {
+        return if (startMonth <= endMonth) {
+            // Normal periode
+            currentMonth in startMonth..endMonth
+        } else {
+            // Overlapper årsskifte
+            currentMonth >= startMonth || currentMonth <= endMonth
+        }
+    }
 
 
 
 
     override fun toString(): String {
-        return "yo yo yo its $name and im $description"
+        return "$name, $startMonth, $endMonth, $description, $id"
     }
 }
