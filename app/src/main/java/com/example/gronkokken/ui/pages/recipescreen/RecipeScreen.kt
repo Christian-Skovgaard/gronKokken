@@ -1,6 +1,5 @@
-package com.example.gronkokken
+package com.example.gronkokken.ui.pages.recipescreen
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,7 +28,7 @@ import kotlin.math.max
 
 @Composable
 fun RecipeScreen () {
-    val viewModel:RecipeScreenViewModel = viewModel();
+    val viewModel: RecipeScreenViewModel = viewModel();
     if (viewModel.loading.value) {LoadingScreen()}
     else{
         RecipeViewScreen(

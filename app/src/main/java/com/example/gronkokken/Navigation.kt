@@ -1,6 +1,5 @@
 package com.example.gronkokken
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -14,6 +13,7 @@ import com.example.gronkokken.ui.pages.frontpage.FrontPageTest
 import com.example.gronkokken.ui.pages.Register.RegisterPage
 import com.example.gronkokken.ui.pages.landingpage.LandingpageTeacher
 import com.example.gronkokken.ui.pages.login.LoginPage
+import com.example.gronkokken.ui.pages.recipescreen.RecipeScreen
 
 @Composable
 fun Navigation (navHostController: NavHostController, userViewModel: UserViewModel) {

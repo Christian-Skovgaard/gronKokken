@@ -25,6 +25,7 @@ import com.example.gronkokken.repository.Firestore
 import com.example.gronkokken.repository.UserViewModel
 import com.example.gronkokken.ui.theme.GronKokkenTheme
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -49,22 +50,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-class TestViewModel: ViewModel() {
-    val firestore = Firestore()
-    init {
-        viewModelScope.launch {
-            firestore.test()
-        }
-    }
-}
-
-suspend fun test () {
-    val firestore = Firestore()
-
-    Log.d("lookmom",firestore.getCurrentRecipeId())
-}
-
 
 
 @Composable

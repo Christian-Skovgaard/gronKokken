@@ -1,4 +1,4 @@
-package com.example.gronkokken
+package com.example.gronkokken.ui.pages.recipescreen
 
 import android.util.Log
 import androidx.compose.runtime.MutableState
@@ -7,7 +7,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gronkokken.components.InternalStorage
 import com.example.gronkokken.models.Recipe
 import com.example.gronkokken.repository.Firestore
 import kotlinx.coroutines.launch
