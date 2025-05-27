@@ -88,7 +88,7 @@ fun FrontPageScreen(navHostController: NavHostController) { //sahra
             }
 
             Button(
-                onClick = TODO(),
+                onClick = { TODO() },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFBA27)),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -151,7 +151,7 @@ fun FrontPageScreen(navHostController: NavHostController) { //sahra
 
 
             Button(
-                onClick = {TODO()},
+                onClick = {navHostController.navigate("climate")},
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4B84AD)),
                 modifier = Modifier
                     .fillMaxWidth()

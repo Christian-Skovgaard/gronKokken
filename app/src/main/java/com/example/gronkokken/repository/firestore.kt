@@ -1,8 +1,9 @@
 package com.example.gronkokken.repository
-//filnavnet er med småt, men lad være med at fikse!!!, det dræber github.
+//filnavnet er med småt, men lad være med at fikse!!!, det gør github skræmt fra vid og sans :D.
 import android.util.Log
 import com.example.gronkokken.models.Recipe
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.tasks.await
@@ -57,7 +58,7 @@ class Firestore {
 
     suspend fun getCurrentRecipeId ():String {  //Christian
         val currentDate = LocalDate.now()
-        val daysToNextSunday = java.time.DayOfWeek.SUNDAY.value - currentDate.dayOfWeek.value //søndag er altid 7, har bare inkluderet DayOfWeek så det var nemere lige at gennemskue hvad der skete
+        val daysToNextSunday = java.time.DayOfWeek.SUNDAY.value - currentDate.dayOfWeek.value //søndag er altid 7, har bare inkluderet DayOfWeek så det var nemere lige at gennemskue hvad der sker
         val comingSunday = currentDate.plusDays(daysToNextSunday.toLong())
 
         val collection = db.collection("recipes")
@@ -74,5 +75,59 @@ class Firestore {
         else {
             return responseList.toList()[0].id
         }
+    }
+
+    suspend fun hentLaunchedEffectData(userId: String): Pair<String, String> { //Sahra
+        return try {
+            val doc = FirebaseFirestore.getInstance()
+                .collection("klimaplan")
+                .document(userId)
+                .get()
+                .await()
+            if (doc.exists()) {
+                val startpunkt = doc.getString("startpunkt") ?: ""
+                val slutpunkt = doc.getString("slutpunkt") ?: ""
+                Pair(startpunkt, slutpunkt)
+            } else {
+                Pair("", "")
+            }
+        } catch (e: Exception) {
+            Log.e("Firestore", "Fejl ved hentning", e)
+            Pair("", "")
+        }
+
+    }
+
+    fun gemKlimaplanData(userId: String, startpunkt: String, slutpunkt: String) {   //Sahra
+        val db = FirebaseFirestore.getInstance()
+        val data = hashMapOf(
+            "startpunkt" to startpunkt,
+            "slutpunkt" to slutpunkt
+        )
+
+        db.collection("klimaplan")
+            .document(userId)
+            .set(data)
+            .addOnSuccessListener {
+                Log.d("Firestore", "Data gemt for $userId")
+            }
+            .addOnFailureListener { e ->
+                Log.w("Firestore", "Fejl ved gemning", e)
+            }
+    }
+
+    //used for uploading recipes
+    suspend fun uploadRecipe (
+        name:String = "",
+//        flavorText:String = "",
+//        ingredientsRaw:List<Map<String,String>> = listOf(), //Vi gemmer i Map fordi jeg har haft mange problemer med at gemme i custom classes i firestore.
+//        instructions:String = "",
+//        ratings:List<Int> = listOf(),
+//        endDateRaw:String = "2025-05-28",
+//        peopleAmount:Int = 1
+    ) {
+        val collection = db.collection("recipes")
+
+        Log.d("lookhere",collection.add(name).await().id)
     }
 }

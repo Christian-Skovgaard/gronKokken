@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.gronkokken.recipeListScreen.RecipeListScreen
 import com.example.gronkokken.repository.UserViewModel
+import com.example.gronkokken.ui.pages.ClimaPlanScreen
 import com.example.gronkokken.ui.pages.landingpage.Landingpage
 import com.example.gronkokken.ui.pages.frontpage.FrontPageTest
 import com.example.gronkokken.ui.pages.Register.RegisterPage
@@ -83,6 +84,9 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
                     navHostController.popBackStack()
                 }
             )
+        }
+        composable("climate") {
+            ClimaPlanScreen(userViewModel, navHostController) //hvad er det for navn, lol
         }
     }
 }

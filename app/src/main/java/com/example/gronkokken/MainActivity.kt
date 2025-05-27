@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
             val userViewModel: UserViewModel = viewModel()
             val navController = rememberNavController()
 
-            //val viewModel:TestViewModel = viewModel()
+            val viewModel:TestViewModel = viewModel()
 
             GronKokkenTheme {   //tror ikke vi bruger theme nogen stedder?
                 Navigation(
@@ -51,6 +51,16 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+class TestViewModel: ViewModel() {
+    val firestore = Firestore()
+
+    init {
+        viewModelScope.launch {
+            firestore.uploadRecipe(name = "General Kenobi")
+        }
+
+    }
+}
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {

@@ -171,7 +171,7 @@ fun FrontPageTeacherScreen(navHostController: NavHostController) {
             Spacer(modifier = Modifier.width(16.dp))
             // Vores klimaplan
             Button(
-                onClick = { Log.d("BTN", "Klimaplan klik") },
+                onClick = {navHostController.navigate("climate")},
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4B84AD)),
                 modifier = Modifier.fillMaxWidth()
                     .height(80.dp),        ) {
