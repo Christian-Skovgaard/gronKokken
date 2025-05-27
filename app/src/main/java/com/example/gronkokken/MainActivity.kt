@@ -24,7 +24,6 @@ import com.example.gronkokken.com.example.gronkokken.ui.pages.Frontpage.FrontPag
 import com.example.gronkokken.repository.UserViewModel
 import com.example.gronkokken.ui.theme.GronKokkenTheme
 import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.launch
@@ -48,8 +47,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
