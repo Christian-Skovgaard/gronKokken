@@ -35,8 +35,11 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import com.example.gronkokken.ui.pages.frontpage.FrontPageViewModel
 import com.example.gronkokken.ui.theme.GronKokkenTheme
-
+/*  hvorfor er den her her??
 class FrontPage : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,17 +52,14 @@ class FrontPage : ComponentActivity() {
         }
     }
 }
-
+ */
 
 @Composable
-fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
-    val week by remember {mutableStateOf("UGENS OPSKRIFT")}
-    val season by remember {mutableStateOf("RÅVARER I SÆSON")}
-    val recipes by remember { mutableStateOf("OPSKRIFTER")}
-    val  clima by remember { mutableStateOf("VORES KLIMAPLAN")}
-    val pics by remember { mutableStateOf("BILLEDER")}
-    val overview by remember { mutableStateOf("OVERVIEW")}
+fun FrontPageTeacherScreen(navHostController: NavHostController) {
     val robotoBold = FontFamily(Font(R.font.roboto))
+
+    val viewModel: FrontPageViewModel = viewModel()
+
 //logo
     Column{
         Image(
@@ -72,18 +72,16 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
         )
 
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .padding(16.dp)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
-
             Spacer(modifier = Modifier.width(16.dp))
             // Ugens Opskrift
             Button(
-                onClick = { Log.d("BTN", "Ugens opskrift klik") },
+                onClick = { navHostController.navigate("recipe/${viewModel.currentRecipeId}") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF69BFFF)),
                 modifier = Modifier.fillMaxWidth()
                     .height(80.dp),        ) {
@@ -103,7 +101,7 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
 
                     // Tekst i midten
                     Text(
-                        text = week,
+                        text = "UGENS OPSKRIFT",
                         color = Color.Black,
                         fontFamily = robotoBold,
                         fontSize = 25.sp
@@ -133,7 +131,7 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
 
                     // Teksten centreres
                     Text(
-                        text = season,
+                        text = "RÅVARER I SÆSON",
                         fontSize = 25.sp,
                         fontFamily = robotoBold,
                         color = Color.Black
@@ -163,7 +161,7 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
 
                     // Teksten centreres
                     Text(
-                        text = recipes,
+                        text = "OPSKRIFTER",
                         fontSize = 25.sp,
                         fontFamily = robotoBold,
                         color = Color.Black
@@ -193,7 +191,7 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
 
                     // Teksten centreres
                     Text(
-                        text = clima,
+                        text = "VORES KLIMAPLAN",
                         fontSize = 25.sp,
                         fontFamily = robotoBold,
                         color = Color.Black
@@ -221,18 +219,17 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
                             painter = painterResource(id = R.drawable.pics),
                             contentDescription = "Billeder ikon",
                             modifier = Modifier
-                                .size(40.dp)
+                                .size(38.dp)
                                 .align(Alignment.CenterStart) // venstrestillet
-                                .padding(start = 4.dp)
                         )
 
                         // Teksten centreres
                         Text(
-                            text = pics,
-                            fontSize = 20.sp,
+                            text = "BILLEDER",
+                            fontSize = 19.sp,
                             fontFamily = robotoBold,
                             color = Color.Black,
-                            modifier = Modifier.align(Alignment.CenterEnd).padding(end = 4.dp)
+                            modifier = Modifier.align(Alignment.CenterEnd)
                         )
                     }
                 }
@@ -243,36 +240,30 @@ fun FrontPageTeacherScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier.weight(1f)
                         .height(80.dp)           ) {
                     Box(
-                        modifier = Modifier.fillMaxWidth(),
-                        contentAlignment = Alignment.Center
+                        modifier = Modifier.fillMaxWidth()
                     ) {
                         // Billedet placeres helt til venstre
                         Image(
                             painter = painterResource(id = R.drawable.statistics),
                             contentDescription = "Billeder ikon",
                             modifier = Modifier
-                                .size(40.dp)
+                                .size(38.dp)
                                 .align(Alignment.CenterStart)
-                                .padding(start = 4.dp)
                         )
 
                         // Teksten centreres
                         Text(
-                            text = overview,
-                            fontSize = 20.sp,
+                            text = "OVERVIEW",
+                            fontSize = 19.sp,
                             fontFamily = robotoBold,
                             color = Color.Black,
-                            modifier = Modifier.align(Alignment.CenterEnd).padding(end = 2.dp)
+                            modifier = Modifier.align(Alignment.CenterEnd)
                         )
                     }
 
                 }
             }
-        }}}
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FrontPageTeacherScreen(
-
-    )
+        }
+    }
 }
+
