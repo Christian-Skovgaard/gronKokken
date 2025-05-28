@@ -66,7 +66,7 @@ fun RecipeViewScreen (
             .padding(horizontal = 15.dp, vertical = 20.dp)
     ) {
         RecipeMainTitle(mainTitleText)
-        FirebaseImage("agurk.jpg", Modifier.size(150.dp))
+        FirebaseImage(imagePath, Modifier.size(150.dp))
         RecipeSubTitle("Ingredienser")
         RecipeIngredientsList(ingredientList,ingredientCheckStateList,ingredientOnCheckboxClick)
         RecipeSubTitle("sådan gør du")
