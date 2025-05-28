@@ -38,14 +38,12 @@ class RecipeScreenViewModel(savedStateHandle: SavedStateHandle): ViewModel() {  
     }
 
     init {
-        Log.d("lookmom","started recipeScreen")
         viewModelScope.launch {
             recipe = fireStore.getRecipeById(recipeID)
             recipe.ingredients.forEach {
                 ingredientCheckboxState.add(mutableStateOf(false))
             }
             loading.value = false
-            Log.d("lookmom","ended fetch")
         }
 
     }

@@ -86,7 +86,9 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
             )
         }
         composable("climate") {
-            ClimaPlanScreen(userViewModel, navHostController) //hvad er det for navn, lol
+            ClimaPlanScreen(        //hvad er det for navn, lol
+                userViewModel,
+                navHostController)
         }
     }
 }

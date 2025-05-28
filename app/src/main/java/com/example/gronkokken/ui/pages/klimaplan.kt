@@ -58,7 +58,9 @@ import com.google.firebase.auth.FirebaseAuth
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ClimaPlanScreen(userViewModel: com.example.gronkokken.repository.UserViewModel = viewModel(), navHostController: NavHostController) {
+fun ClimaPlanScreen(
+    userViewModel: com.example.gronkokken.repository.UserViewModel = viewModel(),
+    navHostController: NavHostController) {
     val robotoBold = FontFamily(Font(R.font.roboto))
     var startpunkt by remember { mutableStateOf("") }
     var slutpunkt by remember { mutableStateOf("") }
