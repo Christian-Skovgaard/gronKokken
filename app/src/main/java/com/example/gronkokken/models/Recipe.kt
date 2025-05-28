@@ -2,7 +2,6 @@ package com.example.gronkokken.models
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
-import com.google.errorprone.annotations.Keep
 import java.time.LocalDate
 
 data class Recipe (  //Christian
@@ -19,7 +18,7 @@ data class Recipe (  //Christian
 ) {
     val avgRating = ratings.average()
 
-    val endDate:LocalDate = LocalDate.parse(endDateRaw)
+    var endDate:LocalDate = LocalDate.parse(endDateRaw)
     private val startDate:LocalDate = endDate.minusDays(7)
 
     //Den her string bruges til at vise ugen til brugeren.
@@ -30,9 +29,7 @@ data class Recipe (  //Christian
 
 
     init {
-        Log.d("lookmom","ingredient raw size on construction = " + ingredientsRaw.size.toString())
         ingredientsRaw.forEach { ingredient ->
-            Log.d("lookmom",ingredient.toString())
             ingredients.add(
                 RecipeIngredient(
                     name = ingredient["name"].toString(),   //vi kunne gøre dem nullable for at slippe for Type-convertion, men så skulle vi deale med det senere når det skulle displayes
@@ -45,8 +42,8 @@ data class Recipe (  //Christian
 
     }
 
-    fun createIngredientsFromRaw () {
-        //det her kode gør det samme som init-blokken, men sidden firestore bruger
+    fun initLogic () {
+        //det her kode gør det samme som init-blokken, men siden firestore bruger
         // reflection til at indsætte data i klassen bliver initblokken ikke kørt når vi bruger
         // .toObject(), derfor har vi brug for den her funktion til at køre efter et recipe-objekt
         // er blevet hentet fra firebase.
@@ -61,6 +58,7 @@ data class Recipe (  //Christian
                 )
             )
         }
+        endDate = LocalDate.parse(endDateRaw)
     }
 
     override fun toString(): String {

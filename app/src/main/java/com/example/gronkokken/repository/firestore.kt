@@ -25,9 +25,11 @@ class Firestore {
         collection.get().await().forEach {
             val recipe: Recipe = it.toObject()
             recipe.id = it.id
+            recipe.initLogic()
             returnList.add(recipe)
         }
 
+        Log.d("DB-Call","amount of collected recipes: " + returnList.size.toString())
         return returnList.toList()
     }
 
@@ -39,7 +41,7 @@ class Firestore {
         collection.whereEqualTo("name",name).get().await().forEach {    //der kan være problemer hvis der kommer mere end 1 resultat, men det burde der ikke:D
             recipe = it.toObject<Recipe>()
             recipe.id = it.id
-            recipe.createIngredientsFromRaw()
+            recipe.initLogic()
         }
 
         return recipe
@@ -54,7 +56,7 @@ class Firestore {
 
         recipe = item.toObject<Recipe>()!!  //vi er sikre på at der ikke er null, siden alle id som bruges i appen er taget fra databasen
         recipe.id = item.id
-        recipe.createIngredientsFromRaw()
+        recipe.initLogic()
 
         return recipe
     }
@@ -117,6 +119,7 @@ class Firestore {
                 Log.w("Firestore", "Fejl ved gemning", e)
             }
     }
+
 
     //used for uploading recipes
     suspend fun uploadRecipe (
