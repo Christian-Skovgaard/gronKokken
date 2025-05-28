@@ -13,8 +13,8 @@ data class Recipe (  //Christian
     val instructions:String = "",
     val ratings:List<Int> = listOf(),
     val endDateRaw:String = "2025-05-28",
-    val peopleAmount:Int = 1
-    //form for billedliste
+    val peopleAmount:Int = 1,
+    val imagePath:String = "trio giraf"
 ) {
     val avgRating = ratings.average()
 
@@ -38,8 +38,6 @@ data class Recipe (  //Christian
                 )
             )
         }
-
-
     }
 
     fun initLogic () {
