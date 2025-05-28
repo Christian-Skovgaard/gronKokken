@@ -36,11 +36,18 @@ import com.example.gronkokken.R
 import com.example.gronkokken.ui.components.FirebaseImage
 
 @Composable
-fun SeasonalIngredientsHeader(ingredientClick: () -> Unit, ingredientButtonText: String) {
+fun SeasonalIngredientsHeader(ingredientClick: () -> Unit, ingredientButtonText: String, arrowClick: () -> Unit) {
 
     val viewmodel: SeasonalIngredientsViewmodel = viewModel()
 
-    val season = remember { viewmodel.getCurrentSeason() }
+    val selectedMonth by viewmodel.selectedMonth
+
+    val season = when (selectedMonth) {
+        in 3..5 -> "Forår"
+        in 6..8 -> "Sommer"
+        in 9..11 -> "Efterår"
+        else -> "Vinter"
+    }
 
 
 
@@ -50,6 +57,8 @@ fun SeasonalIngredientsHeader(ingredientClick: () -> Unit, ingredientButtonText:
         Icon(
             painter = painterResource(R.drawable.baseline_arrow_back_ios_24),
             contentDescription = "",
+            modifier = Modifier
+                .clickable { arrowClick() }
         )
 
         Column(
@@ -64,11 +73,13 @@ fun SeasonalIngredientsHeader(ingredientClick: () -> Unit, ingredientButtonText:
                 color = Color(0xFF4B7A2B)
             )
             Text(
-                text = viewmodel.getCurrentMonth(),
+                text = viewmodel.getSelectedMonthName(),
                 fontSize = 20.sp,
                 color = Color(0xFF4B7A2B)
             )
         }
+
+        MonthSlider(viewmodel)
 
         Column(
             modifier = Modifier

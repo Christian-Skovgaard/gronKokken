@@ -88,7 +88,10 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
                 ingredientClick = {
                     navHostController.navigate("seasonal-fruits")
                 },
-                ingredientButtonText = "Se frugter"
+                ingredientButtonText = "Se frugter",
+                arrowClick = {
+                    navHostController.popBackStack()
+                }
             )
         }
         composable("seasonal-fruits") {
@@ -96,7 +99,10 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
                 ingredientClick = {
                     navHostController.navigate("seasonal-vegetables")
                 },
-                ingredientButtonText = "Se grøntsager"
+                ingredientButtonText = "Se grøntsager",
+                arrowClick = {
+                    navHostController.popBackStack()
+                }
             )
         }
     }

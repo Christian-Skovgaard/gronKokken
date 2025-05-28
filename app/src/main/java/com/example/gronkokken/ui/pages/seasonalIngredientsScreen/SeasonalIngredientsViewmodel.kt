@@ -7,7 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.compose.ui.text.TextStyle
+import java.time.format.TextStyle
 import androidx.compose.ui.text.toLowerCase
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -34,6 +34,9 @@ class SeasonalIngredientsViewmodel(): ViewModel() {
     private val _inSeasonList = mutableStateOf<List<SeasonalIngredient>>(emptyList())
     val inSeasonList: State<List<SeasonalIngredient>> = _inSeasonList
 
+    var selectedMonth = mutableStateOf(LocalDate.now().monthValue)
+        private set
+
     init {
         viewModelScope.launch {
             val importList = fireStore.getSeasonalIngredients()
@@ -47,17 +50,6 @@ class SeasonalIngredientsViewmodel(): ViewModel() {
         }
     }
 
-    fun getCurrentSeason(): String {
-        val currentMonth = LocalDate.now().monthValue
-
-        return when (currentMonth) {
-            in 3..5 -> "Forår"
-            in 6..8 -> "Sommer"
-            in 9..11 -> "Efterår"
-            else -> "Vinter"
-        }
-    }
-
     fun getCurrentMonth(): String {
         val currentMonth = LocalDate.now().monthValue
 
@@ -65,6 +57,24 @@ class SeasonalIngredientsViewmodel(): ViewModel() {
 
         return currentMonthName.toString().lowercase().replaceFirstChar { it.uppercase() }
     }
+
+    fun setSelectedMonth(month: Int) {
+        selectedMonth.value = month
+        _inSeasonList.value = _ingredientsList.value.filter {
+            it.isInSeason(month)
+        }
+    }
+
+    fun getSelectedMonthName(): String {
+        return Month.of(selectedMonth.value)
+            .getDisplayName(TextStyle.FULL, Locale("da"))
+            .replaceFirstChar { it.uppercase() }
+    }
+
+    fun getSelectedSeason(): String {
+        return "yo"
+    }
+
 
 
 }

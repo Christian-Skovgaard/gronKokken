@@ -20,6 +20,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,21 +37,26 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.gronkokken.R
 import com.example.gronkokken.ui.components.FirebaseImage
 import com.example.gronkokken.ui.pages.loadingscreen.LoadingScreen
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import java.time.Month
 
 //Lukas
 
 @Composable
-fun SeasonalVegetablesScreen(ingredientClick: () -> Unit, ingredientButtonText: String) {
+fun SeasonalVegetablesScreen(ingredientClick: () -> Unit, ingredientButtonText: String, arrowClick: () -> Unit) {
     val viewmodel:SeasonalIngredientsViewmodel = viewModel()
     if (viewmodel.loading.value) {
         LoadingScreen()
     } else {
-        SeasonalVegetablesList(ingredientClick, ingredientButtonText)
+        SeasonalVegetablesList(ingredientClick, ingredientButtonText, arrowClick)
     }
 }
 
 @Composable
-fun SeasonalVegetablesList(ingredientClick: () -> Unit, ingredientButtonText: String) {
+fun SeasonalVegetablesList(ingredientClick: () -> Unit, ingredientButtonText: String, arrowClick: () -> Unit) {
 
     val viewmodel: SeasonalIngredientsViewmodel = viewModel()
 
@@ -64,7 +70,8 @@ fun SeasonalVegetablesList(ingredientClick: () -> Unit, ingredientButtonText: St
             .background(Color(0xFFF8F7FF))
             .padding(22.dp)
     ) {
-        SeasonalIngredientsHeader(ingredientClick, ingredientButtonText)
+
+        SeasonalIngredientsHeader(ingredientClick, ingredientButtonText, arrowClick)
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),

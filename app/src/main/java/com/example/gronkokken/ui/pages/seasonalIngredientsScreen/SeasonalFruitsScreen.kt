@@ -25,17 +25,17 @@ import com.example.gronkokken.ui.components.FirebaseImage
 import com.example.gronkokken.ui.pages.loadingscreen.LoadingScreen
 
 @Composable
-fun SeasonalFruitsScreen(ingredientClick: () -> Unit, ingredientButtonText: String) {
+fun SeasonalFruitsScreen(ingredientClick: () -> Unit, ingredientButtonText: String, arrowClick: () -> Unit) {
     val viewmodel:SeasonalIngredientsViewmodel = viewModel()
     if (viewmodel.loading.value) {
         LoadingScreen()
     } else {
-        SeasonalFruitsList(ingredientClick, ingredientButtonText)
+        SeasonalFruitsList(ingredientClick, ingredientButtonText, arrowClick)
     }
 }
 
 @Composable
-fun SeasonalFruitsList(ingredientClick: () -> Unit, ingredientButtonText: String) {
+fun SeasonalFruitsList(ingredientClick: () -> Unit, ingredientButtonText: String, arrowClick: () -> Unit) {
     val viewmodel: SeasonalIngredientsViewmodel = viewModel()
 
     val ingredientsInSeason by viewmodel.inSeasonList
@@ -48,7 +48,7 @@ fun SeasonalFruitsList(ingredientClick: () -> Unit, ingredientButtonText: String
             .padding(22.dp)
             .background(Color(0xFFF8F7FF))
     ) {
-        SeasonalIngredientsHeader(ingredientClick, ingredientButtonText)
+        SeasonalIngredientsHeader(ingredientClick, ingredientButtonText, arrowClick)
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
