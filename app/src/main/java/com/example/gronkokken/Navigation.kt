@@ -15,6 +15,8 @@ import com.example.gronkokken.ui.pages.Register.RegisterPage
 import com.example.gronkokken.ui.pages.landingpage.LandingpageTeacher
 import com.example.gronkokken.ui.pages.login.LoginPage
 import com.example.gronkokken.ui.pages.recipescreen.RecipeScreen
+import com.example.gronkokken.ui.pages.seasonalIngredientsScreen.SeasonalFruitsScreen
+import com.example.gronkokken.ui.pages.seasonalIngredientsScreen.SeasonalVegetablesScreen
 
 @Composable
 fun Navigation (navHostController: NavHostController, userViewModel: UserViewModel) {
@@ -81,6 +83,28 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
                     navHostController.navigate("frontpage")
                 },
                 onBackArrowClick = {
+                    navHostController.popBackStack()
+                }
+            )
+        }
+        composable("seasonal-vegetables") {
+            SeasonalVegetablesScreen(
+                ingredientClick = {
+                    navHostController.navigate("seasonal-fruits")
+                },
+                ingredientButtonText = "Se frugter",
+                arrowClick = {
+                    navHostController.popBackStack()
+                }
+            )
+        }
+        composable("seasonal-fruits") {
+            SeasonalFruitsScreen(
+                ingredientClick = {
+                    navHostController.navigate("seasonal-vegetables")
+                },
+                ingredientButtonText = "Se grøntsager",
+                arrowClick = {
                     navHostController.popBackStack()
                 }
             )

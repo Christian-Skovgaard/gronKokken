@@ -53,6 +53,9 @@ dependencies {
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.common.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.material3)
+    implementation(libs.androidx.material3.window.size.class1)
+    implementation(libs.androidx.material3.adaptive.navigation.suite)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -62,10 +65,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     //firebase dependencies
     implementation(platform(libs.firebase.bom))
+    implementation (libs.firebase.storage.ktx)
     implementation(libs.firebase.analytics)    //vi bruger ikke analytics til noget
     implementation ("com.google.firebase:firebase-auth:23.2.1") //firebase auth
     //viewmodel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     //navigation
     implementation(libs.androidx.navigation.compose)
+    // Coil til billedvisning
+    implementation (libs.coil.compose)
 }

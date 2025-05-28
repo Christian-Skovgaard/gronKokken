@@ -2,10 +2,13 @@ package com.example.gronkokken.repository
 //filnavnet er med småt, men lad være med at fikse!!!, det gør github skræmt fra vid og sans :D.
 import android.util.Log
 import com.example.gronkokken.models.Recipe
+import com.example.gronkokken.models.SeasonalIngredient
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
+import com.google.firebase.firestore.toObjects
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
 import java.time.LocalDate
 
@@ -114,6 +117,65 @@ class Firestore {
             }
             .addOnFailureListener { e ->
                 Log.w("Firestore", "Fejl ved gemning", e)
+            }
+    }
+
+
+    //used for uploading recipes
+    suspend fun uploadRecipe (
+        name:String = "",
+//        flavorText:String = "",
+//        ingredientsRaw:List<Map<String,String>> = listOf(), //Vi gemmer i Map fordi jeg har haft mange problemer med at gemme i custom classes i firestore.
+//        instructions:String = "",
+//        ratings:List<Int> = listOf(),
+//        endDateRaw:String = "2025-05-28",
+//        peopleAmount:Int = 1
+    ) {
+        val collection = db.collection("recipes")
+
+        Log.d("lookhere",collection.add(name).await().id)
+    }
+
+    //Lukas
+    suspend fun getSeasonalIngredients ():List<SeasonalIngredient> {
+        val collection = db.collection("ingredients")
+
+        val returnList:MutableList<SeasonalIngredient> = mutableListOf()
+
+        collection.get().await().forEach {
+            val name = it.getString("name") ?: ""
+            val description = it.getString("description") ?: ""
+            val startMonth = it.getLong("startMonth")?.toInt() ?: 1
+            val endMonth = it.getLong("endMonth")?.toInt() ?: 12
+            val isFruit = it.getBoolean("isFruit") ?: true
+
+            val ingredient = SeasonalIngredient(
+                id = it.id,
+                name = name,
+                startMonth = startMonth,
+                endMonth = endMonth,
+                description = description,
+                isFruit = isFruit
+            )
+
+            returnList.add(ingredient)
+        }
+
+        return returnList
+
+    }
+
+    fun getImageUrl(
+        imagePath: String,
+        onResult: (String?) -> Unit
+    ) {
+        val storageRef = FirebaseStorage.getInstance().reference.child(imagePath)
+        storageRef.downloadUrl
+            .addOnSuccessListener { url ->
+                onResult(url.toString())
+            }
+            .addOnFailureListener {
+                onResult(null)
             }
     }
 }

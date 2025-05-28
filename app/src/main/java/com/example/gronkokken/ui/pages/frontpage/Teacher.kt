@@ -1,4 +1,4 @@
-package com.example.gronkokken.com.example.gronkokken.ui.pages.Frontpage
+package com.example.gronkokken.ui.pages.frontpage
 
 import com.example.gronkokken.R
 import android.os.Bundle
@@ -240,7 +240,8 @@ fun FrontPageTeacherScreen(navHostController: NavHostController) {
                     modifier = Modifier.weight(1f)
                         .height(80.dp)           ) {
                     Box(
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        contentAlignment = Alignment.Center
                     ) {
                         // Billedet placeres helt til venstre
                         Image(
@@ -257,7 +258,7 @@ fun FrontPageTeacherScreen(navHostController: NavHostController) {
                             fontSize = 19.sp,
                             fontFamily = robotoBold,
                             color = Color.Black,
-                            modifier = Modifier.align(Alignment.CenterEnd)
+                            modifier = Modifier.align(Alignment.CenterEnd).padding(end = 2.dp)
                         )
                     }
 
