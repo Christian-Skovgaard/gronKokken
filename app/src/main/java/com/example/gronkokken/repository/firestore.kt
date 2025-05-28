@@ -76,12 +76,11 @@ class Firestore {
             return responseList.toList()[0].id
         }
     }
-
-    suspend fun hentLaunchedEffectData(userId: String): Pair<String, String> { //Sahra
+    suspend fun hentLaunchedEffectData(documentId: String): Pair<String, String> {
         return try {
             val doc = FirebaseFirestore.getInstance()
                 .collection("klimaplan")
-                .document(userId)
+                .document(documentId)
                 .get()
                 .await()
             if (doc.exists()) {
@@ -95,10 +94,10 @@ class Firestore {
             Log.e("Firestore", "Fejl ved hentning", e)
             Pair("", "")
         }
-
     }
 
-    fun gemKlimaplanData(userId: String, startpunkt: String, slutpunkt: String) {   //Sahra
+    // 🔵 Funktion til at gemme data
+    fun gemKlimaplanData(documentId: String, startpunkt: String, slutpunkt: String) {
         val db = FirebaseFirestore.getInstance()
         val data = hashMapOf(
             "startpunkt" to startpunkt,
@@ -106,10 +105,10 @@ class Firestore {
         )
 
         db.collection("klimaplan")
-            .document(userId)
+            .document(documentId)
             .set(data)
             .addOnSuccessListener {
-                Log.d("Firestore", "Data gemt for $userId")
+                Log.d("Firestore", "Data gemt i dokumentet: $documentId")
             }
             .addOnFailureListener { e ->
                 Log.w("Firestore", "Fejl ved gemning", e)

@@ -2,6 +2,7 @@ package com.example.gronkokken.ui.pages
 
 import com.example.gronkokken.R
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -66,9 +67,10 @@ fun ClimaPlanScreen(userViewModel: com.example.gronkokken.repository.UserViewMod
     val userId = user?.uid
 
     val fireStore = Firestore()
-    LaunchedEffect(userId) {
-        val (startpunkt, slutpunkt) = fireStore.hentLaunchedEffectData(userId = "")
-
+    LaunchedEffect(Unit) {
+        val (hentetStart, hentetSlut) = fireStore.hentLaunchedEffectData("min-bruger")
+        startpunkt = hentetStart
+        slutpunkt = hentetSlut
     }
 
 
@@ -200,9 +202,11 @@ fun ClimaPlanScreen(userViewModel: com.example.gronkokken.repository.UserViewMod
 // henter data fra firestore.kt
             Button(
                 onClick = {
-                        if (userId != null) {
-                           fireStore.gemKlimaplanData(userId = "", startpunkt, slutpunkt)
-                        }
+                    if (startpunkt.isNotBlank() && slutpunkt.isNotBlank()) {
+                        fireStore.gemKlimaplanData(documentId = "min-bruger", startpunkt, slutpunkt)
+                    } else {
+                        Log.d("Firestore", "Udfyld venligst begge felter før du gemmer")
+                    }
                     }
                 ,
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)),
