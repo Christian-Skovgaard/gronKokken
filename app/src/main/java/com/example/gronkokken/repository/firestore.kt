@@ -78,9 +78,11 @@ class Firestore {
             return "problem"
         }
         else {
+            Log.d("DB-Call","current recipe id is " + responseList.toList()[0].id)
             return responseList.toList()[0].id
         }
     }
+
     suspend fun hentLaunchedEffectData(documentId: String): Pair<String, String> {  //Sahra
         return try {
             val doc = FirebaseFirestore.getInstance()
@@ -169,13 +171,16 @@ class Firestore {
         imagePath: String,
         onResult: (String?) -> Unit
     ) {
+        Log.d("DB-Call","looking for image")
         val storageRef = FirebaseStorage.getInstance().reference.child(imagePath)
         storageRef.downloadUrl
             .addOnSuccessListener { url ->
                 onResult(url.toString())
+                Log.d("DB-Call","image is here")
             }
             .addOnFailureListener {
                 onResult(null)
+                Log.d("DB-Call","no image lol")
             }
     }
 }

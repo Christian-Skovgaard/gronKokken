@@ -14,7 +14,7 @@ data class Recipe (  //Christian
     val ratings:List<Int> = listOf(),
     val endDateRaw:String = "2025-05-28",
     val peopleAmount:Int = 1,
-    val imagePath:String = "trio giraf"
+    val imagePath:String = "trio giraf.jpg"
 ) {
     val avgRating = ratings.average()
 
