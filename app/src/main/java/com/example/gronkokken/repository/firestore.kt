@@ -7,6 +7,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.firestore.toObjects
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
 
 class Firestore {
@@ -67,12 +68,39 @@ class Firestore {
         val returnList:MutableList<SeasonalIngredient> = mutableListOf()
 
         collection.get().await().forEach {
-            val seasonalIngredient: SeasonalIngredient = it.toObject()
-            seasonalIngredient.id = it.id
-            returnList.add(seasonalIngredient)
+            val name = it.getString("name") ?: ""
+            val description = it.getString("description") ?: ""
+            val startMonth = it.getLong("startMonth")?.toInt() ?: 1
+            val endMonth = it.getLong("endMonth")?.toInt() ?: 12
+            val isFruit = it.getBoolean("isFruit") ?: true
+
+            val ingredient = SeasonalIngredient(
+                id = it.id,
+                name = name,
+                startMonth = startMonth,
+                endMonth = endMonth,
+                description = description,
+                isFruit = isFruit
+            )
+
+            returnList.add(ingredient)
         }
 
         return returnList
 
+    }
+
+    fun getImageUrl(
+        imagePath: String,
+        onResult: (String?) -> Unit
+    ) {
+        val storageRef = FirebaseStorage.getInstance().reference.child(imagePath)
+        storageRef.downloadUrl
+            .addOnSuccessListener { url ->
+                onResult(url.toString())
+            }
+            .addOnFailureListener {
+                onResult(null)
+            }
     }
 }

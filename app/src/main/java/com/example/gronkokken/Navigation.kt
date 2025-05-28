@@ -14,11 +14,12 @@ import com.example.gronkokken.ui.pages.Register.RegisterPage
 import com.example.gronkokken.ui.pages.landingpage.LandingpageTeacher
 import com.example.gronkokken.ui.pages.login.LoginPage
 import com.example.gronkokken.ui.pages.recipescreen.RecipeScreen
-import com.example.gronkokken.ui.pages.seasonalIngredientsScreen.SeasonalIngredientsScreen
+import com.example.gronkokken.ui.pages.seasonalIngredientsScreen.SeasonalFruitsScreen
+import com.example.gronkokken.ui.pages.seasonalIngredientsScreen.SeasonalVegetablesScreen
 
 @Composable
 fun Navigation (navHostController: NavHostController, userViewModel: UserViewModel) {
-    NavHost(navHostController,startDestination = "seasonal-ingredients") {
+    NavHost(navHostController,startDestination = "seasonal-vegetables") {
         fun recipeNavigateById (recipeId:String):Unit { //Christian
             navHostController.navigate("recipe/$recipeId")
         }
@@ -82,8 +83,21 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
                 }
             )
         }
-        composable("seasonal-ingredients") {
-            SeasonalIngredientsScreen()
+        composable("seasonal-vegetables") {
+            SeasonalVegetablesScreen(
+                ingredientClick = {
+                    navHostController.navigate("seasonal-fruits")
+                },
+                ingredientButtonText = "Se frugter"
+            )
+        }
+        composable("seasonal-fruits") {
+            SeasonalFruitsScreen(
+                ingredientClick = {
+                    navHostController.navigate("seasonal-vegetables")
+                },
+                ingredientButtonText = "Se grøntsager"
+            )
         }
     }
 }

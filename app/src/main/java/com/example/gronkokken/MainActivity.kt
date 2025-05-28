@@ -19,8 +19,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.gronkokken.components.InternalStorage
 import com.example.gronkokken.recipeListScreen.RecipeListScreen
-import com.example.gronkokken.ui.pages.frontpage.FrontPageScreen
-import com.example.gronkokken.ui.pages.frontpage.FrontPageTeacherScreen
 import com.example.gronkokken.repository.UserViewModel
 import com.example.gronkokken.ui.theme.GronKokkenTheme
 import com.google.firebase.Firebase

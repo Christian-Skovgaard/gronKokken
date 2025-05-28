@@ -2,10 +2,11 @@ package com.example.gronkokken.models
 
 data class SeasonalIngredient(
     var id: String = "",
-    val name: String = "",
-    val startMonth: Int = 1,
-    val endMonth: Int = 12,
-    val description: String = ""
+    var name: String = "",
+    var startMonth: Int = 1,
+    var endMonth: Int = 12,
+    var description: String = "",
+    var isFruit: Boolean = true
 ) {
 
     fun isInSeason(currentMonth: Int): Boolean {
@@ -22,6 +23,6 @@ data class SeasonalIngredient(
 
 
     override fun toString(): String {
-        return "$name, $startMonth, $endMonth, $description, $id"
+        return "$name, $startMonth, $endMonth, $description, $id, $isFruit"
     }
 }

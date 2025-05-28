@@ -14,6 +14,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.gronkokken.repository.Firestore
 import com.example.gronkokken.models.SeasonalIngredient
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.Month
