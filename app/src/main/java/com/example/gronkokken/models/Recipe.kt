@@ -2,6 +2,7 @@ package com.example.gronkokken.models
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
+import com.google.errorprone.annotations.Keep
 import java.time.LocalDate
 
 data class Recipe (  //Christian
@@ -27,41 +28,8 @@ data class Recipe (  //Christian
 
     var ingredients: MutableList<RecipeIngredient> = mutableListOf()
 
-        /*
-        ingredientsRaw.map { ingredient -> RecipeIngredient(
-        name = ingredient["name"].toString(),   //vi kunne gøre dem nullable for at slippe for Type-convertion, men så skulle vi deale med det senere når det skulle displayes
-        amount = ingredient["amount"].toString().toIntOrNull(), //sidden null ikke kan laves toInt(), bruges toIntOrNull()
-        amountUnit = ingredient["amountUnit"].toString()
-    ) }
-         */
 
     init {
-
-        /*
-        Log.d("lookmom",ingredientsRaw.toString())
-        ingredientsRaw.forEach {
-            val ingredientString = it.toString().replace("{","").replace("}","")
-            val ingredientStringList: List<String>? = ingredientString.split(", ")
-            val ingredientMap = mutableMapOf<String,String>()
-            ingredientStringList?.forEach {
-                val (key, value) = it.split("=")
-                //det er en destructuring declaration, som gør to ting:
-                // først laver it.splt en liste med 2 items
-                // val i () laver to variable, eller flere som hver for et item fra listen
-                // på den måde har vi nu to variable ud fra de to variable på listen.
-                ingredientMap[key] = value
-            }
-            val ingredient = RecipeIngredient(
-                name = ingredientMap["name"],
-                amount = mutableStateOf(ingredientMap["amount"]?.toInt()),
-                amountUnit = ingredientMap["amountUnit"]
-            )
-            ingredients.add(ingredient)
-        }
-         */
-
-
-        /*
         Log.d("lookmom","ingredient raw size on construction = " + ingredientsRaw.size.toString())
         ingredientsRaw.forEach { ingredient ->
             Log.d("lookmom",ingredient.toString())
@@ -73,11 +41,16 @@ data class Recipe (  //Christian
                 )
             )
         }
-        //Log.d("lookmom",ingredients.toString() + "list log")
-         */
+
+
     }
 
-    fun updateIngredients () {
+    fun createIngredientsFromRaw () {
+        //det her kode gør det samme som init-blokken, men sidden firestore bruger
+        // reflection til at indsætte data i klassen bliver initblokken ikke kørt når vi bruger
+        // .toObject(), derfor har vi brug for den her funktion til at køre efter et recipe-objekt
+        // er blevet hentet fra firebase.
+        // init-blokken er der stadig i tilfælde af at objektet bliver skabt organisk
         ingredientsRaw.forEach { ingredient ->
             Log.d("lookmom",ingredient.toString())
             ingredients.add(

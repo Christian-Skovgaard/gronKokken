@@ -67,6 +67,7 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation (libs.firebase.storage.ktx)
     implementation(libs.firebase.analytics)    //vi bruger ikke analytics til noget
+    implementation ("com.google.firebase:firebase-auth:23.2.1") //firebase auth
     //viewmodel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     //navigation

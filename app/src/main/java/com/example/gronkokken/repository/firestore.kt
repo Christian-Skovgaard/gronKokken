@@ -1,14 +1,16 @@
 package com.example.gronkokken.repository
-//filnavnet er med småt, men lad være med at fikse!!!, det dræber github.
+//filnavnet er med småt, men lad være med at fikse!!!, det gør github skræmt fra vid og sans :D.
 import android.util.Log
 import com.example.gronkokken.models.Recipe
 import com.example.gronkokken.models.SeasonalIngredient
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.firestore.toObjects
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
+import java.time.LocalDate
 
 class Firestore {
 
@@ -24,9 +26,6 @@ class Firestore {
             val recipe: Recipe = it.toObject()
             recipe.id = it.id
             returnList.add(recipe)
-
-            //testing calls
-            var map: Map<String,String> = mapOf()
         }
 
         return returnList.toList()
@@ -40,6 +39,7 @@ class Firestore {
         collection.whereEqualTo("name",name).get().await().forEach {    //der kan være problemer hvis der kommer mere end 1 resultat, men det burde der ikke:D
             recipe = it.toObject<Recipe>()
             recipe.id = it.id
+            recipe.createIngredientsFromRaw()
         }
 
         return recipe
@@ -52,13 +52,85 @@ class Firestore {
 
         val item = document.get().await()
 
-        recipe = item.toObject<Recipe>()!!  //vi er sikre på at der ikke er null, sidden alle id som bruge i appen er taget fra databasen
+        recipe = item.toObject<Recipe>()!!  //vi er sikre på at der ikke er null, siden alle id som bruges i appen er taget fra databasen
         recipe.id = item.id
-        recipe.updateIngredients()
+        recipe.createIngredientsFromRaw()
 
-        Log.d("lookmom","item from database = " + item.data.toString())
-        Log.d("lookmom","item returned from function" + recipe.ingredientsRaw.toString())
         return recipe
+    }
+
+    suspend fun getCurrentRecipeId ():String {  //Christian
+        val currentDate = LocalDate.now()
+        val daysToNextSunday = java.time.DayOfWeek.SUNDAY.value - currentDate.dayOfWeek.value //søndag er altid 7, har bare inkluderet DayOfWeek så det var nemere lige at gennemskue hvad der sker
+        val comingSunday = currentDate.plusDays(daysToNextSunday.toLong())
+
+        val collection = db.collection("recipes")
+        val responseList = collection.whereEqualTo("endDateRaw",comingSunday.toString()).get().await()
+
+        if (responseList.size() > 1) {
+            Log.d("DB-Call","missing or overlapping date in DB")
+            return responseList.toList()[0].id
+        }
+        else if (responseList.size() < 1) {
+            Log.d("DB-Call","no opskrift i dag<3, fejl")
+            return "problem"
+        }
+        else {
+            return responseList.toList()[0].id
+        }
+    }
+    suspend fun hentLaunchedEffectData(documentId: String): Pair<String, String> {
+        return try {
+            val doc = FirebaseFirestore.getInstance()
+                .collection("klimaplan")
+                .document(documentId)
+                .get()
+                .await()
+            if (doc.exists()) {
+                val startpunkt = doc.getString("startpunkt") ?: ""
+                val slutpunkt = doc.getString("slutpunkt") ?: ""
+                Pair(startpunkt, slutpunkt)
+            } else {
+                Pair("", "")
+            }
+        } catch (e: Exception) {
+            Log.e("Firestore", "Fejl ved hentning", e)
+            Pair("", "")
+        }
+    }
+
+    // 🔵 Funktion til at gemme data
+    fun gemKlimaplanData(documentId: String, startpunkt: String, slutpunkt: String) {
+        val db = FirebaseFirestore.getInstance()
+        val data = hashMapOf(
+            "startpunkt" to startpunkt,
+            "slutpunkt" to slutpunkt
+        )
+
+        db.collection("klimaplan")
+            .document(documentId)
+            .set(data)
+            .addOnSuccessListener {
+                Log.d("Firestore", "Data gemt i dokumentet: $documentId")
+            }
+            .addOnFailureListener { e ->
+                Log.w("Firestore", "Fejl ved gemning", e)
+            }
+    }
+
+    //used for uploading recipes
+    suspend fun uploadRecipe (
+        name:String = "",
+//        flavorText:String = "",
+//        ingredientsRaw:List<Map<String,String>> = listOf(), //Vi gemmer i Map fordi jeg har haft mange problemer med at gemme i custom classes i firestore.
+//        instructions:String = "",
+//        ratings:List<Int> = listOf(),
+//        endDateRaw:String = "2025-05-28",
+//        peopleAmount:Int = 1
+    ) {
+        val collection = db.collection("recipes")
+
+        Log.d("lookhere",collection.add(name).await().id)
     }
 
     //Lukas

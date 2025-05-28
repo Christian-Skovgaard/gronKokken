@@ -35,7 +35,8 @@ class MainActivity : ComponentActivity() {
             val userViewModel: UserViewModel = viewModel()
             val navController = rememberNavController()
 
-            GronKokkenTheme {
+
+            GronKokkenTheme {   //tror ikke vi bruger theme nogen stedder?
                 Navigation(
                     navHostController = navController,
                     userViewModel = userViewModel
@@ -44,7 +45,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 
 
 @Composable

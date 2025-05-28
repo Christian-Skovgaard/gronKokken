@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.gronkokken.recipeListScreen.RecipeListScreen
 import com.example.gronkokken.repository.UserViewModel
+import com.example.gronkokken.ui.pages.ClimaPlanScreen
 import com.example.gronkokken.ui.pages.landingpage.Landingpage
 import com.example.gronkokken.ui.pages.frontpage.FrontPageTest
 import com.example.gronkokken.ui.pages.Register.RegisterPage
@@ -19,7 +20,7 @@ import com.example.gronkokken.ui.pages.seasonalIngredientsScreen.SeasonalVegetab
 
 @Composable
 fun Navigation (navHostController: NavHostController, userViewModel: UserViewModel) {
-    NavHost(navHostController,startDestination = "seasonal-vegetables") {
+    NavHost(navHostController,startDestination = "landingpage") {
         fun recipeNavigateById (recipeId:String):Unit { //Christian
             navHostController.navigate("recipe/$recipeId")
         }
@@ -61,7 +62,10 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
             )
         }
         composable("frontpage") {
-            FrontPageTest(userViewModel)
+            FrontPageTest(
+                userViewModel,
+                navHostController = navHostController
+            )
         }
         composable("loginpage") {
             LoginPage(
@@ -104,6 +108,9 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
                     navHostController.popBackStack()
                 }
             )
+        }
+        composable("climate") {
+            ClimaPlanScreen(userViewModel, navHostController) //hvad er det for navn, lol
         }
     }
 }
