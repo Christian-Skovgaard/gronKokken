@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.Checkbox
@@ -65,7 +66,7 @@ fun RecipeViewScreen (
             .padding(horizontal = 15.dp, vertical = 20.dp)
     ) {
         RecipeMainTitle(mainTitleText)
-        FirebaseImage("tomat.jpg", Modifier)
+        FirebaseImage("agurk.jpg", Modifier.size(150.dp))
         RecipeSubTitle("Ingredienser")
         RecipeIngredientsList(ingredientList,ingredientCheckStateList,ingredientOnCheckboxClick)
         RecipeSubTitle("sådan gør du")

@@ -180,7 +180,7 @@ class Firestore {
             }
             .addOnFailureListener {
                 onResult(null)
-                Log.d("DB-Call","no image lol")
+                Log.d("DB-Call","no image lol " + it.toString())
             }
     }
 }
