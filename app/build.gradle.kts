@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -61,4 +62,7 @@ dependencies {
     //firebase dependencies
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)    //vi bruger ikke analytics til noget
+    implementation("nl.dionsegijn:konfetti-compose:2.0.3")
+    implementation("nl.dionsegijn:konfetti-core:2.0.3")
+
 }
