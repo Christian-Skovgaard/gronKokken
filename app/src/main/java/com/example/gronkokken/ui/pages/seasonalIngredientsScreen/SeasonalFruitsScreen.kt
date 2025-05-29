@@ -59,8 +59,8 @@ fun SeasonalFruitsList(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(22.dp)
             .background(Color(0xFFF8F7FF))
+            .padding(22.dp)
     ) {
         SeasonalIngredientsHeader(changeIngredientType, ingredientButtonText, arrowClick)
 
@@ -74,10 +74,12 @@ fun SeasonalFruitsList(
         ) {
             items(fruitsOnly.size) { index ->
                 val fruit = fruitsOnly[index]
-
                     Column(
                         modifier = Modifier
-                            .clickable { ingredientClick(fruit.id) },
+                            .clickable {
+                                ingredientClick(fruit.id)
+                                Log.d("nav", "Clicked on fruit with id: ${fruit.id}")
+                                       },
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
 

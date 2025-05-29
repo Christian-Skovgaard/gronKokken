@@ -85,7 +85,8 @@ fun SeasonalIngredientsHeader(changeIngredientType: () -> Unit, ingredientButton
             modifier = Modifier
                 .fillMaxWidth()
                 .height(100.dp)
-                .padding(start = 10.dp)
+                .padding(start = 10.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Button(
                 onClick = { changeIngredientType() },

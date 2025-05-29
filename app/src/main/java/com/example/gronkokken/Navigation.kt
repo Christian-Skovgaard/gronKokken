@@ -23,7 +23,7 @@ import com.example.gronkokken.ui.pages.seasonalIngredientsScreen.SeasonalVegetab
 
 @Composable
 fun Navigation (navHostController: NavHostController, userViewModel: UserViewModel) {
-    NavHost(navHostController,startDestination = "seasonal-vegetables") {
+    NavHost(navHostController,startDestination = "landingpage") {
         fun recipeNavigateById (recipeId:String):Unit { //Christian
             navHostController.navigate("recipe/$recipeId")
         }
@@ -97,7 +97,7 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
                 },
                 ingredientButtonText = "Se frugter",
                 arrowClick = {
-                    navHostController.popBackStack()
+                    navHostController.navigate("frontpage")
                 },
                 changeIngredientType = {
                     navHostController.navigate("seasonal-fruits")
@@ -107,11 +107,11 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
         composable("seasonal-fruits") {
             SeasonalFruitsScreen(
                 ingredientClick = { ingredientId ->
-                    navHostController.navigate("ingredient/$ingredientId}")
+                    navHostController.navigate("ingredient/$ingredientId")
                 },
                 ingredientButtonText = "Se grøntsager",
                 arrowClick = {
-                    navHostController.popBackStack()
+                    navHostController.navigate("frontpage")
                 },
                 changeIngredientType = {
                     navHostController.navigate("seasonal-vegetables")
@@ -122,8 +122,10 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
             "ingredient/{ingredientId}",
             arguments = listOf(navArgument("ingredientId") {type = NavType.StringType})
         ) { backStackEntry ->
-            val ingredientId = backStackEntry.arguments?.getString("ingredientId")
-            IngredientScreen(ingredientId)
+            val ingredientId = backStackEntry.arguments?.getString("ingredientId") ?: return@composable
+            IngredientScreen(ingredientId, arrowClick = {
+                navHostController.popBackStack()
+            })
 
         }
         composable("climate") {
