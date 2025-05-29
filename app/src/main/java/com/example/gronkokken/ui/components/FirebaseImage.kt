@@ -12,9 +12,12 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import coil.compose.AsyncImage
+import coil.request.ImageRequest
 
 //Lukas
+//chatgpt
 @Composable
 fun FirebaseImage(imagePath: String, modifier: Modifier) {
     var imageUrl by remember { mutableStateOf<String?>(null) }

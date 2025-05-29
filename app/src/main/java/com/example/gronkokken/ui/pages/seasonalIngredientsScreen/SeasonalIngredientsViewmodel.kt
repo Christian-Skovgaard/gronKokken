@@ -20,7 +20,9 @@ import java.time.LocalDate
 import java.time.Month
 import java.util.Locale
 
-//Lukas
+
+
+//Lukas med lidt hjælp fra chatgpt
 
 class SeasonalIngredientsViewmodel(): ViewModel() {
 
@@ -40,9 +42,9 @@ class SeasonalIngredientsViewmodel(): ViewModel() {
     init {
         viewModelScope.launch {
             val importList = fireStore.getSeasonalIngredients()
-            _ingredientsList.value = importList
-
             val currentMonth  = LocalDate.now().monthValue
+
+            _ingredientsList.value = importList
             _inSeasonList.value = importList.filter { it.isInSeason(currentMonth) }
 
             loading.value = false
@@ -71,8 +73,8 @@ class SeasonalIngredientsViewmodel(): ViewModel() {
             .replaceFirstChar { it.uppercase() }
     }
 
-    fun getSelectedSeason(): String {
-        return "yo"
+    fun ingredientClick() {
+        inSeasonList
     }
 
 

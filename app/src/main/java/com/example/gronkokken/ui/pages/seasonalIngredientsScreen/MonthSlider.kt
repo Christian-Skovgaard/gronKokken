@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import java.time.Month
 import java.time.format.TextStyle
 import java.util.Locale
+import kotlin.math.roundToInt
 
 @Composable
 fun MonthSlider(viewModel: SeasonalIngredientsViewmodel) {
@@ -23,7 +24,7 @@ fun MonthSlider(viewModel: SeasonalIngredientsViewmodel) {
             value = sliderValue,
             onValueChange = {
                 sliderValue = it
-                viewModel.setSelectedMonth(it.toInt())
+                viewModel.setSelectedMonth(it.roundToInt())
             },
             valueRange = 1f..12f,
             steps = 10,

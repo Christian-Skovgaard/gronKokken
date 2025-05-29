@@ -1,5 +1,6 @@
 package com.example.gronkokken.models
 
+//Lukas
 data class SeasonalIngredient(
     var id: String = "",
     var name: String = "",

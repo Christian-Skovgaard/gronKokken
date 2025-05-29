@@ -36,7 +36,7 @@ import com.example.gronkokken.R
 import com.example.gronkokken.ui.components.FirebaseImage
 
 @Composable
-fun SeasonalIngredientsHeader(ingredientClick: () -> Unit, ingredientButtonText: String, arrowClick: () -> Unit) {
+fun SeasonalIngredientsHeader(changeIngredientType: () -> Unit, ingredientButtonText: String, arrowClick: () -> Unit) {
 
     val viewmodel: SeasonalIngredientsViewmodel = viewModel()
 
@@ -88,7 +88,7 @@ fun SeasonalIngredientsHeader(ingredientClick: () -> Unit, ingredientButtonText:
                 .padding(start = 10.dp)
         ) {
             Button(
-                onClick = { ingredientClick() },
+                onClick = { changeIngredientType() },
                 modifier = Modifier
                     .offset(0.dp, 35.dp)
                     .width(140.dp)
