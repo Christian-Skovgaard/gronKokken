@@ -66,7 +66,8 @@ fun SeasonalFruitsList(
             .background(Color(0xFFF8F7FF))
             .padding(22.dp)
     ) {
-        //header with button that goes from vegetable to fruit and back
+        //header with button that goes from vegetable to fruit and from fruit to vegetable
+        //month name, season name and slider that changes the month
         SeasonalIngredientsHeader(changeIngredientType, ingredientButtonText, arrowClick)
 
         //grid for database images
@@ -78,10 +79,12 @@ fun SeasonalFruitsList(
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalArrangement = Arrangement.spacedBy(30.dp)
         ) {
+            //takes amount of fruits
             items(fruitsOnly.size) { index ->
                 val fruit = fruitsOnly[index]
                     Column(
                         modifier = Modifier
+                            //send fruit id of fruit clicked and navigate to ingredient screen
                             .clickable {
                                 ingredientClick(fruit.id)
                                 Log.d("nav", "Clicked on fruit with id: ${fruit.id}")
@@ -90,6 +93,7 @@ fun SeasonalFruitsList(
                         verticalArrangement = Arrangement.Center
 
                     ) {
+                        //gets pictures from the database for every fruit
                         FirebaseImage(
                             imagePath = "ingredienser/${fruit.name.lowercase()}.jpg",
                             modifier = Modifier
