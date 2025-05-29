@@ -35,19 +35,23 @@ import com.example.gronkokken.R
 import com.example.gronkokken.ui.components.FirebaseImage
 import com.example.gronkokken.ui.pages.loadingscreen.LoadingScreen
 
+//Lukas
+
 @Composable
 fun IngredientScreen(ingredientId: String?, arrowClick: () -> Unit) {
     val viewmodel: SeasonalIngredientsViewmodel = viewModel()
 
+    //using find to match the id with the one that was clicked
     val ingredient = viewmodel.ingredientsList.value.find { it.id == ingredientId }
 
     Log.d("screen", "IngredientId: $ingredientId")
     Log.d("screen", "Available IDs: ${viewmodel.ingredientsList.value.map { it.id }}")
 
+    //show loadingscreen if the ingredients havent loaded
     if (viewmodel.ingredientsList.value.isEmpty()) {
         LoadingScreen()
-        return
     } else if (ingredient != null) {
+        //back arrow
         Icon(
             painter = painterResource(R.drawable.baseline_arrow_back_ios_24),
             contentDescription = "",
@@ -61,6 +65,7 @@ fun IngredientScreen(ingredientId: String?, arrowClick: () -> Unit) {
                 .padding(top = 60.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            //ingredient name with viewmodel
             Text(
                 text = ingredient.name,
                 fontSize = 44.sp,
@@ -68,12 +73,13 @@ fun IngredientScreen(ingredientId: String?, arrowClick: () -> Unit) {
                 color = Color(0xFF4B7A2B)
             )
             Spacer(modifier = Modifier.height(10.dp))
+            //box so the text can sit over the bottom of the picture
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
             ) {
-
+                //image from firebase
                 FirebaseImage(
                     imagePath = "ingredienser/${ingredient.name.lowercase()}.jpg",
                     modifier = Modifier
@@ -93,6 +99,7 @@ fun IngredientScreen(ingredientId: String?, arrowClick: () -> Unit) {
                         .padding(16.dp)
 
                 ) {
+                    //description with viewmodel
                     Text(
                         text = ingredient.description
                     )

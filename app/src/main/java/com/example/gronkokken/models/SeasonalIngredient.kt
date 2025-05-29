@@ -12,10 +12,10 @@ data class SeasonalIngredient(
 
     fun isInSeason(currentMonth: Int): Boolean {
         return if (startMonth <= endMonth) {
-            // Normal periode
+            // Normal period
             currentMonth in startMonth..endMonth
         } else {
-            // Overlapper årsskifte
+            // overlapping year change
             currentMonth >= startMonth || currentMonth <= endMonth
         }
     }

@@ -28,6 +28,9 @@ import coil.compose.AsyncImage
 import com.example.gronkokken.ui.components.FirebaseImage
 import com.example.gronkokken.ui.pages.loadingscreen.LoadingScreen
 
+//Lukas
+
+//composable that shows a loading screen while viewmodel is being initialized
 @Composable
 fun SeasonalFruitsScreen(
     ingredientClick: (String) -> Unit,
@@ -54,6 +57,7 @@ fun SeasonalFruitsList(
 
     val ingredientsInSeason by viewmodel.inSeasonList
 
+    //filters the ingredients in season, and only shows the fruit
     val fruitsOnly = ingredientsInSeason.filter { it.isFruit }
 
     Column(
@@ -62,8 +66,10 @@ fun SeasonalFruitsList(
             .background(Color(0xFFF8F7FF))
             .padding(22.dp)
     ) {
+        //header with button that goes from vegetable to fruit and back
         SeasonalIngredientsHeader(changeIngredientType, ingredientButtonText, arrowClick)
 
+        //grid for database images
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             modifier = Modifier

@@ -95,7 +95,7 @@ fun Landingpage(
 
         Spacer(modifier = Modifier.height(80.dp))
 
-        //teacherbutton that takes you to the second landingpage where you can login og register
+        //teacherbutton that takes you to the landingpage for teachers where you can login og register
         //and it gives you a teacher role so you can have an overview on the frontpage
         LandingButton(
             "Lærer",

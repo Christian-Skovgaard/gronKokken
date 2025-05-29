@@ -22,7 +22,7 @@ import java.util.Locale
 
 
 
-//Lukas med lidt hjælp fra chatgpt
+//Lukas with a little chatgpt
 
 class SeasonalIngredientsViewmodel(): ViewModel() {
 
@@ -71,10 +71,6 @@ class SeasonalIngredientsViewmodel(): ViewModel() {
         return Month.of(selectedMonth.value)
             .getDisplayName(TextStyle.FULL, Locale("da"))
             .replaceFirstChar { it.uppercase() }
-    }
-
-    fun ingredientClick() {
-        inSeasonList
     }
 
 
