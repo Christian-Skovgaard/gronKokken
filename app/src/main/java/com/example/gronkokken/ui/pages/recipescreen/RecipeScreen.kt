@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.Checkbox
@@ -23,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.gronkokken.models.RecipeIngredient
+import com.example.gronkokken.ui.components.FirebaseImage
 import com.example.gronkokken.ui.pages.loadingscreen.LoadingScreen
 import kotlin.math.max
 
@@ -33,12 +35,14 @@ fun RecipeScreen () {
     else{
         RecipeViewScreen(
             mainTitleText = viewModel.recipe.name,
+            imagePath = viewModel.recipe.imagePath,
             ingredientList = viewModel.recipe.ingredients,
             ingredientCheckStateList = viewModel.ingredientCheckboxState,
             ingredientOnCheckboxClick = viewModel::onIngredientCheckboxClick,
             instructionText = viewModel.recipe.instructions,
             ratingStarList = viewModel.ratingStarList,
-            onRatingStarClick = viewModel::updateRating
+            onRatingStarClick = viewModel::updateRating,
+
         )
     }
 }
@@ -47,6 +51,7 @@ fun RecipeScreen () {
 @Composable
 fun RecipeViewScreen (
     mainTitleText: String,
+    imagePath:String,
     ingredientList: List<RecipeIngredient>,
     ingredientCheckStateList: MutableList<MutableState<Boolean>>,
     ingredientOnCheckboxClick:(Int)->Unit,
@@ -61,7 +66,7 @@ fun RecipeViewScreen (
             .padding(horizontal = 15.dp, vertical = 20.dp)
     ) {
         RecipeMainTitle(mainTitleText)
-        //image
+        FirebaseImage(imagePath, Modifier.size(150.dp))
         RecipeSubTitle("Ingredienser")
         RecipeIngredientsList(ingredientList,ingredientCheckStateList,ingredientOnCheckboxClick)
         RecipeSubTitle("sådan gør du")

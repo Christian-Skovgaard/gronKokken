@@ -74,14 +74,16 @@ class Firestore {
             return responseList.toList()[0].id
         }
         else if (responseList.size() < 1) {
-            Log.d("DB-Call","no opskrift i dag<3, fejl")
+            Log.d("DB-Call","no recipe today<3, sorry")
             return "problem"
         }
         else {
+            Log.d("DB-Call","current recipe id is " + responseList.toList()[0].id)
             return responseList.toList()[0].id
         }
     }
-    suspend fun hentLaunchedEffectData(documentId: String): Pair<String, String> {
+
+    suspend fun hentLaunchedEffectData(documentId: String): Pair<String, String> {  //Sahra
         return try {
             val doc = FirebaseFirestore.getInstance()
                 .collection("klimaplan")
@@ -102,7 +104,7 @@ class Firestore {
     }
 
     // 🔵 Funktion til at gemme data
-    fun gemKlimaplanData(documentId: String, startpunkt: String, slutpunkt: String) {
+    fun gemKlimaplanData(documentId: String, startpunkt: String, slutpunkt: String) { //Sahra
         val db = FirebaseFirestore.getInstance()
         val data = hashMapOf(
             "startpunkt" to startpunkt,
@@ -170,14 +172,17 @@ class Firestore {
         imagePath: String,
         onResult: (String?) -> Unit
     ) {
+        Log.d("DB-Call","looking for image")
         val storageRef = FirebaseStorage.getInstance().reference.child(imagePath)
         storageRef.downloadUrl
             .addOnSuccessListener { url ->
                 onResult(url.toString())
+                Log.d("DB-Call","image is here")
             }
             .addOnFailureListener {
                 Log.e("FirebaseImage", "Kunne ikke hente billede: $imagePath", it)
                 onResult(null)
+                Log.d("DB-Call","no image lol " + it.toString())
             }
     }
 }
