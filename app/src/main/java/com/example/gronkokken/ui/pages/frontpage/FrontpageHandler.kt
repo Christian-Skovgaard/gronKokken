@@ -8,7 +8,7 @@ import androidx.navigation.NavHostController
 import com.example.gronkokken.repository.UserViewModel
 
 @Composable
-fun FrontPageTest (userViewModel: UserViewModel, navHostController: NavHostController) {
+fun FrontPageTest (userViewModel: UserViewModel, navHostController: NavHostController) {    //Sahra & Lukas
     val role by userViewModel.role // fx: "lærer" eller "elev"
 
     if (role == UserViewModel.Role.Teacher) {

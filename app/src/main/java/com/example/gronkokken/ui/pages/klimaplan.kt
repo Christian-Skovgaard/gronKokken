@@ -58,7 +58,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ClimaPlanScreen(
+fun ClimaPlanScreen(    //Sahra
     userViewModel: com.example.gronkokken.repository.UserViewModel = viewModel(),
     navHostController: NavHostController) {
     val robotoBold = FontFamily(Font(R.font.roboto))

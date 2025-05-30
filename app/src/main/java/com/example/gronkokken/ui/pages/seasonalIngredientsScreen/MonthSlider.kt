@@ -13,17 +13,24 @@ import androidx.compose.ui.graphics.Color
 import java.time.Month
 import java.time.format.TextStyle
 import java.util.Locale
+import kotlin.math.roundToInt
+
+//Lukas
 
 @Composable
 fun MonthSlider(viewModel: SeasonalIngredientsViewmodel) {
+    //value with state so we can update when using the slider
+    //get the currentmonth and makes it into a float in this case 5f
     var sliderValue by remember { mutableStateOf(viewModel.selectedMonth.value.toFloat()) }
 
     Column {
         Slider(
             value = sliderValue,
+            //using the slider recomposes the slider and updates the value
+            //we update it by taking the value e.g. 3f and setting it to be the selected month
             onValueChange = {
                 sliderValue = it
-                viewModel.setSelectedMonth(it.toInt())
+                viewModel.setSelectedMonth(it.roundToInt())
             },
             valueRange = 1f..12f,
             steps = 10,
