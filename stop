@@ -1,0 +1,254 @@
+[33mcommit f8c72c6ed8d1f4a097b87df72af517e2ab2af5e7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev[m[33m)[m
+Merge: ae35b4b 54e6e99
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Fri May 30 10:01:06 2025 +0200
+
+    Merge remote-tracking branch 'origin/dev' into dev
+    
+    # Conflicts:
+    #       app/src/main/java/com/example/gronkokken/ui/pages/mineupload.kt
+
+[33mcommit 54e6e991eabf484dbaad3be37a0f2a663097b59d[m[33m ([m[1;31morigin/dev[m[33m)[m
+Merge: 8a25657 6336d5f
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Fri May 30 10:00:34 2025 +0200
+
+    Merge pull request #21 from Christian-Skovgaard/revert-19-mineupload
+    
+    Revert "init commit"
+
+[33mcommit 6336d5f0f0a831683da3e7ba83005d2ceabdfb9a[m[33m ([m[1;31morigin/revert-19-mineupload[m[33m)[m
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Fri May 30 09:59:28 2025 +0200
+
+    Revert "init commit"
+
+[33mcommit ae35b4b478a746939bd643add22450d19e55220b[m
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Fri May 30 09:42:41 2025 +0200
+
+    making hotfix for manifest after nix code
+
+[33mcommit 8a256573a2022315314b2ef7b083cf2344277c98[m
+Merge: d7a8141 7431b5c
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Fri May 30 09:14:01 2025 +0200
+
+    Merge pull request #19 from Christian-Skovgaard/mineupload
+    
+    init commit
+
+[33mcommit 7431b5c04a4bb7dd310474d5cb48d67ee0b86478[m
+Merge: 96a95e2 d7a8141
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Fri May 30 09:09:41 2025 +0200
+
+    Merge remote-tracking branch 'origin/dev' into mineupload
+    
+    # Conflicts:
+    #       .idea/gradle.xml
+    #       .idea/misc.xml
+    #       .idea/vcs.xml
+    #       app/build.gradle.kts
+    #       app/src/main/java/com/example/gronkokken/MainActivity.kt
+    #       gradle/libs.versions.toml
+
+[33mcommit 96a95e272d32f5bd780d8ca075650a972a5b4e93[m
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Fri May 30 09:05:21 2025 +0200
+
+    ready for merge
+
+[33mcommit 790fc21cd58d64060948b771cd035ac9b1cd1a51[m
+Author: nixhajete09 <nixhajete05@gmail.com>
+Date:   Thu May 29 22:04:40 2025 +0200
+
+    init commit
+
+[33mcommit d7a81419fb08fd8fd6646ca5fde690fe1440eea4[m
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Wed May 28 20:16:03 2025 +0200
+
+    now works!!!!, baby!!!
+
+[33mcommit ddb8af184df115e1cd137ed513f6a938049c0920[m
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Wed May 28 19:07:26 2025 +0200
+
+    now works a bit less
+
+[33mcommit f4c9f9cef1bc5a1e2c66a4ed3df32b7c0bd288b5[m
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Wed May 28 18:36:28 2025 +0200
+
+    does still not work lol
+
+[33mcommit 2c6a77848777fdd83b42fd61df92497d325e5540[m
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Wed May 28 18:19:01 2025 +0200
+
+    does not work lol
+
+[33mcommit 4f52715e98d172beb40cd1c6436eaf986a33cd86[m
+Merge: cd9c460 7120c21
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Wed May 28 17:17:21 2025 +0200
+
+    Merge pull request #18 from Christian-Skovgaard/seasonal-ingredients
+    
+    Seasonal ingredients
+
+[33mcommit 7120c2152531e1aaa182218fa9fdd0f18d431615[m
+Merge: 8794092 cd9c460
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Wed May 28 17:17:13 2025 +0200
+
+    Merge branch 'dev' into seasonal-ingredients
+
+[33mcommit 87940927675b5d8d9e28efea2a216a4d7eb22a6d[m
+Merge: 39e3e90 497507b
+Author: bananpalme <77321863+bananpalme@users.noreply.github.com>
+Date:   Wed May 28 17:14:49 2025 +0200
+
+    merge
+
+[33mcommit cd9c460f4f775c8a0d9b1bc8662766bb3200d113[m
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Wed May 28 17:11:41 2025 +0200
+
+    hotfix for date in recipe
+
+[33mcommit 39e3e909299fd78913e9e59b11f7834924ea5554[m
+Author: bananpalme <77321863+bananpalme@users.noreply.github.com>
+Date:   Wed May 28 16:58:45 2025 +0200
+
+    made slider green
+
+[33mcommit 1f7e433b3f14cef6aa8da9115652d6c9ff4d25b2[m
+Author: bananpalme <77321863+bananpalme@users.noreply.github.com>
+Date:   Wed May 28 15:19:11 2025 +0200
+
+    made slider to choose a month
+
+[33mcommit 497507bac396a2c7a43ec7f0f8accdd2a981acd5[m
+Author: Sahra <ali.sarah.w@icloud.com>
+Date:   Wed May 28 14:07:23 2025 +0200
+
+    comit
+
+[33mcommit 50a212c7390bff196ec2009825642529bd743daf[m
+Author: bananpalme <nigginz12@gmail.com>
+Date:   Wed May 28 02:54:23 2025 +0200
+
+    added photos from firebase, and seperated fruits and vegetables
+
+[33mcommit 8b52557dc84f0c65d8e7c62a5f2d5c15d185ab42[m
+Author: bananpalme <77321863+bananpalme@users.noreply.github.com>
+Date:   Tue May 27 18:55:18 2025 +0200
+
+    made a lazygrid with carrots
+
+[33mcommit 537922b587da8982bfd477a96797502f73837fdf[m
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Tue May 27 13:34:46 2025 +0200
+
+    commit for fixing recipe with new nav
+
+[33mcommit 10c6a8cae2c86c472f72da3f516777b93ae7c59e[m[33m ([m[1;32muploading-recipes[m[33m)[m
+Merge: 76da076 9b33e67
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Tue May 27 12:04:20 2025 +0200
+
+    Merge pull request #17 from Christian-Skovgaard/Frontpage-navImplemetation
+    
+    Merge pull request #16 from Christian-Skovgaard/dev
+
+[33mcommit 9b33e673d6b92208c65eabed3e7c90e5a5d2bd9d[m[33m ([m[1;31morigin/Frontpage-navImplemetation[m[33m)[m
+Merge: 7237d19 76da076
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Tue May 27 12:03:54 2025 +0200
+
+    Merge pull request #16 from Christian-Skovgaard/dev
+    
+    ready to merge
+
+[33mcommit 76da076fbcbcf5829ef8ebb618d5a7a1f24af8a9[m
+Merge: 2dbd3dd 7237d19
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Tue May 27 12:03:46 2025 +0200
+
+    Merge branch 'Frontpage-navImplemetation' into dev
+
+[33mcommit 2dbd3dd94e5b212196a10de204568365f3a5d096[m
+Merge: 2f4b9e6 63c542f
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Tue May 27 12:02:00 2025 +0200
+
+    Merge pull request #15 from Christian-Skovgaard/klimaplan
+    
+    Merge pull request #14 from Christian-Skovgaard/dev
+
+[33mcommit 63c542fc36fbdb4a085cb6dc654e2b163b813760[m[33m ([m[1;32mklimaplan[m[33m)[m
+Merge: 5178f8a 2f4b9e6
+Author: bananpalme <77321863+bananpalme@users.noreply.github.com>
+Date:   Tue May 27 11:40:36 2025 +0200
+
+    Merge pull request #14 from Christian-Skovgaard/dev
+    
+    prepare for merge into dev
+
+[33mcommit 2f4b9e677d747549c953e1cf003bf458c0e7777a[m
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Tue May 27 11:35:32 2025 +0200
+
+    for pause
+
+[33mcommit 9d180d008db6e5a310b7524bc377e63169ba29a5[m
+Author: bananpalme <nigginz12@gmail.com>
+Date:   Tue May 27 03:19:34 2025 +0200
+
+    added current month to see what ingredients are in season
+
+[33mcommit 7e6559de82d50d8b1ed717198f60fb2c0e87e506[m
+Author: bananpalme <77321863+bananpalme@users.noreply.github.com>
+Date:   Tue May 27 01:08:21 2025 +0200
+
+    made seasonal ingredients available through firestore
+
+[33mcommit 59400a1c0d984af264974e7fe5bf70e26f456baf[m
+Merge: df2cd4d 5178f8a
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Mon May 26 13:50:10 2025 +0200
+
+    Merge remote-tracking branch 'origin/klimaplan' into dev
+    
+    # Conflicts:
+    #       app/src/main/java/com/example/gronkokken/MainActivity.kt
+    #       app/src/main/java/com/example/gronkokken/components/UserViewModel.kt
+    #       app/src/main/java/com/example/gronkokken/components/firestore.kt
+    #       app/src/main/res/drawable/baseline_arrow_back_ios_24.xml
+    #       app/src/main/res/font/roboto.ttf
+
+[33mcommit 5178f8a5444b13ada82d53c6819c02da991b4e9a[m
+Author: Sahra <ali.sarah.w@icloud.com>
+Date:   Mon May 26 13:23:23 2025 +0200
+
+    comit
+
+[33mcommit 7237d19f794e58c4e8d50f69f3ce39c2fd662a64[m
+Author: Christian-Skovgaard <cellochr@gmail.com>
+Date:   Mon May 26 12:00:19 2025 +0200
+
+    reviced navcontroller and made the getby date work
+
+[33mcommit 789227f0281854426b9f8d47197e64e27e841e17[m
+Author: Sahra <ali.sarah.w@icloud.com>
+Date:   Mon May 26 11:16:40 2025 +0200
+
+    comit
+
+[33mcommit fc8856d1d37b78291acd2d3722f0fe94c823521a[m
+Author: bananpalme <77321863+bananpalme@users.noreply.github.com>
+Date:   Fri May 23 16:01:35 2025 +0200
+
+    added text and removed mutablevari
