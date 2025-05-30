@@ -1,4 +1,4 @@
-package com.example.gronkokken
+package com.example.gronkokken.com.example.gronkokken.ui
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeOut
@@ -28,7 +28,7 @@ import nl.dionsegijn.konfetti.core.emitter.Emitter
 import nl.dionsegijn.konfetti.core.models.Shape
 import java.util.concurrent.TimeUnit
 
-
+//Nix
 @Composable // Denne funktion viser noget på skærmen (UI)
 fun TopBar() {
     Row( // Lægger tingene vandret (på en række)
@@ -74,7 +74,7 @@ fun TopBar() {
 
 
 @Composable
-fun UploadScreen() {
+fun UploadScreen() {    //nix
     var showConfetti by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
@@ -169,7 +169,7 @@ fun UploadScreen() {
         }
     }
 }
-fun konfettiColors() = listOf(
+fun konfettiColors() = listOf(  //nix
     0xfff44336.toInt(), // Rød
     0xff4caf50.toInt(), // Grøn
     0xff2196f3.toInt(), // Blå
