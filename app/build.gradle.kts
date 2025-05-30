@@ -71,5 +71,8 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     // Coil til billedvisning
     implementation (libs.coil.compose)
+    //konfetti i guess, idkAdd commentMore actions
+    implementation("nl.dionsegijn:konfetti-compose:2.0.3")
+    implementation("nl.dionsegijn:konfetti-core:2.0.3")
 
 }
