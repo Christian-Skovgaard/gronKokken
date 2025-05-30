@@ -46,8 +46,9 @@ class SeasonalIngredientsViewmodel(): ViewModel() {
     val inSeasonList: State<List<SeasonalIngredient>> = _inSeasonList
 
     //current month
-    var selectedMonth = mutableStateOf(LocalDate.now().monthValue)
-        private set
+    private var _selectedMonth = mutableStateOf(LocalDate.now().monthValue)
+    var selectedMonth: State<Int> = _selectedMonth
+
 
     init {
         //viewModelScope to get ingredients from firebase and put them into the different variables
@@ -78,7 +79,7 @@ class SeasonalIngredientsViewmodel(): ViewModel() {
     //get a month and make it the selected month
     //update inseasonlist to match with the month given
     fun setSelectedMonth(month: Int) {
-        selectedMonth.value = month
+        _selectedMonth.value = month
         _inSeasonList.value = _ingredientsList.value.filter {
             it.isInSeason(month)
         }

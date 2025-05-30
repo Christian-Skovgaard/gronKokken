@@ -76,8 +76,8 @@ fun SeasonalFruitsList(
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color(0xFFF8F7FF)),
-            verticalArrangement = Arrangement.spacedBy(20.dp),
-            horizontalArrangement = Arrangement.spacedBy(30.dp)
+            verticalArrangement = Arrangement.spacedBy(30.dp),
+            horizontalArrangement = Arrangement.spacedBy(50.dp)
         ) {
             //takes amount of fruits
             items(fruitsOnly.size) { index ->
@@ -97,7 +97,7 @@ fun SeasonalFruitsList(
                         FirebaseImage(
                             imagePath = "ingredienser/${fruit.name.lowercase()}.jpg",
                             modifier = Modifier
-                                .size(110.dp)
+                                .size(150.dp)
                                 .clip(RoundedCornerShape(20.dp)),
                         )
 
