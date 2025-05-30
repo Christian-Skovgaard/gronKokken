@@ -1,4 +1,4 @@
-package com.example.gronkokken
+package com.example.gronkokken.com.example.gronkokken.ui.pages
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeOut
@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit
 
 
 @Composable // Denne funktion viser noget på skærmen (UI)
-fun TopBar() {
+fun TopBar(backButtonOnClick:()->Unit) {
     Row( // Lægger tingene vandret (på en række)
         modifier = Modifier
             .fillMaxWidth() // Rækken fylder hele skærmens bredde
@@ -43,7 +43,7 @@ fun TopBar() {
             tint = LeafGreen, // Farve
             modifier = Modifier
                 .size(24.dp) // Størrelse på ikonet
-                .clickable { } // Gør det klikbart (funktion kan tilføjes)
+                .clickable { backButtonOnClick() } // Gør det klikbart (funktion kan tilføjes)
         )
 
         Spacer(modifier = Modifier.width(16.dp)) // Giver lidt afstand
@@ -74,7 +74,7 @@ fun TopBar() {
 
 
 @Composable
-fun UploadScreen() {
+fun UploadScreen(backButtonOnClick:()->Unit) {
     var showConfetti by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
@@ -84,7 +84,7 @@ fun UploadScreen() {
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
-            TopBar()
+            TopBar(backButtonOnClick)
 
             // Midtersektion med placeholder
             Box(

@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.gronkokken.com.example.gronkokken.ui.pages.UploadScreen
 import com.example.gronkokken.recipeListScreen.RecipeListScreen
 import com.example.gronkokken.repository.UserViewModel
 import com.example.gronkokken.ui.pages.ClimaPlanScreen
@@ -113,6 +114,11 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
             ClimaPlanScreen(        //hvad er det for navn, lol
                 userViewModel,
                 navHostController)
+        }
+        composable("mineUpload") {
+            UploadScreen(
+                backButtonOnClick = { navHostController.popBackStack() }
+            )
         }
     }
 }
