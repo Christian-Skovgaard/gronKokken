@@ -7,6 +7,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.gronkokken.com.example.gronkokken.ui.pages.UploadScreen
 import com.example.gronkokken.recipeListScreen.RecipeListScreen
 import com.example.gronkokken.repository.UserViewModel
 import com.example.gronkokken.ui.pages.ClimaPlanScreen
@@ -34,7 +35,7 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
             route = "recipe/{recipeId}",
             arguments = listOf(navArgument(name = "recipeId") { type = NavType.StringType })
         ) {
-            RecipeScreen({navHostController.navigate("upload")})
+            RecipeScreen()
         }
         composable("landingpage") {
             Landingpage(userViewModel,
@@ -133,8 +134,10 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
                 userViewModel,
                 navHostController)
         }
-        composable("upload") {
-            //UploadScreen()
+        composable("mineUpload") {
+            UploadScreen(
+                backButtonOnClick = { navHostController.popBackStack() }
+            )
         }
     }
 }

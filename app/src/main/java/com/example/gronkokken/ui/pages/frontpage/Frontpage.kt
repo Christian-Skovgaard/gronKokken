@@ -182,7 +182,7 @@ fun FrontPageScreen(navHostController: NavHostController) { //sahra
             }
 
             Button(
-                onClick = { Log.d("BTN", "Billeder klik") },
+                onClick = {navHostController.navigate("mineUpload")},
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF8380)),
                 modifier = Modifier
                     .fillMaxWidth()
