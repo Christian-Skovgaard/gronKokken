@@ -1,5 +1,6 @@
 package com.example.gronkokken.models
 
+//Lukas
 data class SeasonalIngredient(
     var id: String = "",
     var name: String = "",
@@ -11,10 +12,10 @@ data class SeasonalIngredient(
 
     fun isInSeason(currentMonth: Int): Boolean {
         return if (startMonth <= endMonth) {
-            // Normal periode
+            // Normal period
             currentMonth in startMonth..endMonth
         } else {
-            // Overlapper årsskifte
+            // overlapping year change
             currentMonth >= startMonth || currentMonth <= endMonth
         }
     }

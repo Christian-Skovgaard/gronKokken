@@ -167,6 +167,7 @@ class Firestore {
 
     }
 
+    //chatgpt
     fun getImageUrl(
         imagePath: String,
         onResult: (String?) -> Unit
@@ -179,6 +180,7 @@ class Firestore {
                 Log.d("DB-Call","image is here")
             }
             .addOnFailureListener {
+                Log.e("FirebaseImage", "Kunne ikke hente billede: $imagePath", it)
                 onResult(null)
                 Log.d("DB-Call","no image lol " + it.toString())
             }

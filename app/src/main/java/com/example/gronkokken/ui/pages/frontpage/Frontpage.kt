@@ -88,7 +88,7 @@ fun FrontPageScreen(navHostController: NavHostController) { //sahra
             }
 
             Button(
-                onClick = { TODO() },
+                onClick = { navHostController.navigate("seasonal-vegetables") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFBA27)),
                 modifier = Modifier
                     .fillMaxWidth()

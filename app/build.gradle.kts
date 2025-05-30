@@ -71,4 +71,5 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     // Coil til billedvisning
     implementation (libs.coil.compose)
+
 }
