@@ -30,7 +30,7 @@ import com.example.gronkokken.ui.pages.loadingscreen.LoadingScreen
 import kotlin.math.max
 
 @Composable
-fun RecipeScreen (onUploadButtonClick:()->Unit) {
+fun RecipeScreen (onUploadButtonClick:()->Unit) {   //Christian
     val viewModel: RecipeScreenViewModel = viewModel();
     if (viewModel.loading.value) {LoadingScreen()}
     else{
