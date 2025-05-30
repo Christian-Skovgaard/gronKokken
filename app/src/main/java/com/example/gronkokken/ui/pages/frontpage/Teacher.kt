@@ -111,7 +111,7 @@ fun FrontPageTeacherScreen(navHostController: NavHostController) {
             Spacer(modifier = Modifier.width(16.dp))
             // Råvarer i sæson
             Button(
-                onClick = { Log.d("BTN", "Råvarer i sæson klik") },
+                onClick = {navHostController.navigate("seasonal-vegetables")},
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFBA27)),
                 modifier = Modifier.fillMaxWidth()
                     .height(80.dp),    ) {
@@ -141,7 +141,7 @@ fun FrontPageTeacherScreen(navHostController: NavHostController) {
             Spacer(modifier = Modifier.width(16.dp))
             // Opskrifter
             Button(
-                onClick = { Log.d("BTN", "Opskrifter klik") },
+                onClick = {navHostController.navigate("recipeListScreen")},
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFCEBAFF)),
                 modifier = Modifier.fillMaxWidth()
                     .height(80.dp),        ) {

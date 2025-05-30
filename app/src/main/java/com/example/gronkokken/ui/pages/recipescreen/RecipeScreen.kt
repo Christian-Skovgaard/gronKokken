@@ -30,7 +30,7 @@ import com.example.gronkokken.ui.pages.loadingscreen.LoadingScreen
 import kotlin.math.max
 
 @Composable
-fun RecipeScreen (onUploadButtonClick:()->Unit) {   //Christian
+fun RecipeScreen () {   //Christian
     val viewModel: RecipeScreenViewModel = viewModel();
     if (viewModel.loading.value) {LoadingScreen()}
     else{
@@ -43,7 +43,6 @@ fun RecipeScreen (onUploadButtonClick:()->Unit) {   //Christian
             instructionText = viewModel.recipe.instructions,
             ratingStarList = viewModel.ratingStarList,
             onRatingStarClick = viewModel::updateRating,
-            onUploadButtonClick = onUploadButtonClick
         )
     }
 }
@@ -59,7 +58,6 @@ fun RecipeViewScreen (
     instructionText:String,
     ratingStarList:List<MutableState<String>>,
     onRatingStarClick:(index:Int)->Unit,
-    onUploadButtonClick:()->Unit
 ) {
 
     Column (
@@ -75,7 +73,6 @@ fun RecipeViewScreen (
         RecipeInstructions(instructionText)
         RecipeRatingTitle()
         RecipeRating(ratingStarList,onRatingStarClick)
-        LandingButton("Upload", 20, 10, 143, 12, onUploadButtonClick)
         //review
     }
 }
