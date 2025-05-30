@@ -24,7 +24,7 @@ import com.example.gronkokken.ui.pages.seasonalIngredientsScreen.SeasonalVegetab
 @Composable
 fun Navigation (navHostController: NavHostController, userViewModel: UserViewModel) {
     NavHost(navHostController,startDestination = "landingpage") {
-        fun recipeNavigateById (recipeId:String):Unit { //Christian
+        fun recipeNavigateById (recipeId:String) { //Christian
             navHostController.navigate("recipe/$recipeId")
         }
         composable("recipeListScreen") {
@@ -34,7 +34,7 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
             route = "recipe/{recipeId}",
             arguments = listOf(navArgument(name = "recipeId") { type = NavType.StringType })
         ) {
-            RecipeScreen()
+            RecipeScreen({navHostController.navigate("upload")})
         }
         composable("landingpage") {
             Landingpage(userViewModel,
@@ -129,9 +129,12 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
 
         }
         composable("climate") {
-            ClimaPlanScreen(        //hvad er det for navn, lol
+            ClimaPlanScreen(        //hvad er det for et navn, lol
                 userViewModel,
                 navHostController)
+        }
+        composable("upload") {
+            //UploadScreen()
         }
     }
 }

@@ -25,11 +25,12 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.gronkokken.models.RecipeIngredient
 import com.example.gronkokken.ui.components.FirebaseImage
+import com.example.gronkokken.ui.components.LandingButton
 import com.example.gronkokken.ui.pages.loadingscreen.LoadingScreen
 import kotlin.math.max
 
 @Composable
-fun RecipeScreen () {
+fun RecipeScreen (onUploadButtonClick:()->Unit) {
     val viewModel: RecipeScreenViewModel = viewModel();
     if (viewModel.loading.value) {LoadingScreen()}
     else{
@@ -42,7 +43,7 @@ fun RecipeScreen () {
             instructionText = viewModel.recipe.instructions,
             ratingStarList = viewModel.ratingStarList,
             onRatingStarClick = viewModel::updateRating,
-
+            onUploadButtonClick = onUploadButtonClick
         )
     }
 }
@@ -57,7 +58,8 @@ fun RecipeViewScreen (
     ingredientOnCheckboxClick:(Int)->Unit,
     instructionText:String,
     ratingStarList:List<MutableState<String>>,
-    onRatingStarClick:(index:Int)->Unit
+    onRatingStarClick:(index:Int)->Unit,
+    onUploadButtonClick:()->Unit
 ) {
 
     Column (
@@ -66,13 +68,14 @@ fun RecipeViewScreen (
             .padding(horizontal = 15.dp, vertical = 20.dp)
     ) {
         RecipeMainTitle(mainTitleText)
-        FirebaseImage(imagePath, Modifier.size(150.dp))
+        FirebaseImage("recipeImages/$imagePath", Modifier.size(150.dp))
         RecipeSubTitle("Ingredienser")
         RecipeIngredientsList(ingredientList,ingredientCheckStateList,ingredientOnCheckboxClick)
         RecipeSubTitle("sådan gør du")
         RecipeInstructions(instructionText)
         RecipeRatingTitle()
         RecipeRating(ratingStarList,onRatingStarClick)
+        LandingButton("Upload", 20, 10, 143, 12, onUploadButtonClick)
         //review
     }
 }
@@ -196,7 +199,6 @@ fun RecipeRating (ratingStarList:List<MutableState<String>>,onRatingStarClick:(i
         })
     }
 }
-
 
 
 

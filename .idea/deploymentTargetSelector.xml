@@ -13,6 +13,9 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
+      <SelectionState runConfigName="applikations udvikling.gronKokken.app">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
       <SelectionState runConfigName="2-semester.gronKokken.app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>

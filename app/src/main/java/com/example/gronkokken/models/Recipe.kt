@@ -18,7 +18,7 @@ data class Recipe (  //Christian
 ) {
     val avgRating = ratings.average()
 
-    var endDate:LocalDate = LocalDate.parse(endDateRaw)
+    var endDate:LocalDate = LocalDate.parse(endDateRaw.trim())
     private val startDate:LocalDate = endDate.minusDays(7)
 
     //Den her string bruges til at vise ugen til brugeren.
