@@ -12,7 +12,7 @@ data class Recipe (  //Christian
     val ingredientsRaw:List<Map<String,String>> = listOf(), //Vi gemmer i Map fordi jeg har haft mange problemer med at gemme i custom classes i firestore.
     val instructions:String = "",
     val ratings:List<Int> = listOf(),
-    val endDateRaw:String = "2025-05-28",
+    val endDateRaw:String = "2025-01-05",
     val peopleAmount:Int = 1,
     val imagePath:String = "trio giraf.jpg"
 ) {

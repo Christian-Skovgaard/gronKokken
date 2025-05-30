@@ -45,7 +45,6 @@ class RecipeScreenViewModel(savedStateHandle: SavedStateHandle): ViewModel() {  
             }
             loading.value = false
         }
-
     }
 
     override fun onCleared() {  //function som kører når man lukker viewmodlen, ligesom init kører når man starter.

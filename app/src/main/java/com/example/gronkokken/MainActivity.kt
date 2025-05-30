@@ -19,6 +19,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.gronkokken.components.InternalStorage
 import com.example.gronkokken.recipeListScreen.RecipeListScreen
+import com.example.gronkokken.repository.Firestore
 import com.example.gronkokken.repository.UserViewModel
 import com.example.gronkokken.ui.theme.GronKokkenTheme
 import com.google.firebase.Firebase
@@ -35,6 +36,10 @@ class MainActivity : ComponentActivity() {
             val userViewModel: UserViewModel = viewModel()
             val navController = rememberNavController()
 
+            //upload - skal fjernes
+            val firestore = Firestore()
+            
+            val model:testModel = viewModel()
 
             GronKokkenTheme {   //tror ikke vi bruger theme nogen stedder?
                 Navigation(
@@ -46,6 +51,31 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+class testModel: ViewModel() {
+    val firestore = Firestore()
+    init {
+        viewModelScope.launch {
+            val recipeId = firestore.getRecipeByName("Gulerodssuppe med ingefær og croutoner").id
+            Log.d("tag","done")
+            firestore.uploadByName(
+                recipeId = recipeId,
+                ingredientsRawString = "500g gulerødder \n" +
+                        "1 løg \n" +
+                        "1 hvidløg \n" +
+                        "1spsk rapsolie \n" +
+                        "1spsk karry \n" +
+                        "1spsk korianderfrø \n" +
+                        "havsalt \n" +
+                        "peber og salt \n" +
+                        "7½dl grøntsagsbouillon eller vand \n" +
+                        "100g græsk yoghurt 10% \n" +
+                        "lille stykke ingefær (ca 2cm) \n" +
+                        "\n" +
+                        "brød "
+            )
+        }
+    }
+}
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {

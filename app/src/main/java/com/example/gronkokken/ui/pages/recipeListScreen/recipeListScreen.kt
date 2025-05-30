@@ -57,7 +57,6 @@ fun RecipeListScreen (recipeDisplayOnClick: (String) -> Unit) {   //Christian
 }
 
 
-
 @Composable
 fun RecipeDisplayList (
     displayList:List<Recipe>,
@@ -76,9 +75,7 @@ fun RecipeDisplayList (
             RecipeDisplayTextButton("Tidligere",rightButtonOnClick, rightButtonUnderline)
         }
         Spacer(modifier = Modifier.size(16.dp))
-        LazyColumn (
-
-        ) {
+        LazyColumn {
             items(displayList.size) {
                 displayList.forEach{ recipe ->
                     Box (

@@ -29,7 +29,7 @@ import com.example.gronkokken.ui.pages.loadingscreen.LoadingScreen
 import kotlin.math.max
 
 @Composable
-fun RecipeScreen () {
+fun RecipeScreen () {   //Christian
     val viewModel: RecipeScreenViewModel = viewModel();
     if (viewModel.loading.value) {LoadingScreen()}
     else{
@@ -42,7 +42,6 @@ fun RecipeScreen () {
             instructionText = viewModel.recipe.instructions,
             ratingStarList = viewModel.ratingStarList,
             onRatingStarClick = viewModel::updateRating,
-
         )
     }
 }
