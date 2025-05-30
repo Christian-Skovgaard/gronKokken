@@ -45,8 +45,9 @@ class SeasonalIngredientsViewmodel(): ViewModel() {
     //read only state list for ui
     val inSeasonList: State<List<SeasonalIngredient>> = _inSeasonList
 
-    //current month
+    //current month also same as above with private and mutable variable
     private var _selectedMonth = mutableStateOf(LocalDate.now().monthValue)
+    //and read only
     var selectedMonth: State<Int> = _selectedMonth
 
 
