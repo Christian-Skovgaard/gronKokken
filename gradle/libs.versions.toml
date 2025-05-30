@@ -14,6 +14,7 @@ firebaseFirestoreKtx = "25.1.4"
 navigationCompose = "2.8.9"
 firebaseCommonKtx = "21.0.0"
 appcompat = "1.7.0"
+playServicesMaps = "19.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -39,6 +40,7 @@ firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-fires
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version = "2.9.0" }
 firebase-common-ktx = { group = "com.google.firebase", name = "firebase-common-ktx", version.ref = "firebaseCommonKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
