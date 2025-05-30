@@ -83,7 +83,7 @@ fun Navigation (navHostController: NavHostController, userViewModel: UserViewMod
         composable("registerpage") {
             RegisterPage(
                 onClick = {
-                    navHostController.navigate("frontpage")
+                    navHostController.navigate("loginpage")
                 },
                 onBackArrowClick = {
                     navHostController.popBackStack()
