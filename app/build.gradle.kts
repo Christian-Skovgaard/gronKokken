@@ -52,6 +52,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.play.services.maps)
+    implementation(libs.firebase.common.ktx)
+    implementation(libs.androidx.appcompat)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -61,7 +63,16 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     //firebase dependencies
     implementation(platform(libs.firebase.bom))
+    implementation (libs.firebase.storage.ktx)
     implementation(libs.firebase.analytics)    //vi bruger ikke analytics til noget
+    implementation ("com.google.firebase:firebase-auth:23.2.1") //firebase auth
+    //viewmodel
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    //navigation
+    implementation(libs.androidx.navigation.compose)
+    // Coil til billedvisning
+    implementation (libs.coil.compose)
+    //konfetti i guess, idk
     implementation("nl.dionsegijn:konfetti-compose:2.0.3")
     implementation("nl.dionsegijn:konfetti-core:2.0.3")
 
