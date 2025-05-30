@@ -129,7 +129,7 @@ fun UploadScreen() {
             )
         }
 
-        // 🎉 Massevis af konfetti med fade-out
+        // Massevis af konfetti med fade-out
         AnimatedVisibility(
             visible = showConfetti,
             exit = fadeOut()
