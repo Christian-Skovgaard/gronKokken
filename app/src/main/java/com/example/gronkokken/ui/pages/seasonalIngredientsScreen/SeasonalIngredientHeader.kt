@@ -35,6 +35,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.gronkokken.R
 import com.example.gronkokken.ui.components.FirebaseImage
 
+
+//Lukas
 @Composable
 fun SeasonalIngredientsHeader(changeIngredientType: () -> Unit, ingredientButtonText: String, arrowClick: () -> Unit) {
 
