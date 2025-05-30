@@ -20,31 +20,50 @@ import java.time.LocalDate
 import java.time.Month
 import java.util.Locale
 
-//Lukas
+
+
+//Lukas with a little chatgpt
 
 class SeasonalIngredientsViewmodel(): ViewModel() {
 
+    //use firestore
     private val fireStore = Firestore()
 
+    //value that is used to show a loadingscreen. by default it is true, and is changed to false
+    //after init has finished
     var loading: MutableState<Boolean> = mutableStateOf(true)
 
+    //mutable list for all ingredients, that is changed only in this viewmodel
     private val _ingredientsList = mutableStateOf<List<SeasonalIngredient>>(emptyList())
+    //read only list for ui to show
     val ingredientsList: State<List<SeasonalIngredient>> = _ingredientsList
 
+    //mutable state list with ingredients in season. this value is changed in the init to show
+    //the the ingredients in season for the current month, but is also changed by
+    //setSelectedMonth function that changes the month
     private val _inSeasonList = mutableStateOf<List<SeasonalIngredient>>(emptyList())
+    //read only state list for ui
     val inSeasonList: State<List<SeasonalIngredient>> = _inSeasonList
 
-    var selectedMonth = mutableStateOf(LocalDate.now().monthValue)
-        private set
+    //current month also same as above with private and mutable variable
+    private var _selectedMonth = mutableStateOf(LocalDate.now().monthValue)
+    //and read only
+    var selectedMonth: State<Int> = _selectedMonth
+
 
     init {
+        //viewModelScope to get ingredients from firebase and put them into the different variables
+        //asynchronously
         viewModelScope.launch {
+            //get ingredients
             val importList = fireStore.getSeasonalIngredients()
-            _ingredientsList.value = importList
-
             val currentMonth  = LocalDate.now().monthValue
+
+            _ingredientsList.value = importList
+            //filter ingredients only for current month
             _inSeasonList.value = importList.filter { it.isInSeason(currentMonth) }
 
+            //remove loading screen
             loading.value = false
 
         }
@@ -58,21 +77,22 @@ class SeasonalIngredientsViewmodel(): ViewModel() {
         return currentMonthName.toString().lowercase().replaceFirstChar { it.uppercase() }
     }
 
+    //get a month and make it the selected month
+    //update inseasonlist to match with the month given
     fun setSelectedMonth(month: Int) {
-        selectedMonth.value = month
+        _selectedMonth.value = month
         _inSeasonList.value = _ingredientsList.value.filter {
             it.isInSeason(month)
         }
     }
 
+    //takes the number from selected month, and uses month of to get the month name that
+    //correlates with the number. gets the full name in danish and makes the first letter
+    //uppercase
     fun getSelectedMonthName(): String {
         return Month.of(selectedMonth.value)
             .getDisplayName(TextStyle.FULL, Locale("da"))
             .replaceFirstChar { it.uppercase() }
-    }
-
-    fun getSelectedSeason(): String {
-        return "yo"
     }
 
 

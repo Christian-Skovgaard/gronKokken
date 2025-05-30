@@ -13,8 +13,8 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 //Lukas
-//to make outlinedtext i made the text 4 times, 1 going up, 1 going down, 1 to the right
-// and 1 to the left.
+//to make outlinedtext, make 1 going up, 1 going down, 1 to the right
+// and 1 to the left by offsetting them
 fun OutlinedText(
     text: String,
     fontSize: TextUnit = 40.sp,

@@ -35,13 +35,17 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.gronkokken.R
 import com.example.gronkokken.ui.components.FirebaseImage
 
+
+//Lukas
 @Composable
-fun SeasonalIngredientsHeader(ingredientClick: () -> Unit, ingredientButtonText: String, arrowClick: () -> Unit) {
+fun SeasonalIngredientsHeader(changeIngredientType: () -> Unit, ingredientButtonText: String, arrowClick: () -> Unit) {
 
     val viewmodel: SeasonalIngredientsViewmodel = viewModel()
 
+    //Starts on current month. value is changed by slider
     val selectedMonth by viewmodel.selectedMonth
 
+    //show which season it is based on the month. also is changed by slider
     val season = when (selectedMonth) {
         in 3..5 -> "Forår"
         in 6..8 -> "Sommer"
@@ -49,11 +53,10 @@ fun SeasonalIngredientsHeader(ingredientClick: () -> Unit, ingredientButtonText:
         else -> "Vinter"
     }
 
-
-
     Column(
 
     ) {
+        //back arrow
         Icon(
             painter = painterResource(R.drawable.baseline_arrow_back_ios_24),
             contentDescription = "",
@@ -66,12 +69,14 @@ fun SeasonalIngredientsHeader(ingredientClick: () -> Unit, ingredientButtonText:
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            //Season name
             Text(
                 text = season,
                 fontSize = 40.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF4B7A2B)
             )
+            //month, updated by slider
             Text(
                 text = viewmodel.getSelectedMonthName(),
                 fontSize = 20.sp,
@@ -79,16 +84,19 @@ fun SeasonalIngredientsHeader(ingredientClick: () -> Unit, ingredientButtonText:
             )
         }
 
+        //cool month slider
         MonthSlider(viewmodel)
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(100.dp)
-                .padding(start = 10.dp)
+                .padding(start = 10.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Button(
-                onClick = { ingredientClick() },
+                //in fruit screen this navigates to vegetables, in vegetable screen it naivgates to fruits
+                onClick = { changeIngredientType() },
                 modifier = Modifier
                     .offset(0.dp, 35.dp)
                     .width(140.dp)
@@ -100,6 +108,8 @@ fun SeasonalIngredientsHeader(ingredientClick: () -> Unit, ingredientButtonText:
                     contentColor = Color(0xff121212)
                 )
             ) {
+                //like the button this changes based on which ingredientscreen it is
+                //in fruits: Se grøntsager, in vegetables: Se frugter
                 Text(
                     text = ingredientButtonText,
                     fontSize = 14.sp,

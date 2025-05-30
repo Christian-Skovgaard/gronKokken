@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -92,6 +93,7 @@ fun RecipeDisplayList (
                             {displayBoxOnClick(recipe.id)}  //den er proppet i lamda fordi den skal sendes videre som ny funktion, som bare er den gamle funktion med argument og ikke køres her.
                         )
                     }
+                    Spacer(modifier = Modifier.height(15.dp))
                 }
             }
         }
