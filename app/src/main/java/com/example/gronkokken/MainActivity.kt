@@ -19,6 +19,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.gronkokken.components.InternalStorage
 import com.example.gronkokken.recipeListScreen.RecipeListScreen
+import com.example.gronkokken.repository.Firestore
 import com.example.gronkokken.repository.UserViewModel
 import com.example.gronkokken.ui.theme.GronKokkenTheme
 import com.google.firebase.Firebase
@@ -35,6 +36,20 @@ class MainActivity : ComponentActivity() {
             val userViewModel: UserViewModel = viewModel()
             val navController = rememberNavController()
 
+            val firestore = Firestore()
+            firestore.uploadById(
+                recipeId = "4Qe9EvGW009gFauK6tCX",
+                ingredientsRawString = "400g hakket kyllingekød\n" +
+                        "1tsk fint salt\n" +
+                        "2 løg\n" +
+                        "1dl mælk\n" +
+                        "5spsk hvedemel\n" +
+                        "1spsk smør (stor)\n" +
+                        "2 gulerødder\n" +
+                        "2spsk karry (gerne madras (ikke stærk))\n" +
+                        "9dl vand fra kødbollerne (måske 10)\n" +
+                        "1 æble\n"
+            )
 
             GronKokkenTheme {   //tror ikke vi bruger theme nogen stedder?
                 Navigation(

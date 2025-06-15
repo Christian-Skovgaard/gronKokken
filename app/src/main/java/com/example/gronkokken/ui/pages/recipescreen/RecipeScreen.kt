@@ -121,13 +121,13 @@ fun RecipeIngredientsList (
                 ) {
                 Row {
                     Row (
-                        modifier = Modifier.fillMaxWidth(0.2f),
+                        modifier = Modifier.fillMaxWidth(0.3f),
 
                     ) {
                         Text(
                             text = ingredientList[i].amount.value.toString(),  //vi bruger toSting() fordi den er nullable
                             modifier = Modifier
-                                .fillMaxWidth(0.4f)
+                                .fillMaxWidth(0.6f)
                                 .padding(horizontal = 2.dp),
                             textAlign = TextAlign.End
 

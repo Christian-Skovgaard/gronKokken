@@ -175,104 +175,11 @@ class Firestore {
     //funktionener her var brugt til at uploade opskrifter til DB, da
     // det tager lang tid at gøre gennem firestore control-panel,
     // den er efterladt i koden for at dokumentere hvordan det blev gjordt:D
-    fun uploadRecipe (  //Christian
-//        name: String,
-//        flavorText:String = "",
-        ingredientsRawString: String,
-//        instructions:String,
-//        endDateRaw:String,
-//        peopleAmount:Int = 1,
-//        imagePath:String,
-    ) {
-
-        //ingredient handling
-        val ingredientsRaw: MutableList<Map<String,String>> = mutableListOf()
-
-        val listOfIngredientString = ingredientsRawString.lines()   //virker ligesom .split("\n")
-        listOfIngredientString.forEach {
-            if (!it.isBlank()) {
-                val split = it.trim().split(" ")
-                if (split[0].toIntOrNull() == null && split[0].toDoubleOrNull() == null) {  //Hvis stringen ikke passer i typen bliver det til null
-                    ingredientsRaw.add(
-                        mapOf(
-                            "amount" to "",
-                            "amountUnit" to "",
-                            "name" to split.joinToString(" ")
-                        )
-                    )
-                } else {
-                    if (split.size >= 3) {
-                        ingredientsRaw.add(
-                            mapOf(
-                                "amount" to split[0],
-                                "amountUnit" to split[1],
-                                "name" to split.subList(2, split.size).joinToString(" ") //.sublist() laver en liste fra et index til et andet som vi så sætter sammen til string
-                            )
-                        )
-                    } else if (split.size == 2) {
-                        ingredientsRaw.add(
-                            mapOf(
-                                "amount" to split[0],
-                                "amountUnit" to "",
-                                "name" to split.subList(1, split.size).joinToString(" ")
-                            )
-                        )
-                    }
-                }
-                Log.d("data_upload", split.toString())
-            }
-        }
-        Log.d("data_upload",ingredientsRaw.toString())
-
-        //rating handling
-        //Sidden vi ikke har nået at lave et rigtigt rating system har jeg her for sjov lavet en tilfældigt generet liste
-        val ratings = List((1..100).random()) { (1..5).random() }
-
-//        db.collection("recipes").add(hashMapOf(
-//            "name" to name,
-//            "flavorText" to flavorText,
-//            "ingredientsRaw" to ingredientsRaw,
-//            "instructions" to instructions,
-//            "ratings" to ratings,
-//            "endDateRaw" to endDateRaw,
-//            "peopleAmount" to peopleAmount,
-//            "imagePath" to imagePath
-//        )).addOnSuccessListener {
-//            Log.d("data_upload",it.toString())
-//        }.addOnFailureListener {
-//            Log.d("data_upload",it.toString())
-//        }
-    }
-
-
-    suspend fun uploadByName (    //Christian
+    fun uploadById (    //Christian
         recipeId: String,
         ingredientsRawString: String
     ) {
-        val ingredientsRaw: MutableList<Map<String, String>> = mutableListOf()
-
-        val listOfIngredientString = ingredientsRawString.lines()
-        listOfIngredientString.forEach {
-            var amount:String = ""
-            var amountUnit:String = ""
-            var name:String = ""
-            if (!it.isBlank()) {
-                val list = it.split(" ")
-                if (!list[0][0].isDigit()) {
-                    name = list.joinToString(" ")
-                } else {
-                    val regexForDigits = "\\d+".toRegex()
-                    amount = regexForDigits.find(list[0]).toString()
-                    amountUnit = list[0].replace(amount,"")
-                    name = list.subList(1,list.size).joinToString(" ")
-                }
-            }
-            ingredientsRaw.add(mapOf(
-                "amount" to amount,
-                "amountUnit" to amountUnit,
-                "name" to name
-            ))
-        }
+        val ingredientsRaw: List<Map<String, String>> = getIngredientListFromString(ingredientsRawString)
 
         val ratings = List((1..100).random()) { (1..5).random() }
 
@@ -284,6 +191,38 @@ class Firestore {
 
         db.collection("recipes").document(recipeId).update(updateMap)
             .addOnSuccessListener { Log.d("upload","worked fine:D " + it.toString()) }
-            .addOnFailureListener { Log.d("upload","worked fine:D " + it.toString()) }
+            .addOnFailureListener { Log.d("upload","did not work lol " + it.toString()) }
+    }
+
+    private fun getIngredientListFromString (inputString:String):List<Map<String,String>> {
+
+        val outputList: MutableList<Map<String,String>> = mutableListOf()
+
+        inputString.lines().forEach { line ->
+            if (!line.trim().isBlank()) {  //filtrere for whitespace
+
+                var amount = ""
+                var amountUnit = ""
+                var name = ""
+
+                val wordList = line.split(" ")  //fungere ligesom .split("\n")
+                if (wordList[0][0].isDigit()) {
+                    val regexForDigits = "\\p{N}+".toRegex()    //regex for digits, men indeholder også bla. "½"
+                    amount = regexForDigits.find(wordList[0])?.value.toString()
+                    amountUnit = wordList[0].replace(amount,"")     //fjerne amount fra stringen så der kun er enhedden tilbage
+                    name = wordList.subList(1,wordList.size).joinToString(" ")  //.sublist() laver en ny liste fra index til andet index
+                } else {
+                    name = line
+                }
+
+                outputList.add(mapOf(
+                    "amount" to amount,
+                    "amountUnit" to amountUnit,
+                    "name" to name
+                ))
+            }
+        }
+
+        return outputList.toList()
     }
 }
